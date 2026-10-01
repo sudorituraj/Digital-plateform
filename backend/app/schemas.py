@@ -135,6 +135,43 @@ class DoctorOut(BaseModel):
     name: str
 
 
+PayMethod = Literal["upi", "card", "netbanking", "cash"]
+BANKS = ["sbi", "pnb", "bob", "hdfc", "icici", "axis", "other"]
+
+
+class PaymentOut(BaseModel):
+    amount: int
+    currency: str = "INR"
+    status: Literal["free", "pending", "paid", "refunded"]
+    reason: Literal["new_visit", "after_free_period", "follow_up"]
+    last_visit: date | None = None
+    free_until: date | None = None
+    method: PayMethod | None = None
+    reference: str | None = None
+    paid_at: datetime | None = None
+    card_brand: str | None = None
+    card_last4: str | None = None
+    bank: str | None = None
+
+
+class QuoteOut(BaseModel):
+    required: bool
+    amount: int
+    reason: Literal["new_visit", "after_free_period", "follow_up"]
+    last_visit: date | None = None
+    free_until: date | None = None
+    free_days: int
+
+
+class PayIn(BaseModel):
+    """DEMO checkout. Never send a full card number — only its brand and last 4 digits."""
+    method: Literal["upi", "card", "netbanking"]
+    upi_id: str | None = Field(default=None, max_length=60, pattern=r"^[A-Za-z0-9._-]{2,40}@[A-Za-z]{2,20}$")
+    card_last4: str | None = Field(default=None, pattern=r"^\d{4}$")
+    card_brand: Literal["visa", "mastercard", "rupay", "amex", "other"] | None = None
+    bank: Literal["sbi", "pnb", "bob", "hdfc", "icici", "axis", "other"] | None = None
+
+
 class AppointmentOut(BaseModel):
     request_id: str
     patient_name: str
@@ -145,6 +182,7 @@ class AppointmentOut(BaseModel):
     status: str
     token: int | None = None
     created_at: datetime
+    payment: PaymentOut | None = None
 
 
 class MyAppointmentsOut(BaseModel):
@@ -212,6 +250,7 @@ class StaffAppointmentOut(BaseModel):
     created_at: datetime
     updated_at: datetime
     history: list[HistoryOut] = []
+    payment: PaymentOut | None = None
 
 
 class StaffListOut(BaseModel):

@@ -95,8 +95,22 @@ export default function ReceptionPage() {
     }
   }
 
+  async function markPaidCash(a) {
+    setBusyId(a.request_id)
+    try {
+      const updated = await api.post(`/staff/appointments/${a.request_id}/paid-at-clinic`)
+      afterChange(updated, t('staff.toast.paidCash', { name: a.patient_name }))
+    } catch (err) {
+      toast(errorMessage(t, err), 'error')
+      reload()
+    } finally {
+      setBusyId(null)
+    }
+  }
+
   function onAction(a, action) {
-    if (action in ACTION_TO_STATUS) changeStatus(a, ACTION_TO_STATUS[action])
+    if (action === 'paidCash') markPaidCash(a)
+    else if (action in ACTION_TO_STATUS) changeStatus(a, ACTION_TO_STATUS[action])
     else {
       setCancelError(null)
       setOpen({ kind: action, a })

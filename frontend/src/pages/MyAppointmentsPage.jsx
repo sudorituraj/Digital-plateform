@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
+import { PaymentBadge } from '../components/payment/PaymentStatus'
 import { Button, Card, Container, Icon, Reveal, StateMessage, StatusBadge } from '../components/ui'
 import { useApiGet } from '../hooks/useApiGet'
 import { usePageTitle } from '../hooks/usePageTitle'
@@ -26,8 +27,9 @@ function AppointmentRow({ a }) {
           <span className="block text-sm text-ink-muted">
             {t('meta.doctor')} · <span className="font-mono">{a.request_id}</span>
           </span>
-          <span className="mt-1.5 block">
+          <span className="mt-1.5 flex flex-wrap gap-1.5">
             <StatusBadge status={statusKey(a.status)} />
+            {a.status !== 'cancelled' && <PaymentBadge payment={a.payment} />}
           </span>
         </span>
         <Icon name="arrowRight" className="shrink-0 text-ink-subtle" />

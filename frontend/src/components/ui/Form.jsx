@@ -110,9 +110,9 @@ export function TextareaField({ id, label, hint, error, optional, className, row
   )
 }
 
-export function SelectField({ label, hint, error, optional, options, className, ...selectProps }) {
+export function SelectField({ id, label, hint, error, optional, options, className, ...selectProps }) {
   return (
-    <Field label={label} hint={hint} error={error} optional={optional} className={className}>
+    <Field id={id} label={label} hint={hint} error={error} optional={optional} className={className}>
       {({ id, describedBy, invalid }) => (
         <div className="relative">
           <select

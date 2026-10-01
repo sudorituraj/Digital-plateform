@@ -4,6 +4,8 @@ import { useAuth } from '../auth/useAuth'
 import { DatePicker } from '../components/booking/DatePicker'
 import { OtpForm } from '../components/booking/OtpForm'
 import { Stepper } from '../components/booking/Stepper'
+import { FeeNote } from '../components/payment/FeeNote'
+import { PaymentPanel } from '../components/payment/PaymentPanel'
 import {
   Alert,
   Button,
@@ -20,6 +22,7 @@ import { useApiGet } from '../hooks/useApiGet'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { useI18n } from '../i18n/useI18n'
 import { api, errorMessage } from '../lib/api'
+import { formatRupees } from '../lib/card'
 import { formatDay } from '../lib/format'
 
 const STEPS = ['mobile', 'when', 'details', 'review']
@@ -51,6 +54,11 @@ export default function BookPage() {
   const [editedDetails, setDetails] = useState(null)
   const [detailErrors, setDetailErrors] = useState({})
   const [submit, setSubmit] = useState({ busy: false, error: null })
+  const [created, setCreated] = useState(null) // the saved request, while its fee is being paid
+  // Fee for the chosen day (free follow-up within 14 days of the last visit), decided by the server.
+  const [quote] = useApiGet(status === 'patient' && when.date ? `/booking/quote?date=${when.date}` : null)
+  const fee = quote.state === 'ready' ? quote.data : null
+  const steps = created || fee?.required ? [...STEPS, 'pay'] : STEPS
   const headingRef = useRef(null)
 
   // First step depends on whether the visitor is already logged in.
@@ -109,8 +117,23 @@ export default function BookPage() {
         clinic_patient_ref: details.clinicRef,
       })
       // The booking also saved the profile on the server; keep the in-app copy in sync.
-      setPatient({ ...patient, name: details.name.trim(), age: Number(details.age), gender: details.gender, email: details.email || null })
-      navigate(`/appointments/${appointment.request_id}`, { state: { justBooked: true } })
+      setPatient({
+        ...patient,
+        name: details.name.trim(),
+        age: Number(details.age),
+        gender: details.gender,
+        email: details.email || null,
+      })
+      if (appointment.payment?.status === 'pending') {
+        // The request is saved; now the fee. Paying later (online or at the clinic) is also fine.
+        setCreated(appointment)
+        setSubmit({ busy: false, error: null })
+        goTo('pay')
+        return
+      }
+      navigate(`/appointments/${appointment.request_id}`, {
+        state: { justBooked: true },
+      })
     } catch (error) {
       setSubmit({ busy: false, error: errorMessage(t, error) })
     }
@@ -125,7 +148,7 @@ export default function BookPage() {
       <h1 className="text-3xl sm:text-4xl">{t('book.title')}</h1>
       <p className="mt-2 text-ink-muted">{t('book.lead')}</p>
       <div className="mt-6">
-        <Stepper steps={STEPS} current={currentStep} />
+        <Stepper steps={steps} current={currentStep} />
       </div>
 
       <Card padding="lg" className="mt-6 animate-fade-in" key={currentStep}>
@@ -154,7 +177,10 @@ export default function BookPage() {
                 {/* Only one doctor: shown as the chosen doctor, not a picker (DECISIONS.md D2). */}
                 <div className="flex items-center gap-4 rounded-control bg-primary-50 p-3 ring-1 ring-primary-100">
                   {/* Replace with the doctor's approved photo when available. */}
-                  <span data-replace="Doctor thumbnail" className="grid size-14 shrink-0 place-items-center rounded-full bg-surface text-primary-700 ring-1 ring-primary-200">
+                  <span
+                    data-replace="Doctor thumbnail"
+                    className="grid size-14 shrink-0 place-items-center rounded-full bg-surface text-primary-700 ring-1 ring-primary-200"
+                  >
                     <Icon name="user" size={26} />
                   </span>
                   <div>
@@ -180,6 +206,8 @@ export default function BookPage() {
                   error={whenErrors.date}
                 />
 
+                {fee && <FeeNote quote={fee} />}
+
                 <ChoiceChips
                   legend={t('book.chooseTime')}
                   name="booking-slot"
@@ -187,11 +215,13 @@ export default function BookPage() {
                   value={when.slot}
                   onChange={(slot) => setWhen((w) => ({ ...w, slot }))}
                   error={whenErrors.slot}
-                  options={(when.date === options.data.today ? options.data.open_today : options.data.time_slots).map((s) => ({
-                    value: s,
-                    label: t(`form.${s}`),
-                    icon: SLOT_ICONS[s],
-                  }))}
+                  options={(when.date === options.data.today ? options.data.open_today : options.data.time_slots).map(
+                    (s) => ({
+                      value: s,
+                      label: t(`form.${s}`),
+                      icon: SLOT_ICONS[s],
+                    }),
+                  )}
                 />
 
                 <Alert tone="warning">{t('alerts.warning')}</Alert>
@@ -233,7 +263,10 @@ export default function BookPage() {
                 value={details.gender}
                 onChange={set('gender')}
                 error={detailErrors.gender}
-                options={['female', 'male', 'other'].map((v) => ({ value: v, label: t(`form.${v}`) }))}
+                options={['female', 'male', 'other'].map((v) => ({
+                  value: v,
+                  label: t(`form.${v}`),
+                }))}
               />
             </div>
             <TextareaField
@@ -283,26 +316,43 @@ export default function BookPage() {
                 ['stethoscope', t('book.doctor'), t('meta.doctor'), null],
                 ['calendar', t('book.day'), formatDay(when.date, language), 'when'],
                 ['clock', t('book.time'), t(`form.${when.slot}`), 'when'],
-                ['user', t('book.patient'), `${details.name} · ${details.age} · ${t(`form.${details.gender}`)}`, 'details'],
+                [
+                  'user',
+                  t('book.patient'),
+                  `${details.name} · ${details.age} · ${t(`form.${details.gender}`)}`,
+                  'details',
+                ],
                 ['phone', t('form.mobile'), `+91 ${patient.phone}`, null],
                 ...(details.reason ? [['fileText', t('form.reason'), details.reason, 'details']] : []),
+                ...(fee
+                  ? [
+                      [
+                        'rupee',
+                        t('pay.fee'),
+                        fee.required ? formatRupees(fee.amount, language) : t('pay.status.free'),
+                        null,
+                      ],
+                    ]
+                  : []),
               ].map(([icon, label, value, editStep]) => (
-                <div key={label} className="flex items-start gap-3.5 p-4">
-                  <Icon name={icon} className="mt-0.5 shrink-0 text-primary-700" />
-                  <div className="min-w-0 flex-1">
-                    <dt className="text-sm text-ink-muted">{label}</dt>
-                    <dd className="font-semibold break-words">{value}</dd>
-                  </div>
-                  {editStep && (
-                    <button
-                      type="button"
-                      onClick={() => goTo(editStep)}
-                      className="min-h-11 shrink-0 px-2 font-semibold text-primary-700 underline underline-offset-4"
-                    >
-                      {t('book.edit')}
-                      <span className="sr-only"> {label}</span>
-                    </button>
-                  )}
+                <div key={label} className="relative py-4 pr-4 pl-13">
+                  <dt className="text-sm text-ink-muted">
+                    <Icon name={icon} className="absolute top-4.5 left-4 text-primary-700" />
+                    {label}
+                  </dt>
+                  <dd className="flex items-start justify-between gap-2">
+                    <span className="min-w-0 font-semibold break-words">{value}</span>
+                    {editStep && (
+                      <button
+                        type="button"
+                        onClick={() => goTo(editStep)}
+                        className="-my-3 min-h-11 shrink-0 px-2 font-semibold text-primary-700 underline underline-offset-4"
+                      >
+                        {t('book.edit')}
+                        <span className="sr-only"> {label}</span>
+                      </button>
+                    )}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -315,9 +365,28 @@ export default function BookPage() {
                 {t('book.back')}
               </Button>
               <Button size="lg" icon="send" onClick={submitBooking} disabled={submit.busy}>
-                {submit.busy ? t('common.loading') : t('book.submit')}
+                {submit.busy ? t('common.loading') : fee?.required ? t('book.submitAndPay') : t('book.submit')}
               </Button>
             </div>
+          </div>
+        )}
+
+        {currentStep === 'pay' && created && (
+          <div className="space-y-5">
+            <Alert tone="success">{t('pay.requestSaved', { id: created.request_id })}</Alert>
+            <PaymentPanel
+              appointment={created}
+              onPaid={() =>
+                navigate(`/appointments/${created.request_id}`, {
+                  state: { justBooked: true, justPaid: true },
+                })
+              }
+              onLater={() =>
+                navigate(`/appointments/${created.request_id}`, {
+                  state: { justBooked: true },
+                })
+              }
+            />
           </div>
         )}
       </Card>

@@ -354,7 +354,8 @@
       "mobile": "Your mobile",
       "when": "Day & time",
       "details": "Your details",
-      "review": "Check & send"
+      "review": "Check & send",
+      "pay": "Payment"
     },
     "yourDoctor": "Your doctor",
     "selected": "Selected",
@@ -375,7 +376,8 @@
       "time": "Please choose a time."
     },
     "rule": "The doctor sees patients from 10 AM to 4 PM. You can book up to 7 days ahead.",
-    "noSlotsToday": "Today's times are over — please choose another day."
+    "noSlotsToday": "Today's times are over — please choose another day.",
+    "submitAndPay": "Send request & pay"
   },
   "appointment": {
     "title": "Appointment details",
@@ -430,7 +432,10 @@
     "patient_exists": "A patient with this mobile number already exists.",
     "visit_not_open": "Notes can be written once the patient has checked in.",
     "follow_up_invalid": "Please choose a follow-up date after today's visit, within a year.",
-    "slot_passed": "This time has already passed today. Please choose a later time or another day."
+    "slot_passed": "This time has already passed today. Please choose a later time or another day.",
+    "payment_declined": "The card was declined. Please try another card or pay by UPI.",
+    "payment_failed": "The payment did not go through. Please try again or choose another way to pay.",
+    "nothing_to_pay": "There is nothing to pay for this appointment."
   },
   "staff": {
     "area": "Clinic staff",
@@ -501,7 +506,8 @@
       "cancel": "Cancel",
       "details": "Details",
       "callPatient": "Call {name}",
-      "whatsappPatient": "WhatsApp {name}"
+      "whatsappPatient": "WhatsApp {name}",
+      "paidCash": "Mark paid (cash)"
     },
     "toast": {
       "confirmed": "{name} confirmed",
@@ -511,7 +517,8 @@
       "cancelled": "{name}'s appointment is cancelled",
       "rescheduled": "{name} moved to {date}",
       "walkIn": "{name} added — token {token}",
-      "walkInLater": "{name} booked for {date}"
+      "walkInLater": "{name} booked for {date}",
+      "paidCash": "Payment collected from {name}"
     },
     "details": {
       "title": "Appointment {id}",
@@ -706,6 +713,11 @@
         "label": "Follow-up",
         "title": "Time for your follow-up visit",
         "body": "The doctor asked to see you again on {followUp}. Book an appointment or call the clinic."
+      },
+      "paid": {
+        "label": "Payment",
+        "title": "Payment received",
+        "body": "{amount} received for your appointment on {date}. Receipt: {reference}."
       }
     }
   },
@@ -750,5 +762,69 @@
       "care3": "Provides nutrition and lifestyle guidance",
       "care4": "Prepares you for labour and delivery"
     }
+  },
+  "pay": {
+    "fee": "Consultation fee",
+    "feeLabel": "Consultation fee",
+    "secure": "Secure",
+    "demoTitle": "Demo payment",
+    "demoBody": "This is a demo. No money is taken and no real payment app or bank is contacted.",
+    "chooseMethod": "How would you like to pay?",
+    "methods": {
+      "upi": "UPI",
+      "card": "Card",
+      "netbanking": "Net banking",
+      "cash": "Cash at clinic"
+    },
+    "upiId": "UPI ID",
+    "upiHint": "The ID from your UPI app, e.g. name@okaxis or 98xxxxxx@ybl",
+    "cardNumber": "Card number",
+    "expiry": "Expiry",
+    "expiryPlaceholder": "MM/YY",
+    "cvv": "CVV",
+    "nameOnCard": "Name on card",
+    "bank": "Your bank",
+    "chooseBank": "Choose your bank",
+    "banks": {
+      "sbi": "State Bank of India",
+      "pnb": "Punjab National Bank",
+      "bob": "Bank of Baroda",
+      "hdfc": "HDFC Bank",
+      "icici": "ICICI Bank",
+      "axis": "Axis Bank",
+      "other": "Other bank"
+    },
+    "testTitle": "Demo test details",
+    "testCard": "Card 4111 1111 1111 1111, any future expiry, any CVV → payment succeeds",
+    "testDeclined": "A card ending in 0002 (e.g. 4000 0000 0000 0002) → card declined",
+    "testUpiFail": "A UPI ID starting with \"fail\" (e.g. fail@okaxis) → payment fails",
+    "payAmount": "Pay {amount}",
+    "payNow": "Pay now · {amount}",
+    "later": "Pay later (online or at the clinic)",
+    "processing": "Processing payment…",
+    "doNotClose": "Please don't close this page",
+    "errors": {
+      "upi": "Please enter a valid UPI ID, like name@okaxis.",
+      "cardNumber": "Please check the card number.",
+      "expiry": "Please enter a valid expiry date (MM/YY).",
+      "cvv": "Please enter the 3 or 4 digit CVV."
+    },
+    "freeTitle": "Free follow-up visit",
+    "freeBody": "Your last visit was on {last}. Visits within {days} days are free — no payment needed until {until}.",
+    "feeTitle": "Consultation fee: {amount}",
+    "feeNew": "Pay online after sending your request, or at the clinic. Follow-up visits within {days} days are free.",
+    "feeAfterFree": "Your last visit was on {last}, more than {days} days ago, so the fee applies again.",
+    "status": {
+      "paid": "Paid",
+      "free": "Free follow-up",
+      "pending": "Payment pending",
+      "refunded": "Refunded"
+    },
+    "freeLine": "No fee — free follow-up until {until}",
+    "pendingLine": "{amount} to pay — online now, or at the clinic",
+    "requestSaved": "Your request {id} is saved. Pay the fee now, or later at the clinic.",
+    "successShort": "Payment successful",
+    "refundedNote": "This appointment was cancelled, so the payment is refunded (demo).",
+    "collectAtDesk": "Fee not paid yet: collect {amount}"
   }
 }

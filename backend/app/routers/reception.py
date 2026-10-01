@@ -13,6 +13,8 @@ from ..db import get_db, next_sequence
 from ..errors import ApiError
 from ..lifecycle import check_transition, history_entry, insert_appointment, next_token
 from ..notifications import notify, run_due_reminders
+from .. import payments
+from .appointments import payments_refund_if_paid
 from ..schemas import (
     OverviewOut,
     RescheduleIn,
@@ -78,6 +80,7 @@ async def enrich(docs: list[dict]) -> list[StaffAppointmentOut]:
                 created_at=d["created_at"],
                 updated_at=d.get("updated_at", d["created_at"]),
                 history=d.get("status_history", []),
+                payment=d.get("payment"),
             )
         )
     return out
@@ -171,6 +174,8 @@ async def change_status(request_id: str, body: StatusChangeIn, staff: dict = Dep
     )
     if not updated:
         raise ApiError(409, "changed_elsewhere", "This appointment was just changed. Please refresh.")
+    if body.status == "cancelled":
+        updated = await payments_refund_if_paid(db, updated)
     log.info("%s: %s → %s by %s", doc["request_id"], doc["status"], body.status, staff["username"])
     if body.status in ("confirmed", "cancelled"):
         await notify(db, body.status, appt=updated, by="clinic")
@@ -195,11 +200,14 @@ async def reschedule(request_id: str, body: RescheduleIn, staff: dict = Depends(
         raise ApiError(409, "duplicate_booking", "This patient already has an appointment that day", request_id=clash["request_id"])
 
     note = f"{doc['date']} {doc['time_slot']} → {new_day} {body.time_slot}" + (f" · {body.note}" if body.note else "")
+    fee = {}
+    if (doc.get("payment") or {}).get("status") in ("pending", "free"):  # not paid yet → the fee follows the new day
+        fee = {"payment": payments.new_payment(await payments.quote(db, doc["patient_id"], body.date))}
     updated = await db.appointments.find_one_and_update(
         {"_id": doc["_id"], "status": doc["status"]},
         {
             # The clinic chose the new time, so it is confirmed.
-            "$set": {"date": new_day, "time_slot": body.time_slot, "status": "confirmed", "updated_at": datetime.now(UTC)},
+            "$set": {"date": new_day, "time_slot": body.time_slot, "status": "confirmed", "updated_at": datetime.now(UTC), **fee},
             "$push": {"status_history": history_entry("rescheduled", staff["username"], note)},
         },
         return_document=ReturnDocument.AFTER,
@@ -257,6 +265,7 @@ async def walk_in(body: WalkInIn, staff: dict = Depends(reception_only)):
         "status": status,
         "status_history": [history_entry(status, staff["username"], "Walk-in" if arriving_now else "Booked at reception")],
         "token": await next_token(db, day.isoformat()) if arriving_now else None,
+        "payment": payments.new_payment(await payments.quote(db, patient["_id"], day)),  # collected at the desk
         "source": "walk_in",
         "created_at": now,
         "updated_at": now,
@@ -266,3 +275,22 @@ async def walk_in(body: WalkInIn, staff: dict = Depends(reception_only)):
         await notify(db, "confirmed", patient=patient, appt=doc, by="clinic")
     log.info("Walk-in %s for %s on %s by %s", doc["request_id"], patient["patient_code"], day, staff["username"])
     return (await enrich([doc]))[0]
+
+
+@router.post("/appointments/{request_id}/paid-at-clinic", response_model=StaffAppointmentOut)
+async def paid_at_clinic(request_id: str, staff: dict = Depends(reception_only)):
+    """Reception collected the fee in cash at the desk."""
+    db = get_db()
+    doc = await find_appointment(request_id)
+    if (doc.get("payment") or {}).get("status") != "pending" or doc["status"] == "cancelled":
+        raise ApiError(409, "nothing_to_pay", "There is nothing to collect for this appointment")
+    result = payments.paid("cash", staff["username"])
+    updated = await db.appointments.find_one_and_update(
+        {"_id": doc["_id"], "payment.status": "pending"},
+        {"$set": {**{f"payment.{k}": v for k, v in result.items()}, "updated_at": datetime.now(UTC)}},
+        return_document=ReturnDocument.AFTER,
+    )
+    if not updated:
+        raise ApiError(409, "nothing_to_pay", "There is nothing to collect for this appointment")
+    log.info("%s fee collected in cash by %s (%s)", doc["request_id"], staff["username"], result["reference"])
+    return (await enrich([updated]))[0]

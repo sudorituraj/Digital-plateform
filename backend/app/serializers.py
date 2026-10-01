@@ -18,4 +18,5 @@ def appointment_out(doc: dict) -> AppointmentOut:
         status=doc["status"],
         token=doc.get("token"),
         created_at=doc["created_at"],
+        payment=doc.get("payment"),
     )

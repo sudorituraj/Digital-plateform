@@ -55,7 +55,7 @@ export default function NotificationsPage() {
                     </span>
                     <div className="min-w-0 flex-1">
                       <p className="flex items-center gap-2 font-semibold">
-                        {!n.read && <span className="size-2 rounded-full bg-accent-500" aria-label={t('notifications.new')} />}
+                        {!n.read && <span className="size-2 rounded-full bg-accent-500" role="img" aria-label={t('notifications.new')} />}
                         {title}
                       </p>
                       <p className="mt-0.5 text-ink-muted">{body}</p>

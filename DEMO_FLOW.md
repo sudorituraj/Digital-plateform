@@ -36,12 +36,18 @@ patient and staff logins don't mix.
 3. **Dr. Neela Singh** — `/doctor`. Profile, availability, areas of care; unconfirmed facts are marked.
    *Say:* "One doctor, one profile — no fake directory."
 4. **Book an appointment** — `/book`: mobile number → code shown on screen → new-patient details
-   (name, gender, age) → day & time (morning / afternoon / evening) → details → check & send.
+   (name, gender, age) → day & time (10–12 / 12–2 / 2–4) → details → check & send.
+   **Payment (demo):** a new patient sees "Consultation fee: ₹300" when choosing a day; after "Send request & pay"
+   choose UPI (any ID like `name@okaxis`), Card (`4111 1111 1111 1111`, any future expiry, any CVV) or Net banking.
+   Show a failure too: card ending `0002` is declined, UPI ID `fail@okaxis` fails. "Pay later" also works.
+   *Say:* "Demo only — no money moves. A real gateway is connected after you choose one."
+   Free follow-up: a patient whose last visit was within 14 days sees "Free follow-up visit" and skips payment.
 5. **Confirmation** — "Appointment Request Submitted", request ID (e.g. `SNH-7K2QXM`), status steps.
    The **Messages bell** shows 1 new message ("We received your appointment request").
    *Say:* "It's a request until the clinic confirms — we never promise a time we can't keep."
 6. **Reception** — staff window → `/staff` → Reception. Today's numbers, Day list / New requests,
    search by name, mobile or ID. The new booking is under **New requests** (or the day list if booked for today).
+   Each row shows Paid / Free follow-up / Payment pending; **Details → Mark paid (cash)** for desk payments.
 7. **Confirm & check in** — **Confirm** (patient's bell gets "Your appointment is confirmed").
    For a same-day booking: **Check in** → queue **token** appears. **Details** shows the full history: who did what, when.
 8. **Doctor** — log in as `doctor` → **Today**: patients at the clinic in token order, "See next" first.

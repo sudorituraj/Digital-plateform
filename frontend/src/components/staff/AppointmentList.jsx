@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useI18n } from '../../i18n/useI18n'
 import { formatDay, statusKey } from '../../lib/format'
+import { PaymentBadge } from '../payment/PaymentStatus'
 import { Badge, Button, StatusBadge } from '../ui'
 import { ACTION_ICONS, quickActions } from './actions'
 import { PatientContact } from './PatientContact'
@@ -87,7 +88,10 @@ export function AppointmentList({ items, today, showDate, busyId, onAction, onOp
               </td>
               <td className="border-b border-line px-3 py-3 whitespace-nowrap">{when(a)}</td>
               <td className="border-b border-line px-3 py-3">
-                <StatusBadge status={statusKey(a.status)} />
+                <span className="flex flex-col items-start gap-1">
+                  <StatusBadge status={statusKey(a.status)} />
+                  {a.status !== 'cancelled' && <PaymentBadge payment={a.payment} className="text-xs" />}
+                </span>
               </td>
               <td className="border-b border-line px-3 py-3">
                 <PatientContact a={a} />
@@ -108,7 +112,10 @@ export function AppointmentList({ items, today, showDate, busyId, onAction, onOp
               <div className="min-w-0 flex-1">
                 <PatientCell a={a} />
               </div>
-              <StatusBadge status={statusKey(a.status)} />
+              <span className="flex flex-col items-end gap-1">
+                <StatusBadge status={statusKey(a.status)} />
+                {a.status !== 'cancelled' && <PaymentBadge payment={a.payment} className="text-xs" />}
+              </span>
             </div>
             <div className="flex flex-wrap items-center justify-between gap-3 pl-13">
               <span className="text-sm font-medium">{when(a)}</span>

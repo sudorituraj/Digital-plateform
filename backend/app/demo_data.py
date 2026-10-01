@@ -8,7 +8,7 @@ from datetime import UTC, datetime, timedelta
 
 from pymongo.asynchronous.database import AsyncDatabase
 
-from . import clinic
+from . import clinic, payments
 from .db import next_sequence
 from .lifecycle import history_entry, new_request_id
 
@@ -46,6 +46,20 @@ PLAN = [
     (14, 5, "morning", "request_submitted", "online"),
 ]
 PATH = ["request_submitted", "confirmed", "checked_in", "waiting", "completed"]
+DEMO_METHODS = [("upi", {"upi_id": "demo@okaxis"}), ("card", {"card_brand": "visa", "card_last4": "1111"})]
+
+
+async def demo_payment(db: AsyncDatabase, patient: dict, offset: int, status: str, source: str, n: int) -> dict:
+    """Fee by the real 14-day rule; online patients mostly paid online, walk-ins paid cash at the desk."""
+    pay = payments.new_payment(await payments.quote(db, patient["_id"], clinic.today() + timedelta(days=offset)))
+    if pay["status"] != "pending" or status == "cancelled":
+        return pay
+    if source == "walk_in":
+        return {**pay, **payments.paid("cash", "reception")} if status != "request_submitted" else pay
+    if n % 3 == 2:  # some online patients chose to pay later, at the clinic
+        return pay
+    method, details = DEMO_METHODS[n % 2]
+    return {**pay, **payments.paid(method, "patient", **details)}
 
 
 def steps_to(status: str, source: str) -> list[str]:
@@ -97,6 +111,7 @@ async def seed_demo_data(db: AsyncDatabase) -> int:
             tokens[day] = tokens.get(day, 0) + 1
             token = tokens[day]
         appt = {
+            "payment": await demo_payment(db, p, offset, status, source, n),
             "request_id": new_request_id(), "patient_id": p["_id"], "patient_code": p["patient_code"],
             "patient_name": p["name"], "patient_phone": p["phone"], "doctor": clinic.DOCTOR, "date": day,
             "time_slot": slot, "reason": REASONS[n % len(REASONS)], "clinic_patient_ref": None, "status": status,

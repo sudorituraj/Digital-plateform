@@ -16,7 +16,7 @@ from . import clinic
 
 log = logging.getLogger("saran.notify")
 
-TYPES = ["submitted", "confirmed", "reminder", "rescheduled", "cancelled", "follow_up"]
+TYPES = ["submitted", "confirmed", "reminder", "rescheduled", "cancelled", "follow_up", "paid"]
 FOLLOW_UP_NOTICE_DAYS = 2  # remind this many days before the follow-up date
 
 

@@ -7,20 +7,28 @@ import { DatePicker } from '../booking/DatePicker'
 import { Alert, Button, ChoiceChips, Icon, Modal, PhoneField, StateMessage, StatusBadge, TextareaField, TextField } from '../ui'
 import { ACTION_ICONS, ACTION_TO_STATUS, availableActions } from './actions'
 import { PatientContact } from './PatientContact'
+import { usePaymentLine } from '../../hooks/usePaymentLine'
+import { formatRupees } from '../../lib/card'
 
 const SLOTS = ['morning', 'midday', 'afternoon']
 
 /** Everything about one appointment + every allowed action + its history. */
 export function DetailsModal({ a, today, busy, onClose, onAction }) {
   const { t, language } = useI18n()
+  const paymentLine = usePaymentLine()
   if (!a) return <Modal open={false} onClose={onClose} />
+  const p = a.payment
   const rows = [
     ['user', t('staff.details.patientNo'), `${a.patient_name} · ${a.patient_code}`],
     ['calendar', t('book.day'), `${formatDay(a.date, language)} · ${t(`form.${a.time_slot}`)}`],
     ['fileText', t('form.reason'), a.reason || t('staff.details.noReason')],
     ...(a.clinic_patient_ref ? [['clipboard', t('form.patientId'), a.clinic_patient_ref]] : []),
     ['send', t('staff.details.source'), t(`staff.details.sources.${a.source}`)],
+    ...(p
+      ? [['rupee', t('pay.fee'), `${t(`pay.status.${p.status}`)} · ${p.status === 'pending' ? formatRupees(p.amount, language) : paymentLine(p)}`]]
+      : []),
   ]
+  const collectCash = p?.status === 'pending' && a.status !== 'cancelled'
   return (
     <Modal open onClose={onClose} title={t('staff.details.title', { id: a.request_id })} size="lg">
       <div className="space-y-6">
@@ -31,15 +39,23 @@ export function DetailsModal({ a, today, busy, onClose, onAction }) {
         </div>
         <dl className="divide-y divide-line rounded-control border border-line">
           {rows.map(([icon, label, value]) => (
-            <div key={label} className="flex gap-3 p-3">
-              <Icon name={icon} className="mt-0.5 shrink-0 text-primary-700" />
-              <div className="min-w-0">
-                <dt className="text-sm text-ink-muted">{label}</dt>
-                <dd className="font-medium break-words">{value}</dd>
-              </div>
+            <div key={label} className="relative py-3 pr-3 pl-11">
+              <dt className="text-sm text-ink-muted">
+                <Icon name={icon} className="absolute top-3.5 left-3 text-primary-700" />
+                {label}
+              </dt>
+              <dd className="font-medium break-words">{value}</dd>
             </div>
           ))}
         </dl>
+        {collectCash && (
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-control bg-warning-50 p-3 ring-1 ring-warning-600/25">
+            <p className="font-medium text-warning-700">{t('pay.collectAtDesk', { amount: formatRupees(p.amount, language) })}</p>
+            <Button size="sm" icon="rupee" disabled={busy} onClick={() => onAction(a, 'paidCash')}>
+              {t('staff.actions.paidCash')}
+            </Button>
+          </div>
+        )}
         {availableActions(a, today).length > 0 && (
         <div className="flex flex-wrap gap-2">
           {availableActions(a, today).map((action) => (

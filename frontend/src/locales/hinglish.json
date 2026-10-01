@@ -354,7 +354,8 @@
       "mobile": "Aapka mobile",
       "when": "Din aur samay",
       "details": "Aapki jaankari",
-      "review": "Check karke bhejein"
+      "review": "Check karke bhejein",
+      "pay": "Payment"
     },
     "yourDoctor": "Aapki doctor",
     "selected": "Chuna gaya",
@@ -375,7 +376,8 @@
       "time": "Kripya samay chunein."
     },
     "rule": "Doctor subah 10 baje se shaam 4 baje tak patients dekhti hain. Aap 7 din pehle tak book kar sakte hain.",
-    "noSlotsToday": "Aaj ka samay khatam ho gaya — kripya doosra din chunein."
+    "noSlotsToday": "Aaj ka samay khatam ho gaya — kripya doosra din chunein.",
+    "submitAndPay": "Request bhejein aur pay karein"
   },
   "appointment": {
     "title": "Appointment ki jaankari",
@@ -430,7 +432,10 @@
     "patient_exists": "Is mobile number se ek patient pehle se registered hai.",
     "visit_not_open": "Patient ke check in ke baad hi notes likhe ja sakte hain.",
     "follow_up_invalid": "Kripya aaj ki visit ke baad, ek saal ke andar ki follow-up date chunein.",
-    "slot_passed": "Aaj ka yeh samay nikal chuka hai. Kripya baad ka samay ya doosra din chunein."
+    "slot_passed": "Aaj ka yeh samay nikal chuka hai. Kripya baad ka samay ya doosra din chunein.",
+    "payment_declined": "Card decline ho gaya. Please doosra card try karein ya UPI se pay karein.",
+    "payment_failed": "Payment nahi ho paya. Please dobara try karein ya doosra tareeka chunein.",
+    "nothing_to_pay": "Is appointment ke liye kuch pay karna baaki nahi hai."
   },
   "staff": {
     "area": "Clinic staff",
@@ -501,7 +506,8 @@
       "cancel": "Cancel karein",
       "details": "Details",
       "callPatient": "{name} ko call karein",
-      "whatsappPatient": "{name} ko WhatsApp karein"
+      "whatsappPatient": "{name} ko WhatsApp karein",
+      "paidCash": "Cash payment mark karein"
     },
     "toast": {
       "confirmed": "{name} confirm ho gaya",
@@ -511,7 +517,8 @@
       "cancelled": "{name} ka appointment cancel",
       "rescheduled": "{name} ka samay {date} kiya gaya",
       "walkIn": "{name} jode gaye — token {token}",
-      "walkInLater": "{name} ka appointment {date} ko"
+      "walkInLater": "{name} ka appointment {date} ko",
+      "paidCash": "{name} se payment le liya"
     },
     "details": {
       "title": "Appointment {id}",
@@ -706,6 +713,11 @@
         "label": "Follow-up",
         "title": "Follow-up visit ka samay",
         "body": "Doctor ne aapko {followUp} ko phir bulaya hai. Appointment book karein ya clinic ko call karein."
+      },
+      "paid": {
+        "label": "Payment",
+        "title": "Payment mil gaya",
+        "body": "{date} ki appointment ke liye {amount} mil gaye. Receipt: {reference}."
       }
     }
   },
@@ -750,5 +762,69 @@
       "care3": "Nutrition aur lifestyle guidance deta hai",
       "care4": "Labour aur delivery ke liye prepare karta hai"
     }
+  },
+  "pay": {
+    "fee": "Consultation fee",
+    "feeLabel": "Consultation fee",
+    "secure": "Secure",
+    "demoTitle": "Demo payment",
+    "demoBody": "Yeh demo hai. Koi paisa nahi katega aur kisi asli payment app ya bank se contact nahi hoga.",
+    "chooseMethod": "Aap kaise pay karna chahenge?",
+    "methods": {
+      "upi": "UPI",
+      "card": "Card",
+      "netbanking": "Net banking",
+      "cash": "Clinic par cash"
+    },
+    "upiId": "UPI ID",
+    "upiHint": "Aapke UPI app ki ID, jaise name@okaxis ya 98xxxxxx@ybl",
+    "cardNumber": "Card number",
+    "expiry": "Expiry",
+    "expiryPlaceholder": "MM/YY",
+    "cvv": "CVV",
+    "nameOnCard": "Card par naam",
+    "bank": "Aapka bank",
+    "chooseBank": "Apna bank chunein",
+    "banks": {
+      "sbi": "State Bank of India",
+      "pnb": "Punjab National Bank",
+      "bob": "Bank of Baroda",
+      "hdfc": "HDFC Bank",
+      "icici": "ICICI Bank",
+      "axis": "Axis Bank",
+      "other": "Doosra bank"
+    },
+    "testTitle": "Demo test details",
+    "testCard": "Card 4111 1111 1111 1111, koi bhi future expiry, koi bhi CVV → payment successful",
+    "testDeclined": "0002 par khatam hone wala card (jaise 4000 0000 0000 0002) → card declined",
+    "testUpiFail": "\"fail\" se shuru hone wali UPI ID (jaise fail@okaxis) → payment fail",
+    "payAmount": "{amount} pay karein",
+    "payNow": "Abhi pay karein · {amount}",
+    "later": "Baad mein pay karein (online ya clinic par)",
+    "processing": "Payment ho raha hai…",
+    "doNotClose": "Please yeh page band na karein",
+    "errors": {
+      "upi": "Please sahi UPI ID likhein, jaise name@okaxis.",
+      "cardNumber": "Please card number check karein.",
+      "expiry": "Please sahi expiry date likhein (MM/YY).",
+      "cvv": "Please 3 ya 4 digit ka CVV likhein."
+    },
+    "freeTitle": "Free follow-up visit",
+    "freeBody": "Aapki pichhli visit {last} ko thi. {days} din ke andar visit free hai — {until} tak koi payment nahi.",
+    "feeTitle": "Consultation fee: {amount}",
+    "feeNew": "Request bhejne ke baad online pay karein, ya clinic par. {days} din ke andar follow-up free hai.",
+    "feeAfterFree": "Aapki pichhli visit {last} ko thi, {days} din se zyada pehle, isliye fee phir se lagegi.",
+    "status": {
+      "paid": "Paid",
+      "free": "Free follow-up",
+      "pending": "Payment baaki",
+      "refunded": "Refunded"
+    },
+    "freeLine": "Koi fee nahi — {until} tak follow-up free",
+    "pendingLine": "{amount} dena hai — abhi online, ya clinic par",
+    "requestSaved": "Aapki request {id} save ho gayi. Fee abhi dein, ya baad mein clinic par.",
+    "successShort": "Payment successful",
+    "refundedNote": "Yeh appointment cancel hua, isliye payment refund ho gaya (demo).",
+    "collectAtDesk": "Fee abhi baaki hai: {amount} lein"
   }
 }

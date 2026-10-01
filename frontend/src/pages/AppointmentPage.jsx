@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { StatusTimeline } from '../components/booking/StatusTimeline'
+import { AppointmentPayment } from '../components/payment/AppointmentPayment'
 import { Button, Card, Container, Icon, StateMessage, StatusBadge } from '../components/ui'
 import { clinic, telLink, whatsappLink } from '../config/clinic'
 import { useApiGet } from '../hooks/useApiGet'
@@ -16,6 +18,8 @@ export default function AppointmentPage() {
   const { state } = useLocation()
   const justBooked = Boolean(state?.justBooked)
   const [result, load] = useApiGet(`/appointments/${encodeURIComponent(requestId)}`)
+  const [paidNow, setPaidNow] = useState(null) // the updated appointment after paying on this page
+  const justPaid = Boolean(state?.justPaid || paidNow)
 
   if (result.state === 'loading') return <StateMessage kind="loading" title={t('common.loading')} className="py-24" />
   if (result.state === 'error') {
@@ -40,7 +44,7 @@ export default function AppointmentPage() {
     )
   }
 
-  const a = result.data
+  const a = paidNow ?? result.data
   const rows = [
     ['user', t('book.patient'), a.patient_name],
     ['stethoscope', t('book.doctor'), t('meta.doctor')],
@@ -60,6 +64,12 @@ export default function AppointmentPage() {
           <p className="mx-auto mt-3 max-w-lg animate-fade-up text-lg text-ink-muted [animation-delay:80ms]">
             {t('appointment.submittedBody')}
           </p>
+          {state?.justPaid && (
+            <p className="mx-auto mt-4 inline-flex animate-fade-up items-center gap-2 rounded-full bg-success-50 px-4 py-2 font-semibold text-success-700 ring-1 ring-success-600/25 [animation-delay:160ms]">
+              <Icon name="checkCircle" size={18} />
+              {t('pay.successShort')}
+            </p>
+          )}
         </div>
       ) : (
         <h1 className="mb-6 text-3xl sm:text-4xl">{t('appointment.title')}</h1>
@@ -78,15 +88,16 @@ export default function AppointmentPage() {
         </div>
         <dl className="divide-y divide-line border-t border-line">
           {rows.map(([icon, label, value]) => (
-            <div key={label} className="flex items-start gap-3.5 px-5 py-4 sm:px-7">
-              <Icon name={icon} className="mt-0.5 shrink-0 text-primary-700" />
-              <div className="min-w-0">
-                <dt className="text-sm text-ink-muted">{label}</dt>
-                <dd className="font-semibold break-words">{value}</dd>
-              </div>
+            <div key={label} className="relative py-4 pr-5 pl-14 sm:pr-7 sm:pl-16">
+              <dt className="text-sm text-ink-muted">
+                <Icon name={icon} className="absolute top-4.5 left-5 text-primary-700 sm:left-7" />
+                {label}
+              </dt>
+              <dd className="font-semibold break-words">{value}</dd>
             </div>
           ))}
         </dl>
+        <AppointmentPayment appointment={a} justPaid={justPaid} onPaid={setPaidNow} />
         <div className="border-t border-line bg-sunken/50 px-5 py-4 text-sm text-ink-muted sm:px-7">
           {t('appointment.keepId')} · {t('footer.phone')}: <a href={telLink()} className="font-semibold text-primary-800">{clinic.phoneDisplay}</a>
         </div>

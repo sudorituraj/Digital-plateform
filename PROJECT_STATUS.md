@@ -290,8 +290,37 @@ the time of day); browser: public site 41/41 (new check for content cut off on p
 (new: 8 days, hours note, 3 windows), reception 33/33, clinic 32/32, notifications 19/19, resilience 8/8;
 accessibility 49 screens / 0 violations; lint clean; 604 keys × 4 languages; build pass.
 
+## Client change — consultation fee & demo payment (2026-10-01)
+
+**Rule (from the client):** a visit is **free if the patient's last completed visit was within 14 days**
+(day 14 still free); from day 15 the fee applies again. New patients pay. Cancelled visits don't count.
+The server decides the fee (`backend/app/payments.py`); the browser never sends an amount. Fee shown is
+**₹300 — from the public listing, NOT confirmed** (`CONSULTATION_FEE`).
+
+**Patient:** choosing a day shows either "Consultation fee: ₹300" or "Free follow-up visit — no payment needed
+until {date}". If a fee applies, "Send request & pay" saves the request first, then opens the **Payment** step:
+UPI (UPI ID), Card (number spaced while typing, brand detected, checksum/expiry/CVV checked) or Net banking
+(bank list), a processing screen, then "Payment successful" with a receipt reference (`DEMO-…`).
+"Pay later (online or at the clinic)" keeps the request; the appointment page then shows "Payment pending ·
+Pay now". Free follow-ups skip payment entirely. Badges (Paid / Free follow-up / Payment pending) in My
+Appointments; a "Payment received" message in the inbox and the simulated WhatsApp outbox.
+
+**Reception:** payment badge on every appointment; details dialog shows the payment and **Mark paid (cash)**
+for patients paying at the desk. Walk-ins get the same fee rule. Cancelling a paid appointment (patient or
+reception) marks it **Refunded**; rescheduling an unpaid appointment recalculates the fee for the new day.
+
+**DEMO ONLY — no money moves.** No gateway is connected. Card numbers never leave the phone (only brand + last
+4 digits are sent). Test details on the payment screen: card 4111 1111 1111 1111 succeeds; a card ending 0002
+is declined; a UPI ID starting with "fail" fails. Going live needs a payment gateway account (e.g. Razorpay /
+PhonePe PG — client's choice and approval), its hosted checkout and a webhook to confirm payments (D37).
+
+**Tested:** backend **125/125** (24 new: fee rules incl. day 14 free / day 15 pays, each method, declined/failed,
+no double payment, other patient's appointment, cash, refunds, walk-in, reschedule); new browser suite
+`npm run test:payment` **38/38**; journey 35/35; public site, reception, clinic, notifications, resilience all pass;
+accessibility includes the payment form.
+
 ## Waiting on the client
-Verified phone & WhatsApp, full address & landmark, working days (hours 10 AM – 4 PM confirmed), consultation fee,
+Consultation fee amount (₹300 used) and which payment gateway to use for real payments, verified phone & WhatsApp, full address & landmark, working days (hours 10 AM – 4 PM confirmed),
 permission to use the Justdial photos (or originals), whether Dr. M.P. Singh also sees patients, Dr. Neela Singh's
 qualifications/specialisation/experience, confirmed services list, real photos (exterior, reception,
 waiting area, consultation room, doctor portrait), "before your visit" instructions, logo (if any).

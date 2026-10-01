@@ -128,7 +128,10 @@ let requestId
     'review step shows doctor, time, patient, mobile and reason',
   )
   await shot(page, 'j5-review')
-  await page.getByRole('button', { name: 'Send Appointment Request' }).click()
+  // New patient → fee applies: the request is saved, then the payment step (paying is tested in test:payment).
+  await page.getByRole('button', { name: 'Send request & pay' }).click()
+  log(await seen(page.getByRole('heading', { name: 'Payment' })), 'new patient is offered the payment step')
+  await page.getByRole('button', { name: 'Pay later (online or at the clinic)' }).click()
 
   await page.getByRole('heading', { name: 'Appointment Request Submitted' }).waitFor()
   requestId = (await page.locator('.font-mono').first().textContent()).trim()
@@ -155,7 +158,7 @@ let requestId
   await page.getByRole('button', { name: 'Continue' }).click()
   log((await page.getByLabel('Full name').inputValue()) === 'Anita Kumari', 'details pre-filled from profile')
   await page.getByRole('button', { name: 'Continue' }).click()
-  await page.getByRole('button', { name: 'Send Appointment Request' }).click()
+  await page.getByRole('button', { name: 'Send request & pay' }).click()
   const dup = page.getByText('You already have an appointment request for this day.')
   await dup.waitFor({ timeout: 5000 }).catch(() => {})
   log(await dup.isVisible(), 'same-day duplicate shows a clear message')

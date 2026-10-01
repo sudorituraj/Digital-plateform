@@ -9,7 +9,7 @@ import { errorMessage } from '../../lib/api'
 import { cn } from '../../lib/cn'
 import { formatDay, formatTime } from '../../lib/format'
 
-const TYPES = ['', 'submitted', 'confirmed', 'reminder', 'rescheduled', 'cancelled', 'follow_up']
+const TYPES = ['', 'submitted', 'confirmed', 'reminder', 'rescheduled', 'cancelled', 'follow_up', 'paid']
 
 /** What would have gone out by WhatsApp/SMS — simulated in the demo, so staff can see it working. */
 export default function MessagesPage() {

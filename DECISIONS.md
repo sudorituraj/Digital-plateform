@@ -180,3 +180,13 @@ altered in content. Photos showing patients are never used. Every listing photo 
 and a `data-replace` note until the clinic gives permission or originals. The emblem was traced from the
 clinic's own sign and is used as its logo.
 
+
+## D37 — Consultation fee and a demo-only payment flow (2026-10-01)
+Client rule: free if the last completed visit was ≤ 14 days before the appointment day; otherwise the fee.
+The server computes the fee when a request is created (and again on reschedule while unpaid); the amount is
+never taken from the browser. The request is saved before payment so a failed or skipped payment never loses
+a booking — the patient can pay later online, or reception marks it paid in cash. Payment is **simulated**:
+no gateway, no money, no card data on our server (only brand + last 4). For production, use a PCI-DSS
+compliant gateway's hosted checkout (card details go to the gateway, never to us) and treat a payment as paid
+only after the gateway's signed webhook — this needs the client's approval of a provider and its fees.
+The ₹300 amount is unconfirmed; refunds are recorded only.

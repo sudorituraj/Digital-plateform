@@ -65,6 +65,17 @@ for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 
   await page.locator('[name=booking-slot]').first().locator('..').click()
   await page.locator('form, main').getByRole('button').last().click()
   await audit(page, `${tag} book: details`)
+  // payment: book via the API, then open the appointment's "Pay now" card form
+  const cookie = (await ctx.cookies()).find((c) => c.name === 'snh_session')
+  const opts = await (await fetch(`${BASE}/api/booking/options`)).json()
+  const booked = await (await fetch(`${BASE}/api/appointments`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json', Cookie: `snh_session=${cookie.value}` },
+    body: JSON.stringify({ date: opts.dates[3], time_slot: 'morning', name: 'Audit Patient', age: 30, gender: 'female' }),
+  })).json()
+  await page.goto(`${BASE}/appointments/${booked.request_id}`, { waitUntil: 'networkidle' })
+  await page.locator('#payment-heading').locator('xpath=ancestor::section').getByRole('button').click()
+  await page.locator('input[name=pay-method][value=card]').locator('..').click()
+  await audit(page, `${tag} payment form`)
   for (const path of ['/my-appointments', '/notifications']) {
     await page.goto(BASE + path, { waitUntil: 'networkidle' })
     await audit(page, `${tag} ${path}`)

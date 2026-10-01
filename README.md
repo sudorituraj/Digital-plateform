@@ -29,6 +29,7 @@ backend/             FastAPI + MongoDB (async PyMongo)
     clinic.py           booking rules: doctor, time slots, booking window
     security.py         session cookie (JWT), OTP hashing, current-patient check
     rate_limit.py       MongoDB-backed rate limiting
+    payments.py         consultation fee (free follow-up within 14 days) + DEMO payment (no real gateway)
     routers/            auth (OTP login), me (profile), appointments
   tests/              pytest (uses a separate saran_test database)
 ```
@@ -95,6 +96,7 @@ Other commands (run inside `frontend/`):
 | `npm run test:journey` | Full patient journey (login → book → confirmation → My Appointments). See below. |
 | `npm run test:reception` | Reception workflow (confirm → check in → waiting → completed, reschedule, cancel, walk-ins). See below. |
 | `npm run test:clinic` | Whole clinic workflow (reception → doctor → completed, patient management, note privacy). See below. |
+| `npm run test:payment` | Demo payment: fee / free follow-up, UPI, card, net banking, pay later, cash at reception. See below. |
 
 ### Running the journey / reception / clinic tests
 
@@ -107,7 +109,7 @@ MONGODB_DB=saran_e2e OTP_PER_IP_PER_HOUR=1000 OTP_VERIFY_PER_IP_PER_HOUR=1000 FI
 # terminal 2 (frontend/)
 npm run build && API_TARGET=http://localhost:8011 npm run preview
 # terminal 3 (frontend/)
-npm run test:journey && npm run test:reception && npm run test:clinic
+npm run test:journey && npm run test:reception && npm run test:clinic && npm run test:payment
 ```
 
 Internal design-system reference (demo mode only): http://localhost:5180/design-system
