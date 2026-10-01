@@ -8,7 +8,7 @@ import { Alert, Button, ChoiceChips, Icon, Modal, PhoneField, StateMessage, Stat
 import { ACTION_ICONS, ACTION_TO_STATUS, availableActions } from './actions'
 import { PatientContact } from './PatientContact'
 
-const SLOTS = ['morning', 'afternoon', 'evening']
+const SLOTS = ['morning', 'midday', 'afternoon']
 
 /** Everything about one appointment + every allowed action + its history. */
 export function DetailsModal({ a, today, busy, onClose, onAction }) {
@@ -81,7 +81,7 @@ export function DetailsModal({ a, today, busy, onClose, onAction }) {
 
 export function RescheduleModal({ a, onClose, onDone }) {
   const { t, language } = useI18n()
-  const [options] = useApiGet('/booking/options')
+  const [options] = useApiGet('/booking/options?staff=true')
   const [date, setDate] = useState(a.date)
   const [slot, setSlot] = useState(a.time_slot)
   const [note, setNote] = useState('')
@@ -171,7 +171,7 @@ export function WalkInModal({ onClose, onDone, initial, initialWhen = 'now' }) {
   const [slot, setSlot] = useState('morning')
   const [errors, setErrors] = useState({})
   const [state, setState] = useState({ busy: false, error: null })
-  const [options] = useApiGet(when === 'later' ? '/booking/options' : null)
+  const [options] = useApiGet(when === 'later' ? '/booking/options?staff=true' : null)
   const set = (field) => (e) => setForm({ ...form, [field]: e?.target ? e.target.value : e })
 
   async function submit(e) {

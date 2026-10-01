@@ -23,7 +23,7 @@ import { api, errorMessage } from '../lib/api'
 import { formatDay } from '../lib/format'
 
 const STEPS = ['mobile', 'when', 'details', 'review']
-const SLOT_ICONS = { morning: 'clock', afternoon: 'clock', evening: 'clock' }
+const SLOT_ICONS = { morning: 'clock', midday: 'clock', afternoon: 'clock' }
 
 function validateDetails(d, t) {
   const errors = {}
@@ -164,21 +164,34 @@ export default function BookPage() {
                   <Icon name="checkCircle" className="ml-auto text-primary-700" label={t('book.selected')} />
                 </div>
 
+                <Alert tone="info">{t('book.rule')}</Alert>
+
                 <DatePicker
                   dates={options.data.dates}
                   today={options.data.today}
                   value={when.date}
-                  onChange={(date) => setWhen((w) => ({ ...w, date }))}
+                  // Today only offers windows that haven't ended; drop a chosen window that no longer fits.
+                  onChange={(date) =>
+                    setWhen((w) => ({
+                      date,
+                      slot: date === options.data.today && !options.data.open_today.includes(w.slot) ? null : w.slot,
+                    }))
+                  }
                   error={whenErrors.date}
                 />
 
                 <ChoiceChips
                   legend={t('book.chooseTime')}
                   name="booking-slot"
+                  columns={3}
                   value={when.slot}
                   onChange={(slot) => setWhen((w) => ({ ...w, slot }))}
                   error={whenErrors.slot}
-                  options={options.data.time_slots.map((s) => ({ value: s, label: t(`form.${s}`), icon: SLOT_ICONS[s] }))}
+                  options={(when.date === options.data.today ? options.data.open_today : options.data.time_slots).map((s) => ({
+                    value: s,
+                    label: t(`form.${s}`),
+                    icon: SLOT_ICONS[s],
+                  }))}
                 />
 
                 <Alert tone="warning">{t('alerts.warning')}</Alert>

@@ -32,8 +32,12 @@ SLOT_ORDER = {slot: i for i, slot in enumerate(clinic.TIME_SLOTS)}
 # ---- helpers -------------------------------------------------------------------------------------
 
 def current_slot() -> str:
-    hour = datetime.now(clinic.CLINIC_TZ).hour
-    return "morning" if hour < 12 else "afternoon" if hour < 16 else "evening"
+    """The window we are in now (before 10 → first, after 4 → last)."""
+    hour = clinic.now().hour
+    for slot, (_, end) in clinic.SLOT_HOURS.items():
+        if hour < end:
+            return slot
+    return clinic.TIME_SLOTS[-1]
 
 
 async def find_appointment(request_id: str) -> dict:
@@ -179,7 +183,7 @@ async def reschedule(request_id: str, body: RescheduleIn, staff: dict = Depends(
     doc = await find_appointment(request_id)
     if doc["status"] not in ("request_submitted", "confirmed"):
         raise ApiError(409, "invalid_transition", "Only new or confirmed appointments can be rescheduled", current=doc["status"])
-    if body.date not in clinic.bookable_dates():
+    if body.date not in clinic.bookable_dates(for_staff=True):
         raise ApiError(400, "date_unavailable", "This date cannot be booked")
     new_day = body.date.isoformat()
     if new_day == doc["date"] and body.time_slot == doc["time_slot"]:
@@ -213,7 +217,7 @@ async def walk_in(body: WalkInIn, staff: dict = Depends(reception_only)):
     db = get_db()
     today = clinic.today()
     day = body.date or today
-    if day not in clinic.bookable_dates():
+    if day not in clinic.bookable_dates(for_staff=True):
         raise ApiError(400, "date_unavailable", "This date cannot be booked")
     now = datetime.now(UTC)
     profile = {"name": body.name, "age": body.age, "gender": body.gender, **({"email": body.email} if body.email else {})}

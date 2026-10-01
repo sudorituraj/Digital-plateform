@@ -1,0 +1,16 @@
+{
+  "name": "Saran Nursing Home & Research Centre",
+  "short_name": "Saran Nursing",
+  "description": "Book an appointment with Dr. Neela Singh, Chapra.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fbf8f4",
+  "theme_color": "#1a5559",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "/images/clinic/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/clinic/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/images/clinic/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

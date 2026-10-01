@@ -102,7 +102,7 @@ They book real appointments, so point them at a separate test database:
 
 ```bash
 # terminal 1 (backend/)
-MONGODB_DB=saran_e2e OTP_PER_IP_PER_HOUR=1000 OTP_VERIFY_PER_IP_PER_HOUR=1000 \
+MONGODB_DB=saran_e2e OTP_PER_IP_PER_HOUR=1000 OTP_VERIFY_PER_IP_PER_HOUR=1000 FIXED_CLOCK_HOUR=9 STAFF_LOGIN_PER_IP_PER_HOUR=1000 \
   .venv/bin/uvicorn app.main:app --port 8011
 # terminal 2 (frontend/)
 npm run build && API_TARGET=http://localhost:8011 npm run preview

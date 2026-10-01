@@ -80,8 +80,7 @@ export default function ContactPage() {
           </InfoRow>
 
           <InfoRow icon="clock" label={t('contact.hours')}>
-            <span className="text-ink-muted italic">{t('common.toBeConfirmed')}</span>
-            <NeedsConfirmation className="ml-2" />
+            <span className="text-lg font-semibold">{t('contact.hoursValue')}</span>
           </InfoRow>
         </Reveal>
 

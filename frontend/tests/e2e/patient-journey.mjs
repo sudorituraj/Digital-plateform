@@ -3,7 +3,7 @@
  *   Home → Doctor → Book → OTP → Day & time → Details → Submit → Confirmation → My Appointments
  *
  * Needs a backend on a TEST database and the preview server pointing at it:
- *   (backend)  MONGODB_DB=saran_e2e OTP_PER_IP_PER_HOUR=1000 OTP_VERIFY_PER_IP_PER_HOUR=1000 \
+ *   (backend)  MONGODB_DB=saran_e2e OTP_PER_IP_PER_HOUR=1000 OTP_VERIFY_PER_IP_PER_HOUR=1000 FIXED_CLOCK_HOUR=9 STAFF_LOGIN_PER_IP_PER_HOUR=1000 \
  *              .venv/bin/uvicorn app.main:app --port 8011
  *   (frontend) npm run build && API_TARGET=http://localhost:8011 npm run preview
  *   (frontend) npm run test:journey
@@ -94,6 +94,9 @@ let requestId
 
   await page.getByRole('heading', { name: 'Day & time' }).waitFor()
   log(true, 'correct OTP moves to "Day & time"')
+  log((await page.locator('[name=booking-date]').count()) === 8, 'patients can pick today + the next 7 days only (8 days)')
+  log(await seen(page.getByText('The doctor sees patients from 10 AM to 4 PM')), 'booking explains the 10 AM – 4 PM hours and 7-day limit')
+  log((await page.locator('[name=booking-slot]').count()) === 3, 'three time windows inside 10 AM – 4 PM')
   log(await seen(page.getByText('Dr. Neela Singh', { exact: true })), 'doctor pre-selected (Dr. Neela Singh)')
 
   await page.getByRole('button', { name: 'Continue' }).click()
@@ -102,7 +105,7 @@ let requestId
     'continue without day/time shows both errors',
   )
   await page.locator('label', { hasText: 'Tomorrow' }).click()
-  await page.locator('label', { hasText: 'Morning' }).click()
+  await page.locator('label', { hasText: '10 AM – 12 PM' }).click()
   await shot(page, 'j3-when')
   await page.getByRole('button', { name: 'Continue' }).click()
 
@@ -121,7 +124,7 @@ let requestId
   await page.getByRole('heading', { name: 'Check & send' }).waitFor()
   const review = await page.locator('dl').textContent()
   log(
-    ['Dr. Neela Singh', 'Morning', 'Anita Kumari', `+91 ${phone}`, 'Regular check-up'].every((s) => review.includes(s)),
+    ['Dr. Neela Singh', '10 AM – 12 PM', 'Anita Kumari', `+91 ${phone}`, 'Regular check-up'].every((s) => review.includes(s)),
     'review step shows doctor, time, patient, mobile and reason',
   )
   await shot(page, 'j5-review')
@@ -148,7 +151,7 @@ let requestId
   await page.goto(BASE + '/book', { waitUntil: 'networkidle' })
   log(await seen(page.getByRole('heading', { name: 'Day & time' })), 'logged-in patient skips the mobile step')
   await page.locator('label', { hasText: 'Tomorrow' }).click()
-  await page.locator('label', { hasText: 'Evening' }).click()
+  await page.locator('label', { hasText: '2 – 4 PM' }).click()
   await page.getByRole('button', { name: 'Continue' }).click()
   log((await page.getByLabel('Full name').inputValue()) === 'Anita Kumari', 'details pre-filled from profile')
   await page.getByRole('button', { name: 'Continue' }).click()
@@ -160,9 +163,9 @@ let requestId
   // Service page → booking reason pre-filled
   await page.goto(BASE + '/services/pregnancy-care', { waitUntil: 'networkidle' })
   await page.locator('main').getByRole('link', { name: 'Book Appointment' }).first().click()
-  await page.locator('label', { hasText: 'Morning' }).waitFor()
+  await page.locator('label', { hasText: '10 AM – 12 PM' }).waitFor()
   await page.locator('[name=booking-date]').nth(3).locator('..').click()
-  await page.locator('label', { hasText: 'Morning' }).click()
+  await page.locator('label', { hasText: '10 AM – 12 PM' }).click()
   await page.getByRole('button', { name: 'Continue' }).click()
   log((await page.getByLabel(/Reason for visit/).inputValue()) === 'Pregnancy care', 'booking from a service pre-fills the reason')
 

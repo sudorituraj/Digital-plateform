@@ -256,7 +256,42 @@ lint clean; 598 keys × 4 languages; build pass.
 - Hindi / Bhojpuri / Hinglish need a local speaker's review; Hindi texts assume a female doctor.
 - All clinic facts, photos, services list and before-visit guidance still need the clinic's confirmation.
 
+## Client changes — hours, 7-day booking, photos, mobile design (2026-10-01)
+
+**Booking rules (confirmed by the client):** the doctor sees patients **10 AM – 4 PM**. Time windows are now
+10–12, 12–2 and 2–4 (the old "evening" window was removed; existing evening bookings were moved to 2–4 PM
+automatically). Patients can book **today + the next 7 days**; windows that have ended today are hidden and
+refused by the server, and after 4 PM today is no longer offered. Reception keeps a 30-day window (follow-ups).
+Hours are shown as confirmed on Home, Doctor and Contact. Working days are not confirmed (every day bookable).
+
+**Clinic photos (from the clinic's Justdial listing):** the building/signboard photo was cropped, levelled and
+colour-corrected (no AI, nothing added) and is the home-page hero (responsive WebP, ~30 KB on phones) and the
+About gallery's "Clinic building". The clinic's emblem was cleaned from its sign into a transparent logo, now
+used in the header/footer, favicon and the Android "Add to Home screen" icon (`manifest.webmanifest`).
+Not used: an operation-theatre photo showing a patient (privacy), a low-quality photo whose signboard
+advertises 24-hour emergency services. All photos are marked "Confirmation pending" — get the clinic's
+permission or original photos before going live (scope §19).
+
+**Found on the signboard (needs the client's answer):** a second doctor, *Dr. M.P. Singh, M.B.B.S., M.S.
+(General Surgery), Consultant Surgeon* — the project assumes Dr. Neela Singh is the only doctor; and
+Dr. Neela Singh's qualifications *M.B.B.S., D.G.O., M.D. (Obs & Gynae)*, now shown with "Confirmation pending".
+
+**Mobile-first redesign (95% of visitors use phones):** reviewed Cloudnine (Indian maternity hospitals) and
+Practo for patterns. Home on phones: clinic photo first with a live "Open now / Opens at 10 AM" badge,
+headline, Book button, app-style Call / WhatsApp / Directions tiles, "What brings you in?" chips that start a
+booking with the reason filled in, a timeline for the booking steps, swipeable service cards, compact doctor
+card. Booking: 4 × 2 day grid, three equal time tiles. Bottom action bar hidden on the booking/login pages.
+Animations (all off with reduced motion): slow zoom on the hero photo, staggered entrances, light sweep on the
+Book button, live-dot ripple, press feedback on tiles, "pop" on selected day/time. Viewport covers notched
+phones; one extra message bell on phones removed.
+
+**Tested:** backend **101/101** (5 new booking-rule tests; a test-only fixed clock so results don't depend on
+the time of day); browser: public site 41/41 (new check for content cut off on phones), journey **34/34**
+(new: 8 days, hours note, 3 windows), reception 33/33, clinic 32/32, notifications 19/19, resilience 8/8;
+accessibility 49 screens / 0 violations; lint clean; 604 keys × 4 languages; build pass.
+
 ## Waiting on the client
-Verified phone & WhatsApp, full address & landmark, hours, consultation fee, Dr. Neela Singh's
+Verified phone & WhatsApp, full address & landmark, working days (hours 10 AM – 4 PM confirmed), consultation fee,
+permission to use the Justdial photos (or originals), whether Dr. M.P. Singh also sees patients, Dr. Neela Singh's
 qualifications/specialisation/experience, confirmed services list, real photos (exterior, reception,
 waiting area, consultation room, doctor portrait), "before your visit" instructions, logo (if any).

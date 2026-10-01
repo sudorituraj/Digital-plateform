@@ -18,9 +18,17 @@ router = APIRouter(tags=["appointments"])
 log = logging.getLogger("saran.appointments")
 
 @router.get("/booking/options", response_model=BookingOptionsOut)
-async def booking_options():
+async def booking_options(staff: bool = False):
+    """Days and time windows to offer. `staff=true` gives the longer reception window (dates aren't secret;
+    the staff endpoints check the window again)."""
     return BookingOptionsOut(
-        doctor=clinic.DOCTOR, time_slots=clinic.TIME_SLOTS, dates=clinic.bookable_dates(), today=clinic.today()
+        doctor=clinic.DOCTOR,
+        time_slots=clinic.TIME_SLOTS,
+        dates=clinic.bookable_dates(for_staff=staff),
+        today=clinic.today(),
+        open_today=clinic.open_slots(clinic.today()),
+        hours={"open": clinic.OPENING_HOUR, "close": clinic.CLOSING_HOUR},
+        window_days=clinic.STAFF_WINDOW_DAYS if staff else clinic.PATIENT_WINDOW_DAYS,
     )
 
 
@@ -29,6 +37,8 @@ async def create_appointment(body: AppointmentIn, patient: dict = Depends(curren
     db = get_db()
     if body.date not in clinic.bookable_dates():
         raise ApiError(400, "date_unavailable", "This date cannot be booked")
+    if body.time_slot not in clinic.open_slots(body.date):
+        raise ApiError(400, "slot_passed", "This time has already passed today")
 
     day = body.date.isoformat()
     active = {"patient_id": patient["_id"], "status": {"$in": clinic.ACTIVE_STATUSES}}

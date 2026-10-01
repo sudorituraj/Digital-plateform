@@ -31,6 +31,19 @@ for (const [name, [w, h]] of Object.entries(viewports)) {
     await page.goto(BASE + r, { waitUntil: 'networkidle' })
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)
     if (overflow > 0) overflows.push(`${r} (${overflow}px)`)
+    // Content cut off by a clipping parent doesn't scroll the page, so look for it directly
+    // (decorative blobs, swipe rows and photos inside rounded frames are allowed to extend).
+    const cut = await page.evaluate(() =>
+      [...document.querySelectorAll('main *')]
+        .filter((e) => {
+          const r = e.getBoundingClientRect()
+          if (!r.width || e.closest('.swipe-row, figure, [aria-hidden="true"], .pointer-events-none')) return false
+          return r.right > innerWidth + 1 || r.left < -1
+        })
+        .slice(0, 3)
+        .map((e) => e.tagName + ':' + (e.textContent || '').trim().slice(0, 25)),
+    )
+    if (cut.length) overflows.push(`${r} content cut off: ${cut.join(', ')}`)
     const h1 = await page.locator('h1').count()
     if (h1 !== 1) log(false, `${name} ${r}: expected 1 h1, found ${h1}`)
   }

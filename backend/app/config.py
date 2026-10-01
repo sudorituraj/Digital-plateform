@@ -28,7 +28,9 @@ class Settings(BaseSettings):
     otp_per_phone_per_10min: int = 3
     otp_per_ip_per_hour: int = 20
     otp_verify_per_ip_per_hour: int = 60  # code checks (right or wrong) from one IP
+    staff_login_per_ip_per_hour: int = 30  # staff login attempts from one IP
     bcrypt_rounds: int = 12  # password hashing cost; tests lower it for speed
+    fixed_clock_hour: int | None = None  # TESTS ONLY: pretend it is always this hour in Chapra (never in production)
 
     @property
     def cors_origin_list(self) -> list[str]:
@@ -43,6 +45,8 @@ class Settings(BaseSettings):
                 raise ValueError("COOKIE_SECURE must be true in production")
             if self.otp_mode == "demo":
                 raise ValueError("OTP_MODE=demo is not allowed in production")
+            if self.fixed_clock_hour is not None:
+                raise ValueError("FIXED_CLOCK_HOUR is for tests only")
         return self
 
 

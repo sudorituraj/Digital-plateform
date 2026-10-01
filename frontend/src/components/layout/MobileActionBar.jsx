@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom'
 import { telLink, whatsappLink } from '../../config/clinic'
 import { useI18n } from '../../i18n/useI18n'
 import { Button } from '../ui/Button'
@@ -5,10 +6,13 @@ import { Button } from '../ui/Button'
 /** Thumb-reach actions pinned to the bottom of phone screens: Call · WhatsApp · Book. */
 export function MobileActionBar() {
   const { t } = useI18n()
+  const { pathname } = useLocation()
+  // Not needed where the visitor is already booking or logging in.
+  if (pathname === '/book' || pathname === '/login') return null
   return (
     <nav
       aria-label={t('nav.quickActions')}
-      className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-surface/95 px-3 pt-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))] backdrop-blur-md sm:hidden"
+      className="fixed inset-x-0 bottom-0 z-30 animate-[rise_0.5s_var(--ease-gentle)_0.4s_both] border-t border-line bg-surface/95 px-3 pt-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))] backdrop-blur-md sm:hidden"
     >
       <div className="grid grid-cols-[auto_auto_minmax(0,1fr)] gap-2">
         <Button href={telLink()} variant="secondary" icon="phone" className="w-13 px-0" aria-label={t('common.callClinic')} />

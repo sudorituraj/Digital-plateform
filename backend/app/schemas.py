@@ -9,7 +9,7 @@ from pydantic import AfterValidator, BaseModel, BeforeValidator, Field, field_va
 from .clinic import TIME_SLOTS
 
 Gender = Literal["female", "male", "other"]
-TimeSlot = Literal["morning", "afternoon", "evening"]
+TimeSlot = Literal["morning", "midday", "afternoon"]
 assert list(TimeSlot.__args__) == TIME_SLOTS
 
 
@@ -157,6 +157,9 @@ class BookingOptionsOut(BaseModel):
     time_slots: list[str]
     dates: list[date]
     today: date
+    open_today: list[str]  # windows still available today (earlier ones have ended)
+    hours: dict[str, int]  # {"open": 10, "close": 16}
+    window_days: int
 
 
 StaffRole = Literal["admin", "reception", "doctor"]
@@ -372,4 +375,4 @@ class AnalyticsOut(BaseModel):
     statuses: dict[str, int]
     by_day: list[DayCountOut]
     sources: dict[str, int]  # online / walk_in
-    slots: dict[str, int]  # morning / afternoon / evening
+    slots: dict[str, int]  # morning / midday / afternoon

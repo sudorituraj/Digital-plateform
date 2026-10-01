@@ -36,11 +36,11 @@ def test_confirm_reschedule_cancel_messages_in_order(client):
     rid = patient_books(client, offset=2)
     staff_login(client)
     set_status(client, rid, "confirmed")
-    client.post(f"/api/staff/appointments/{rid}/reschedule", json={"date": day(4), "time_slot": "evening"})
+    client.post(f"/api/staff/appointments/{rid}/reschedule", json={"date": day(4), "time_slot": "afternoon"})
     set_status(client, rid, "cancelled")
     assert types(client) == ["cancelled", "rescheduled", "confirmed", "submitted"]
     resched = inbox(client)["items"][1]
-    assert resched["params"] == {"date": day(4), "time_slot": "evening"}
+    assert resched["params"] == {"date": day(4), "time_slot": "afternoon"}
 
 
 def test_check_in_and_complete_send_nothing_extra(client):
@@ -102,7 +102,7 @@ def test_follow_up_reminder_unless_already_booked(client):
 
 
 def test_walk_in_for_later_gets_confirmation(reception):
-    reception.post("/api/staff/walk-ins", json={**WALK_IN, "date": day(3), "time_slot": "evening"})
+    reception.post("/api/staff/walk-ins", json={**WALK_IN, "date": day(3), "time_slot": "afternoon"})
     reception.post("/api/staff/walk-ins", json={**WALK_IN, "phone": "9811113333"})  # now: no message
     msgs = reception.get("/api/staff/messages").json()
     assert [m["type"] for m in msgs] == ["confirmed"] and msgs[0]["phone"] == "9811112222"

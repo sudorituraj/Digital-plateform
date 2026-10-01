@@ -40,7 +40,7 @@ export function Header() {
             </p>
           )}
           <div className="ml-auto flex items-center gap-4">
-            <NotificationBell tone="dark" className="hidden size-9 md:inline-flex" />
+            <NotificationBell tone="dark" className="size-9 max-md:hidden" />
             <AccountLink className="hidden min-h-9 text-[0.85rem] font-medium text-primary-100 hover:text-white md:inline-flex" />
             <LanguageSelector tone="dark" className="-mr-1 overflow-x-auto" />
           </div>

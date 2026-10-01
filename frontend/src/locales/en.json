@@ -58,14 +58,6 @@
       "local": "In Sadhnapuri, Chapra",
       "easy": "Book online, by phone or WhatsApp"
     },
-    "preview": {
-      "title": "Appointment request",
-      "patient": "Patient",
-      "patientName": "Sunita Devi",
-      "when": "Day & time",
-      "whenValue": "Tomorrow · Morning",
-      "note": "The clinic checks and confirms your time."
-    },
     "steps": {
       "eyebrow": "How it works",
       "title": "Booking is simple",
@@ -108,7 +100,14 @@
       "noUpcomingBody": "Book a new appointment to see it here.",
       "cancel": "Cancel request",
       "cancelConfirm": "Are you sure you want to cancel this appointment request?"
-    }
+    },
+    "photoAlt": "Front of Saran Nursing Home & Research Centre with its signboard, Sadhnapuri, Chapra",
+    "openNow": "Open now · until 4 PM",
+    "opensToday": "Opens today at 10 AM",
+    "opensTomorrow": "Opens tomorrow at 10 AM",
+    "directions": "Directions",
+    "concernsTitle": "What brings you in?",
+    "hoursLine": "Doctor sees patients 10 AM – 4 PM · book up to 7 days ahead"
   },
   "comingSoon": {
     "title": "This page is being prepared",
@@ -135,9 +134,8 @@
     "reason": "Reason for visit",
     "reasonPlaceholder": "Tell us briefly (optional)",
     "preferredTime": "Preferred time",
-    "morning": "Morning",
-    "afternoon": "Afternoon",
-    "evening": "Evening",
+    "morning": "10 AM – 12 PM",
+    "afternoon": "2 – 4 PM",
     "optional": "optional",
     "required": "required",
     "continue": "Continue",
@@ -157,7 +155,8 @@
     "fatherHusbandNameHint": "Optional",
     "address": "Address",
     "addressHint": "Optional. E.g. Village - Tekniwas, Block - Chapra, Saran, Bihar",
-    "selectPlaceholder": "Select…"
+    "selectPlaceholder": "Select…",
+    "midday": "12 – 2 PM"
   },
   "status": {
     "requestSubmitted": "Request Submitted",
@@ -237,7 +236,8 @@
     "consultTitle": "How to consult",
     "consultBody": "Send an appointment request. The clinic will confirm your day and time. You can also call or WhatsApp the clinic.",
     "specializationValue": "Gynaecology & Obstetrics",
-    "consultationFeeValue": "₹300 per visit"
+    "consultationFeeValue": "₹300 per visit",
+    "qualificationsValue": "M.B.B.S., D.G.O., M.D. (Obs & Gynae)"
   },
   "services": {
     "eyebrow": "Services",
@@ -306,7 +306,8 @@
     "addressLine1": "Near Jyoti Cinema, Hotel Rubra",
     "addressLine2": "Chapra District Board, Sadhnapuri",
     "addressLine3": "Chapra, Bihar 841301",
-    "landmarkFull": "Near Jyoti Cinema / Hotel Rubra, Chapra District Board"
+    "landmarkFull": "Near Jyoti Cinema / Hotel Rubra, Chapra District Board",
+    "hoursValue": "10:00 AM – 4:00 PM"
   },
   "metaDesc": {
     "home": "Saran Nursing Home & Research Centre, Chapra. Book an appointment with Dr. Neela Singh, find the clinic, and call or WhatsApp easily.",
@@ -372,7 +373,9 @@
     "errors": {
       "day": "Please choose a day.",
       "time": "Please choose a time."
-    }
+    },
+    "rule": "The doctor sees patients from 10 AM to 4 PM. You can book up to 7 days ahead.",
+    "noSlotsToday": "Today's times are over — please choose another day."
   },
   "appointment": {
     "title": "Appointment details",
@@ -426,7 +429,8 @@
     "login_locked": "Too many wrong passwords. Please try again in 15 minutes.",
     "patient_exists": "A patient with this mobile number already exists.",
     "visit_not_open": "Notes can be written once the patient has checked in.",
-    "follow_up_invalid": "Please choose a follow-up date after today's visit, within a year."
+    "follow_up_invalid": "Please choose a follow-up date after today's visit, within a year.",
+    "slot_passed": "This time has already passed today. Please choose a later time or another day."
   },
   "staff": {
     "area": "Clinic staff",

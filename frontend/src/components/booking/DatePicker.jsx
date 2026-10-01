@@ -14,7 +14,7 @@ export function DatePicker({ dates, today, value, onChange, error }) {
   return (
     <fieldset>
       <legend className="mb-3 text-lg font-semibold text-ink">{t('book.chooseDay')}</legend>
-      <div className="grid grid-cols-3 gap-2.5 min-[420px]:grid-cols-4 sm:grid-cols-5 lg:grid-cols-7">
+      <div className="grid grid-cols-4 gap-2 sm:gap-2.5 lg:grid-cols-8">
         {visible.map((iso) => {
           const diff = dayDiff(iso, today)
           const checked = value === iso
@@ -23,10 +23,10 @@ export function DatePicker({ dates, today, value, onChange, error }) {
             <label
               key={iso}
               className={cn(
-                'relative flex min-h-20 cursor-pointer flex-col items-center justify-center rounded-control border px-1 py-2 text-center transition-colors duration-150',
+                'press relative flex min-h-[4.75rem] cursor-pointer flex-col items-center justify-center rounded-control border px-1 py-2 text-center transition-colors duration-150',
                 'has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent-400',
                 checked
-                  ? 'border-primary-700 bg-primary-700 text-white shadow-card'
+                  ? 'animate-[pop_0.3s_var(--ease-gentle)] border-primary-700 bg-primary-700 text-white shadow-card'
                   : 'border-line-strong bg-surface text-ink hover:border-primary-300 hover:bg-primary-50',
               )}
             >

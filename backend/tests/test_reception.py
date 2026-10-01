@@ -206,9 +206,9 @@ def test_unknown_appointment(reception):
 def test_reschedule(client):
     rid = patient_books(client, offset=1)
     staff_login(client)
-    r = client.post(f"/api/staff/appointments/{rid}/reschedule", json={"date": day(4), "time_slot": "evening"})
+    r = client.post(f"/api/staff/appointments/{rid}/reschedule", json={"date": day(4), "time_slot": "afternoon"})
     body = r.json()
-    assert r.status_code == 200 and body["date"] == day(4) and body["time_slot"] == "evening"
+    assert r.status_code == 200 and body["date"] == day(4) and body["time_slot"] == "afternoon"
     assert body["status"] == "confirmed" and body["history"][-1]["status"] == "rescheduled"
 
 
@@ -256,7 +256,7 @@ def test_walk_in_duplicate_same_day(reception):
 
 
 def test_walk_in_for_later_date_is_confirmed_without_token(reception):
-    body = reception.post("/api/staff/walk-ins", json={**WALK_IN, "date": day(2), "time_slot": "evening"}).json()
+    body = reception.post("/api/staff/walk-ins", json={**WALK_IN, "date": day(2), "time_slot": "afternoon"}).json()
     assert body["status"] == "confirmed" and body["token"] is None
 
 

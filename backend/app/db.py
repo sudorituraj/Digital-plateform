@@ -14,6 +14,7 @@ async def connect() -> AsyncDatabase:
     _client = AsyncMongoClient(settings.mongodb_uri, tz_aware=True, serverSelectionTimeoutMS=5000)
     db = _client[settings.mongodb_db]
     await ensure_indexes(db)
+    await migrate(db)
     return db
 
 
@@ -48,6 +49,12 @@ async def ensure_indexes(db: AsyncDatabase) -> None:
     await db.notifications.create_index("created_at")
     # Reminders carry a unique key so they are sent once, however often the check runs.
     await db.notifications.create_index("key", unique=True, partialFilterExpression={"key": {"$type": "string"}})
+
+
+async def migrate(db: AsyncDatabase) -> None:
+    """Small, idempotent data updates (safe to run on every start)."""
+    # 2026-10-01: clinic hours are 10 AM – 4 PM, so the old "evening" window became 2–4 PM ("afternoon").
+    await db.appointments.update_many({"time_slot": "evening"}, {"$set": {"time_slot": "afternoon"}})
 
 
 async def next_sequence(db: AsyncDatabase, name: str) -> int:

@@ -59,7 +59,25 @@ export default function AboutPage() {
         <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {GALLERY.map(([key, icon, subject], i) => (
             <Reveal as="li" key={key} delay={i * 70}>
-              <ImagePlaceholder subject={subject} caption={t(`about.gallery.${key}`)} icon={icon} ratio="aspect-square" />
+              {key === 'exterior' ? (
+                // Real photo of the clinic front (from its public listing — approval pending, see ClinicPhoto).
+                <figure className="relative aspect-square overflow-hidden rounded-card shadow-card">
+                  <img
+                    src="/images/clinic/clinic-front-480.webp"
+                    srcSet="/images/clinic/clinic-front-480.webp 480w, /images/clinic/clinic-front-800.webp 800w"
+                    sizes="(min-width: 1024px) 300px, 50vw"
+                    alt={t('home.photoAlt')}
+                    loading="lazy"
+                    decoding="async"
+                    className="size-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-950/80 to-transparent p-3 text-sm font-semibold text-white">
+                    {t(`about.gallery.${key}`)}
+                  </figcaption>
+                </figure>
+              ) : (
+                <ImagePlaceholder subject={subject} caption={t(`about.gallery.${key}`)} icon={icon} ratio="aspect-square" />
+              )}
             </Reveal>
           ))}
         </ul>

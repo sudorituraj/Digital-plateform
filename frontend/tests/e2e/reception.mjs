@@ -3,7 +3,7 @@
  * completed, plus reschedule, cancel, walk-ins, role separation, logout, Hindi and phone layout.
  *
  * Needs the same setup as test:journey (test backend on 8011 + preview on 4180):
- *   (backend)  MONGODB_DB=saran_e2e OTP_PER_IP_PER_HOUR=1000 OTP_VERIFY_PER_IP_PER_HOUR=1000 \
+ *   (backend)  MONGODB_DB=saran_e2e OTP_PER_IP_PER_HOUR=1000 OTP_VERIFY_PER_IP_PER_HOUR=1000 FIXED_CLOCK_HOUR=9 STAFF_LOGIN_PER_IP_PER_HOUR=1000 \
  *              .venv/bin/uvicorn app.main:app --port 8011
  *   (frontend) npm run build && API_TARGET=http://localhost:8011 npm run preview
  *   (frontend) npm run test:reception
@@ -132,7 +132,7 @@ const toCancel = await patientBooks(`Mala ${run}`, 1)
   await page.getByRole('dialog').getByRole('button', { name: 'Reschedule' }).click()
   const re = page.getByRole('dialog')
   await re.locator('[name=booking-date]').nth(4).locator('..').click()
-  await re.locator('label', { hasText: 'Evening' }).click()
+  await re.locator('label', { hasText: '2 – 4 PM' }).click()
   await shot(page, 'r3-reschedule')
   await re.getByRole('button', { name: 'Save new time' }).click()
   log(await toast(page, `Lata ${run} moved to`), 'Reschedule → toast')

@@ -24,8 +24,17 @@ export default function DoctorPage() {
           aria-hidden="true"
           className="pointer-events-none absolute -top-32 -right-24 size-96 rounded-full bg-accent-100/50 blur-3xl"
         />
-        <Container className="relative grid items-center gap-8 py-10 sm:py-14 md:grid-cols-[18rem_1fr] lg:grid-cols-[22rem_1fr] lg:gap-14">
-          <div className="relative mx-auto w-full max-w-72 animate-fade-up md:max-w-none">
+        <Container className="relative grid items-center gap-6 py-8 sm:py-14 md:grid-cols-[18rem_1fr] md:gap-8 lg:grid-cols-[22rem_1fr] lg:gap-14">
+          {/* Phones: round avatar placeholder (the tall frame wastes a whole screen). */}
+          <span
+            data-replace="Doctor portrait (approved photo of Dr. Neela Singh)"
+            className="grid size-24 animate-[pop_0.5s_var(--ease-gentle)_both] place-items-center rounded-full bg-gradient-to-br from-primary-100 to-accent-100 text-primary-700 shadow-card ring-4 ring-surface md:hidden"
+            role="img"
+            aria-label={t('common.photoPlaceholder')}
+          >
+            <Icon name="user" size={40} />
+          </span>
+          <div className="relative mx-auto hidden w-full animate-fade-up md:block">
             <div aria-hidden="true" className="absolute -inset-2.5 rotate-2 rounded-[1.75rem] bg-accent-100" />
             <ImagePlaceholder
               subject="Doctor portrait (approved photo of Dr. Neela Singh)"
@@ -55,7 +64,7 @@ export default function DoctorPage() {
         <Reveal as={Card} padding="lg">
           <h2 className="text-2xl">{t('doctor.profileTitle')}</h2>
           <dl className="mt-2 divide-y divide-line">
-            <Fact icon="fileText" label={t('doctor.qualifications')} value={d.qualifications} />
+            <Fact icon="fileText" label={t('doctor.qualifications')} value={d.qualifications && t('doctor.qualificationsValue')} unverified />
             <Fact icon="stethoscope" label={t('doctor.specialization')} value={d.specialization && t('doctor.specializationValue')} unverified />
             <Fact icon="clock" label={t('doctor.experience')} value={d.experience} />
             <Fact icon="languages" label={t('doctor.languages')} value={d.languages?.join(', ')} />
@@ -66,7 +75,7 @@ export default function DoctorPage() {
           <Reveal as={Card} padding="lg" delay={80}>
             <h2 className="text-2xl">{t('doctor.availabilityTitle')}</h2>
             <dl className="mt-2 divide-y divide-line">
-              <Fact icon="calendar" label={t('doctor.days')} value={null} />
+              <Fact icon="calendar" label={t('doctor.days')} value={t('contact.hoursValue')} />
               <Fact icon="info" label={t('doctor.fee')} value={d.consultationFee != null ? t('doctor.consultationFeeValue') : null} unverified />
             </dl>
           </Reveal>

@@ -37,13 +37,13 @@ export const clinic = {
   mapQuery: 'Saran Nursing Home, Near Jyoti Cinema, Sadhnapuri, Chapra, Bihar',
 
   landmark: 'Near Jyoti Cinema / Hotel Rubra, Chapra District Board',
-  // null = not confirmed → shown as "To be confirmed". (Justdial claims 24 h / 24 h emergency — NOT shown.)
-  hours: null,
+  // Confirmed by the client 2026-10-01 (working days not confirmed yet). Booking rules: backend/app/clinic.py
+  hours: { open: '10:00', close: '16:00' },
 
   doctor: {
     id: 'dr-neela-singh',
     name: 'Dr. Neela Singh', // client-provided: owner and the only doctor seeing patients
-    qualifications: null,
+    qualifications: 'M.B.B.S., D.G.O., M.D. (Obs & Gynae)', // as written on the clinic's signboard — shown as unconfirmed
     specialization: 'Gynaecology & Obstetrics', // from public listings — shown as unconfirmed
     experience: null,
     languages: null,
@@ -72,7 +72,7 @@ export const NEEDS_CONFIRMATION = [
   'addressLines',
   'phone',
   'whatsapp',
-  'hours',
+  'hours.days',
   'doctor.qualifications',
   'doctor.specialization',
   'doctor.experience',

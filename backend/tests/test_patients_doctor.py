@@ -113,7 +113,7 @@ def test_patient_endpoints_access(client):
 def test_doctor_today_queue(client):
     rid1 = checked_in(client, "9876543210")
     rid2 = checked_in(client, "9123456789")
-    patient_books(client, "9000000001", slot="evening")  # booked, not arrived
+    patient_books(client, "9000000001", slot="afternoon")  # booked, not arrived
     staff_login(client)
     set_status(client, rid2, "waiting")
     as_doctor(client)

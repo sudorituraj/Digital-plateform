@@ -20,6 +20,16 @@ from app.main import app  # noqa: E402
 
 
 @pytest.fixture(autouse=True)
+def morning_clock(monkeypatch):
+    """Tests run as if it were 9 AM in Chapra, so "today" windows are always still open."""
+    from datetime import datetime
+
+    from app import clinic
+
+    monkeypatch.setattr(clinic, "now", lambda: datetime.now(clinic.CLINIC_TZ).replace(hour=9, minute=0))
+
+
+@pytest.fixture(autouse=True)
 def clean_db():
     """Every test starts with an empty test database (never the demo database)."""
     sync = MongoClient(os.environ.get("MONGODB_URI", "mongodb://localhost:27017"))

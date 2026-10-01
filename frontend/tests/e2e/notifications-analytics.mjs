@@ -34,7 +34,7 @@ const { data: options } = await api('/booking/options')
 const { data: booked } = await api('/appointments', {
   method: 'POST',
   cookie: patientCookie,
-  body: { date: options.dates[2], time_slot: 'evening', name, age: 27, gender: 'female' },
+  body: { date: options.dates[2], time_slot: 'afternoon', name, age: 27, gender: 'female' },
 })
 
 // ---- Patient: bell + inbox ------------------------------------------------------------------------

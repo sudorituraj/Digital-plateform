@@ -167,3 +167,16 @@ The demo always uses the fake phone number so testers never call the real clinic
 `clinic.features` turns pages on only when the clinic has approved their content
 (e.g. `healthEducation` for the periods/pregnancy guidance pages — medical text needs the doctor's sign-off).
 
+## D35 — Clinic hours and the 7-day booking window (2026-10-01)
+Confirmed by the client: consultations 10 AM – 4 PM; patients book at most 7 days ahead. Windows are
+10–12 / 12–2 / 2–4 (`backend/app/clinic.py → SLOT_HOURS`). The server, not just the screen, rejects past
+windows and dates outside the window. Reception keeps 30 days so follow-ups can be booked at the desk.
+Old "evening" bookings are migrated to 2–4 PM on start-up (idempotent). Browser tests run the test server
+with `FIXED_CLOCK_HOUR=9` (refused in production) so they don't depend on the time of day.
+
+## D36 — Clinic photos from the public listing (2026-10-01)
+Photos are edited only with ordinary corrections (crop, level, light, colour, sharpness) — never generated or
+altered in content. Photos showing patients are never used. Every listing photo carries "Confirmation pending"
+and a `data-replace` note until the clinic gives permission or originals. The emblem was traced from the
+clinic's own sign and is used as its logo.
+

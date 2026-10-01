@@ -27,7 +27,7 @@ def staff_out(doc: dict) -> StaffOut:
 @router.post("/login", response_model=StaffOut)
 async def login(body: StaffLoginIn, request: Request, response: Response, settings: Settings = Depends(get_settings)):
     db = get_db()
-    await rate_limit.hit(db, f"staff-ip:{client_ip(request, settings)}", 30, 3600)
+    await rate_limit.hit(db, f"staff-ip:{client_ip(request, settings)}", settings.staff_login_per_ip_per_hour, 3600)
     fail_key = f"staff-fail:{body.username}"
     if await rate_limit.count(db, fail_key, LOGIN_LOCK_SECONDS) >= LOGIN_MAX_FAILS:
         raise ApiError(429, "login_locked", "Too many wrong passwords. Try again in 15 minutes.")

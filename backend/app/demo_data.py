@@ -33,15 +33,15 @@ REASONS = ["Regular check-up", "Pregnancy check-up", "Follow-up with reports", "
 # (patient index, day offset, slot, final status, source) — the story of a normal clinic day.
 PLAN = [
     # earlier visits → these patients show as returning
-    (0, -20, "morning", "completed", "online"), (2, -14, "evening", "completed", "walk_in"),
+    (0, -20, "morning", "completed", "online"), (2, -14, "afternoon", "completed", "walk_in"),
     (4, -7, "morning", "completed", "online"), (5, -3, "afternoon", "cancelled", "online"),
     # today
     (0, 0, "morning", "completed", "online"), (2, 0, "morning", "completed", "walk_in"),
     (1, 0, "morning", "waiting", "online"), (3, 0, "morning", "checked_in", "online"),
     (6, 0, "afternoon", "checked_in", "walk_in"), (7, 0, "afternoon", "confirmed", "online"),
-    (8, 0, "evening", "confirmed", "online"), (9, 0, "evening", "request_submitted", "online"),
+    (8, 0, "midday", "confirmed", "online"), (9, 0, "afternoon", "request_submitted", "online"),
     # coming days
-    (10, 1, "morning", "request_submitted", "online"), (11, 1, "evening", "request_submitted", "online"),
+    (10, 1, "morning", "request_submitted", "online"), (11, 1, "afternoon", "request_submitted", "online"),
     (12, 2, "afternoon", "confirmed", "online"), (13, 3, "morning", "request_submitted", "online"),
     (14, 5, "morning", "request_submitted", "online"),
 ]

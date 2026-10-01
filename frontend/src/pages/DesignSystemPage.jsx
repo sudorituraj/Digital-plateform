@@ -180,7 +180,7 @@ export default function DesignSystemPage() {
               options={[
                 { value: 'morning', label: t('form.morning') },
                 { value: 'afternoon', label: t('form.afternoon') },
-                { value: 'evening', label: t('form.evening') },
+                { value: 'midday', label: t('form.midday') },
               ]}
             />
             <TextField label={t('form.email')} type="email" optional autoComplete="email" />

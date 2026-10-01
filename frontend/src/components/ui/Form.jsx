@@ -143,22 +143,23 @@ export function SelectField({ label, hint, error, optional, options, className, 
  * Large tappable options (radio group) — less typing than a dropdown.
  * Used for gender, preferred time, etc.
  */
-export function ChoiceChips({ legend, name, options, value, onChange, error, className }) {
+export function ChoiceChips({ legend, name, options, value, onChange, error, columns, className }) {
   const errorId = useId()
   return (
     <fieldset className={cn('space-y-2', className)} aria-describedby={error ? errorId : undefined}>
       <legend className="mb-1.5 font-semibold text-ink">{legend}</legend>
-      <div className="flex flex-wrap gap-2.5">
+      <div className={columns ? 'grid gap-2' : 'flex flex-wrap gap-2.5'} style={columns ? { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` } : undefined}>
         {options.map((o) => {
           const checked = value === o.value
           return (
             <label
               key={o.value}
               className={cn(
-                'relative inline-flex min-h-12 cursor-pointer items-center gap-2 rounded-control border px-4 font-medium',
+                'press relative inline-flex min-h-12 cursor-pointer items-center gap-2 rounded-control border px-4 font-medium',
+                columns && 'min-h-16 flex-col justify-center gap-1 px-2 text-center text-[0.95rem] leading-tight',
                 'transition-colors duration-150 has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent-400',
                 checked
-                  ? 'border-primary-600 bg-primary-50 text-primary-800'
+                  ? 'animate-[pop_0.3s_var(--ease-gentle)] border-primary-600 bg-primary-50 text-primary-800'
                   : 'border-line-strong bg-surface text-ink hover:border-primary-300',
               )}
             >
@@ -172,7 +173,7 @@ export function ChoiceChips({ legend, name, options, value, onChange, error, cla
               />
               {o.icon && <Icon name={o.icon} size={18} />}
               {o.label}
-              {checked && <Icon name="check" size={18} className="text-primary-700" />}
+              {checked && !columns && <Icon name="check" size={18} className="text-primary-700" />}
             </label>
           )
         })}
