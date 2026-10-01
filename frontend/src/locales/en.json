@@ -1,0 +1,750 @@
+{
+  "common": {
+    "clinicName": "Saran Nursing Home & Research Centre",
+    "clinicShortName": "Saran Nursing Home",
+    "clinicSubName": "& Research Centre",
+    "location": "Chapra, Bihar",
+    "bookAppointment": "Book Appointment",
+    "bookShort": "Book Now",
+    "call": "Call",
+    "callClinic": "Call the clinic",
+    "whatsapp": "WhatsApp",
+    "getDirections": "Get Directions",
+    "learnMore": "Learn more",
+    "backHome": "Back to Home",
+    "needsConfirmation": "Confirmation pending",
+    "photoPlaceholder": "Real photo coming soon",
+    "loading": "Loading…",
+    "language": "Language",
+    "chooseLanguage": "Choose language",
+    "skipToContent": "Skip to main content",
+    "demoBanner": "Demo version — all patient details shown here are sample data.",
+    "whatsappMessage": "Hello, I would like to ask about an appointment.",
+    "tryAgain": "Try again",
+    "toBeConfirmed": "To be confirmed",
+    "viewProfile": "View doctor profile",
+    "viewAllServices": "View all services",
+    "example": "Example",
+    "stepLabel": "Step {n}"
+  },
+  "nav": {
+    "label": "Main menu",
+    "home": "Home",
+    "about": "About",
+    "doctor": "Doctor",
+    "services": "Services",
+    "beforeVisit": "Before Your Visit",
+    "contact": "Find Us",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "quickActions": "Quick actions"
+  },
+  "footer": {
+    "tagline": "Trusted care, close to home.",
+    "quickLinks": "Quick links",
+    "contactUs": "Contact us",
+    "address": "Address",
+    "phone": "Phone",
+    "copyright": "© {year} Saran Nursing Home & Research Centre, Chapra",
+    "demoNote": "This is a demo. Details marked for confirmation will be checked with the clinic before going live."
+  },
+  "home": {
+    "eyebrow": "Saran Nursing Home, Chapra",
+    "title": "Trusted care, close to home.",
+    "subtitle": "Book your appointment easily. Get the information you need before visiting.",
+    "doctorLine": "Consultation with {doctor}",
+    "trust": {
+      "doctor": "Led by Dr. Neela Singh",
+      "local": "In Sadhnapuri, Chapra",
+      "easy": "Book online, by phone or WhatsApp"
+    },
+    "preview": {
+      "title": "Appointment request",
+      "patient": "Patient",
+      "patientName": "Sunita Devi",
+      "when": "Day & time",
+      "whenValue": "Tomorrow · Morning",
+      "note": "The clinic checks and confirms your time."
+    },
+    "steps": {
+      "eyebrow": "How it works",
+      "title": "Booking is simple",
+      "s1Title": "Send a request",
+      "s1Body": "Choose a day and a time that suits you. It takes about a minute.",
+      "s2Title": "Clinic confirms",
+      "s2Body": "The clinic checks the request and confirms your appointment.",
+      "s3Title": "Visit the clinic",
+      "s3Body": "Come at your time with your old reports and medicines."
+    },
+    "doctor": {
+      "eyebrow": "Your doctor",
+      "title": "Meet Dr. Neela Singh",
+      "body": "Dr. Neela Singh is the owner of Saran Nursing Home and the doctor who sees patients here. You meet the same doctor at every visit."
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "Care we offer",
+      "body": "Choose a service to read more, or book a visit directly."
+    },
+    "visit": {
+      "eyebrow": "Before your visit",
+      "title": "Come prepared, save time",
+      "body": "Bring the right papers and medicines so the doctor can help you better.",
+      "cta": "See the full checklist"
+    },
+    "location": {
+      "eyebrow": "Find us",
+      "title": "Visit us in Chapra",
+      "body": "Get directions, or call before you come."
+    },
+    "cta": {
+      "title": "Need to see the doctor?",
+      "body": "Send an appointment request in a minute, or call the clinic."
+    },
+    "appointmentStatus": {
+      "title": "Your upcoming appointment",
+      "subtitle": "Track the status and see details",
+      "noUpcoming": "No upcoming appointment",
+      "noUpcomingBody": "Book a new appointment to see it here.",
+      "cancel": "Cancel request",
+      "cancelConfirm": "Are you sure you want to cancel this appointment request?"
+    }
+  },
+  "comingSoon": {
+    "title": "This page is being prepared",
+    "body": "It will be ready soon. Meanwhile, you can call or WhatsApp the clinic."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you are looking for does not exist. Let's take you back."
+  },
+  "form": {
+    "fullName": "Full name",
+    "fullNamePlaceholder": "e.g. Sunita Devi",
+    "mobile": "Mobile number",
+    "mobileHint": "10-digit mobile number. We will send an OTP.",
+    "age": "Age",
+    "ageHint": "Your age in years (0–120).",
+    "gender": "Gender",
+    "genderHint": "Select your gender.",
+    "female": "Female",
+    "male": "Male",
+    "other": "Prefer not to say",
+    "email": "Email",
+    "emailHint": "Optional. We will not share it.",
+    "reason": "Reason for visit",
+    "reasonPlaceholder": "Tell us briefly (optional)",
+    "preferredTime": "Preferred time",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "evening": "Evening",
+    "optional": "optional",
+    "required": "required",
+    "continue": "Continue",
+    "errors": {
+      "required": "Please fill this in.",
+      "mobile": "Please enter a valid 10-digit mobile number.",
+      "age": "Please enter your age (0–120).",
+      "choose": "Please choose one.",
+      "email": "Please enter a valid email, or leave it empty.",
+      "patientId": "Use only letters, numbers and dashes."
+    },
+    "patientId": "Clinic patient ID",
+    "patientIdHint": "Only if you have one from an earlier visit.",
+    "password": "Password",
+    "passwordHint": "At least 6 characters.",
+    "fatherHusbandName": "Father's / Husband's name",
+    "fatherHusbandNameHint": "Optional",
+    "address": "Address",
+    "addressHint": "Optional. E.g. Village - Tekniwas, Block - Chapra, Saran, Bihar",
+    "selectPlaceholder": "Select…"
+  },
+  "status": {
+    "requestSubmitted": "Request Submitted",
+    "confirmed": "Confirmed",
+    "checkedIn": "Checked In",
+    "waiting": "Waiting",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "rescheduled": "Rescheduled"
+  },
+  "alerts": {
+    "success": "Appointment submitted successfully.",
+    "info": "Please bring your previous reports and medicines.",
+    "warning": "This time is a request. The clinic will confirm it.",
+    "error": "Unable to load appointments. Please try again."
+  },
+  "meta": {
+    "home": "Saran Nursing Home & Research Centre, Chapra",
+    "about": "About the Clinic",
+    "doctor": "Dr. Neela Singh",
+    "services": "Services",
+    "beforeVisit": "Before Your Visit",
+    "contact": "Find Us & Contact",
+    "book": "Book Appointment",
+    "notFound": "Page not found",
+    "login": "Log in",
+    "appointment": "Appointment",
+    "myAppointments": "My Appointments",
+    "staffLogin": "Staff login",
+    "reception": "Reception",
+    "doctorHome": "Doctor",
+    "patients": "Patients",
+    "patient": "Patient",
+    "visit": "Visit",
+    "notifications": "Messages",
+    "messages": "Messages",
+    "analytics": "Analytics"
+  },
+  "about": {
+    "eyebrow": "About the clinic",
+    "title": "Saran Nursing Home & Research Centre",
+    "lead": "A local nursing home in Chapra, led by Dr. Neela Singh.",
+    "introTitle": "Who we are",
+    "intro1": "Saran Nursing Home & Research Centre is a nursing home in Sadhnapuri, Chapra, in the Saran district of Bihar.",
+    "intro2": "Dr. Neela Singh is the owner and the doctor who sees patients here.",
+    "history": "Our story",
+    "facilities": "Facilities",
+    "helpTitle": "Making your visit easier",
+    "help1Title": "Book ahead",
+    "help1Body": "Send a request online, or call or WhatsApp the clinic.",
+    "help2Title": "Know before you come",
+    "help2Body": "Find the address, what to bring and how to reach us.",
+    "help3Title": "In your language",
+    "help3Body": "Read this website in English, Hindi, Bhojpuri or Hinglish.",
+    "galleryTitle": "Inside the clinic",
+    "gallery": {
+      "exterior": "Clinic building",
+      "reception": "Reception",
+      "waiting": "Waiting area",
+      "consultation": "Consultation room"
+    }
+  },
+  "doctor": {
+    "eyebrow": "Your doctor",
+    "role": "Owner & Doctor, Saran Nursing Home",
+    "lead": "Dr. Neela Singh is the owner of Saran Nursing Home and the doctor who sees patients here.",
+    "photoCaption": "Dr. Neela Singh",
+    "profileTitle": "Profile",
+    "qualifications": "Qualifications",
+    "specialization": "Specialisation",
+    "experience": "Experience",
+    "languages": "Languages spoken",
+    "areasTitle": "Areas of care",
+    "availabilityTitle": "Availability",
+    "days": "Consultation days & hours",
+    "fee": "Consultation fee",
+    "consultTitle": "How to consult",
+    "consultBody": "Send an appointment request. The clinic will confirm your day and time. You can also call or WhatsApp the clinic.",
+    "specializationValue": "Gynaecology & Obstetrics",
+    "consultationFeeValue": "₹300 per visit"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Our services",
+    "lead": "Choose a service to learn more or book a visit.",
+    "howTitle": "How to book",
+    "how1": "Send an appointment request online, or call or WhatsApp the clinic.",
+    "how2": "The clinic confirms your day and time.",
+    "how3": "Visit the clinic with your old reports and medicines.",
+    "otherTitle": "Other services",
+    "notListedTitle": "Don't see what you need?",
+    "notListedBody": "Call or WhatsApp the clinic and ask.",
+    "backToServices": "All services",
+    "items": {
+      "womensHealth": {
+        "title": "Women's health consultation",
+        "short": "See the doctor about women's health problems.",
+        "body": "Meet the doctor to talk about periods, pain, infections or any other women's health concern. The doctor will check you and explain the next steps."
+      },
+      "pregnancyCare": {
+        "title": "Pregnancy care",
+        "short": "Regular check-ups and advice during pregnancy.",
+        "body": "Regular check-ups through your pregnancy, with advice on tests, food and what to expect at each stage."
+      },
+      "delivery": {
+        "title": "Delivery care",
+        "short": "Care for mother and baby around childbirth.",
+        "body": "Care for mothers at the time of delivery and in the days after. Talk to the doctor early in your pregnancy to plan ahead."
+      },
+      "followUp": {
+        "title": "Follow-up visits",
+        "short": "Come back to show reports or for a check-up.",
+        "body": "Come back on the follow-up date given by the doctor, or when you have new test reports to show."
+      }
+    }
+  },
+  "beforeVisit": {
+    "eyebrow": "Before your visit",
+    "title": "Before your visit",
+    "lead": "A few simple things that make your visit easier.",
+    "bringTitle": "What to bring",
+    "bring1": "Old reports and test results",
+    "bring2": "Your current medicines and prescriptions (or photos of them)",
+    "bring3": "Your appointment details — request ID or the mobile number you booked with",
+    "dayTitle": "On the day",
+    "day1": "Please arrive a little before your appointment time.",
+    "day2": "Tell the reception your name and mobile number.",
+    "day3": "If you cannot come, please call or WhatsApp the clinic.",
+    "questionsTitle": "Have a question?",
+    "questionsBody": "Call or WhatsApp the clinic before your visit. We are happy to help."
+  },
+  "contact": {
+    "eyebrow": "Find us",
+    "title": "Find us & contact",
+    "lead": "Call, WhatsApp or visit the clinic in Chapra.",
+    "address": "Address",
+    "landmark": "Nearby landmark",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "whatsappBody": "Send us a message",
+    "hours": "Consultation hours",
+    "mapTitle": "Map showing Saran Nursing Home",
+    "showMap": "Show map",
+    "mapNote": "The map loads from Google Maps.",
+    "rating": "Rating",
+    "addressLine1": "Near Jyoti Cinema, Hotel Rubra",
+    "addressLine2": "Chapra District Board, Sadhnapuri",
+    "addressLine3": "Chapra, Bihar 841301",
+    "landmarkFull": "Near Jyoti Cinema / Hotel Rubra, Chapra District Board"
+  },
+  "metaDesc": {
+    "home": "Saran Nursing Home & Research Centre, Chapra. Book an appointment with Dr. Neela Singh, find the clinic, and call or WhatsApp easily.",
+    "about": "About Saran Nursing Home & Research Centre in Sadhnapuri, Chapra, led by Dr. Neela Singh.",
+    "doctor": "Dr. Neela Singh, owner and doctor at Saran Nursing Home, Chapra. See availability and book an appointment.",
+    "services": "Services at Saran Nursing Home, Chapra. Learn more and book an appointment.",
+    "beforeVisit": "What to bring and what to expect before your visit to Saran Nursing Home, Chapra.",
+    "contact": "Address, map, phone and WhatsApp for Saran Nursing Home, Sadhnapuri, Chapra, Bihar.",
+    "book": "Book an appointment with Dr. Neela Singh at Saran Nursing Home, Chapra. Choose a day and time — the clinic will confirm."
+  },
+  "auth": {
+    "title": "Log in with your mobile",
+    "lead": "No password needed. We send a one-time code to your mobile.",
+    "login": "Log in",
+    "sendCode": "Send code",
+    "privacyNote": "Your number is used only for your appointments.",
+    "codeSentTo": "Code sent to",
+    "changeNumber": "Change",
+    "codeLabel": "Enter the 6-digit code",
+    "codeHint": "The code is valid for 5 minutes.",
+    "verify": "Verify & continue",
+    "resend": "Send the code again",
+    "resendIn": "You can ask for a new code in {seconds} s",
+    "demoTitle": "Demo mode — no SMS is sent",
+    "demoBody": "Your code is",
+    "tabOtp": "OTP (SMS/Code)",
+    "tabPassword": "Password",
+    "loginWithPassword": "Log in with password",
+    "newAccount": "New here?",
+    "alreadyHaveAccount": "Already have a password?",
+    "noPassword": "Don't have a password yet?",
+    "useOtpInstead": "Use OTP instead",
+    "newPatientTitle": "This number is new to us. Please complete your details to create an account.",
+    "register": "Create account & verify",
+    "backToPhone": "Back to phone number"
+  },
+  "book": {
+    "title": "Book an Appointment",
+    "lead": "It takes about a minute. The clinic will confirm your time.",
+    "progressLabel": "Booking progress",
+    "stepOf": "Step {n} of {total}",
+    "stepDone": "Done",
+    "steps": {
+      "mobile": "Your mobile",
+      "when": "Day & time",
+      "details": "Your details",
+      "review": "Check & send"
+    },
+    "yourDoctor": "Your doctor",
+    "selected": "Selected",
+    "chooseDay": "Choose a day",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "moreDates": "Show more dates",
+    "chooseTime": "Preferred time",
+    "back": "Back",
+    "edit": "Change",
+    "doctor": "Doctor",
+    "day": "Day",
+    "time": "Time",
+    "patient": "Patient",
+    "submit": "Send Appointment Request",
+    "errors": {
+      "day": "Please choose a day.",
+      "time": "Please choose a time."
+    }
+  },
+  "appointment": {
+    "title": "Appointment details",
+    "submittedTitle": "Appointment Request Submitted",
+    "submittedBody": "The clinic will check and confirm your time. You can see the status here at any time.",
+    "requestId": "Request ID",
+    "progressLabel": "Appointment progress",
+    "keepId": "Keep this ID for your visit",
+    "viewMine": "My Appointments",
+    "notFound": "We could not find this appointment.",
+    "whatsappMessage": "Hello, this is about my appointment request {id}."
+  },
+  "my": {
+    "title": "My Appointments",
+    "lead": "Your appointment requests and their status.",
+    "hello": "Hello, {name}. Here are your appointments.",
+    "upcoming": "Upcoming",
+    "previous": "Previous",
+    "noUpcoming": "No upcoming appointments",
+    "noUpcomingBody": "Book an appointment and it will show here.",
+    "noPrevious": "No previous appointments yet.",
+    "profile": "Your profile",
+    "patientCode": "Patient number",
+    "logout": "Log out",
+    "followUp": "Follow-up date"
+  },
+  "errors": {
+    "network": "No internet connection, or the server is not reachable. Please try again.",
+    "server_error": "Something went wrong. Please try again.",
+    "validation_error": "Please check the details and try again.",
+    "rate_limited": "Too many tries. Please wait a little and try again.",
+    "otp_resend_too_soon": "Please wait {seconds} seconds before asking for a new code.",
+    "otp_invalid": "Wrong code. {attempts} tries left.",
+    "otp_expired": "This code has expired. Please ask for a new one.",
+    "otp_too_many_attempts": "Too many wrong codes. Please ask for a new one.",
+    "otp_unavailable": "We cannot send codes right now. Please call the clinic.",
+    "not_authenticated": "Please log in again.",
+    "not_found": "Not found.",
+    "date_unavailable": "This day cannot be booked. Please choose another day.",
+    "duplicate_booking": "You already have an appointment request for this day.",
+    "too_many_active": "You already have 3 open appointment requests. Please call the clinic to book more.",
+    "cannot_cancel": "Only requested appointments can be cancelled online. Please call the clinic.",
+    "invalid_credentials": "Wrong username or password.",
+    "forbidden": "Your account doesn't have access to this.",
+    "wrong_login": "Mobile number or password is wrong. You can also log in with a one-time code.",
+    "password_locked": "Too many wrong passwords. Please log in with a one-time code, or try again in 15 minutes.",
+    "invalid_transition": "This step isn't possible for this appointment any more. The list has been refreshed.",
+    "not_today": "Patients can only be checked in on the day of their appointment.",
+    "changed_elsewhere": "Someone else just changed this appointment. The list has been refreshed.",
+    "no_change": "That is the same day and time.",
+    "login_locked": "Too many wrong passwords. Please try again in 15 minutes.",
+    "patient_exists": "A patient with this mobile number already exists.",
+    "visit_not_open": "Notes can be written once the patient has checked in.",
+    "follow_up_invalid": "Please choose a follow-up date after today's visit, within a year."
+  },
+  "staff": {
+    "area": "Clinic staff",
+    "navLabel": "Staff menu",
+    "logout": "Log out",
+    "roles": {
+      "admin": "Admin",
+      "reception": "Reception",
+      "doctor": "Doctor"
+    },
+    "login": {
+      "title": "Staff login",
+      "lead": "For clinic staff only.",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Log in",
+      "demoTitle": "Demo accounts",
+      "demoBody": "Tap an account to fill in the details.",
+      "notStaff": "Not clinic staff? Go to the patient website"
+    },
+    "dash": {
+      "title": "Reception",
+      "today": "Today",
+      "prevDay": "Previous day",
+      "nextDay": "Next day",
+      "pickDate": "Choose a date",
+      "addWalkIn": "Add walk-in",
+      "statsLabel": "Numbers for the day",
+      "tabsLabel": "Which list",
+      "stats": {
+        "total": "Appointments",
+        "pending": "New requests (all days)",
+        "newPatients": "First visits"
+      },
+      "tabs": {
+        "day": "Day list",
+        "requests": "New requests"
+      },
+      "searchLabel": "Search appointments",
+      "searchPlaceholder": "Name, mobile or ID",
+      "clearFilters": "Clear filters",
+      "empty": {
+        "day": "No appointments on this day",
+        "requests": "No new requests — all caught up",
+        "search": "Nothing matches your search"
+      },
+      "columns": {
+        "token": "Token",
+        "patient": "Patient",
+        "time": "Time",
+        "date": "Day & time",
+        "status": "Status",
+        "contact": "Contact",
+        "actions": "Actions"
+      },
+      "firstVisit": "First visit",
+      "walkInTag": "Walk-in",
+      "years": "{age} yrs",
+      "refreshing": "Updating…",
+      "autoRefresh": "Updates by itself every 30 seconds"
+    },
+    "actions": {
+      "confirm": "Confirm",
+      "checkIn": "Check in",
+      "waiting": "Mark waiting",
+      "complete": "Mark completed",
+      "reschedule": "Reschedule",
+      "cancel": "Cancel",
+      "details": "Details",
+      "callPatient": "Call {name}",
+      "whatsappPatient": "WhatsApp {name}"
+    },
+    "toast": {
+      "confirmed": "{name} confirmed",
+      "checkedIn": "{name} checked in — token {token}",
+      "waiting": "{name} is waiting for the doctor",
+      "completed": "{name}'s visit is completed",
+      "cancelled": "{name}'s appointment is cancelled",
+      "rescheduled": "{name} moved to {date}",
+      "walkIn": "{name} added — token {token}",
+      "walkInLater": "{name} booked for {date}"
+    },
+    "details": {
+      "title": "Appointment {id}",
+      "patientNo": "Patient",
+      "noReason": "No reason given",
+      "source": "Booked",
+      "sources": {
+        "online": "Online by the patient",
+        "walk_in": "At reception"
+      },
+      "history": "History",
+      "by": "by {name}",
+      "byPatient": "patient",
+      "close": "Close"
+    },
+    "reschedule": {
+      "title": "Reschedule — {name}",
+      "note": "Note",
+      "submit": "Save new time"
+    },
+    "cancel": {
+      "title": "Cancel this appointment?",
+      "body": "{name}'s appointment on {date} will be cancelled.",
+      "reason": "Reason",
+      "submit": "Yes, cancel",
+      "keep": "Go back"
+    },
+    "walkIn": {
+      "title": "Add walk-in patient",
+      "lead": "If this mobile number is already registered, the same patient record is used.",
+      "when": "When",
+      "now": "Now — check in",
+      "later": "Another day",
+      "submit": "Add and check in",
+      "submitLater": "Book appointment"
+    },
+    "whatsappTemplate": "Hello {name}, this is Saran Nursing Home about your appointment {id}.",
+    "patients": {
+      "title": "Patients",
+      "count": "{n} patients",
+      "add": "Add patient",
+      "addTitle": "Add new patient",
+      "editTitle": "Edit patient details",
+      "edit": "Edit details",
+      "save": "Save changes",
+      "saved": "Details saved",
+      "added": "{name} added ({code})",
+      "filterLabel": "Show",
+      "filters": {
+        "all": "All",
+        "upcoming": "Upcoming appointment",
+        "follow_up": "Follow-up due",
+        "new": "New (30 days)"
+      },
+      "searchLabel": "Search patients",
+      "searchPlaceholder": "Name, mobile or patient no.",
+      "empty": "No patients here yet",
+      "lastVisit": "Last visit",
+      "never": "No visit yet",
+      "visits": "Visits: {n}",
+      "next": "Next appointment",
+      "followUp": "Follow-up",
+      "noName": "(name not given)",
+      "loadMore": "Show more"
+    },
+    "profile": {
+      "details": "Details",
+      "registered": "Registered",
+      "sources": {
+        "online": "online",
+        "walk_in": "at reception (walk-in)",
+        "reception": "at reception"
+      },
+      "noFollowUp": "No follow-up",
+      "notes": "Front-desk notes",
+      "notesHint": "Practical notes only (e.g. prefers Hindi). No medical details.",
+      "addNote": "New note",
+      "saveNote": "Add",
+      "appointments": "Appointments",
+      "noAppointments": "No appointments yet",
+      "visits": "Doctor visits",
+      "noVisits": "No completed visits yet",
+      "notesPrivate": "The doctor's consultation notes are visible to the doctor only.",
+      "book": "Book appointment",
+      "notFound": "Patient not found",
+      "back": "Back to patients"
+    },
+    "doctor": {
+      "title": "Today",
+      "counts": {
+        "queue": "At the clinic",
+        "later": "Still to come"
+      },
+      "queue": "Patient queue",
+      "seeNext": "See next",
+      "open": "Open",
+      "emptyQueue": "No patients in the queue",
+      "emptyQueueBody": "Patients appear here when reception checks them in.",
+      "later": "Booked for later today",
+      "noneLater": "No more bookings today.",
+      "completed": "Seen today",
+      "noneCompleted": "No visits completed yet.",
+      "today": "Today's visit",
+      "note": "Consultation note",
+      "noteHint": "Visible to the doctor only. Not a prescription.",
+      "noNote": "No note written.",
+      "noFollowUp": "No follow-up",
+      "after": {
+        "7": "1 week",
+        "14": "2 weeks",
+        "30": "1 month",
+        "90": "3 months"
+      },
+      "otherDate": "Other date",
+      "followUpOn": "Follow-up on {date}",
+      "saveDraft": "Save draft",
+      "complete": "Mark visit completed",
+      "draftSaved": "Draft saved",
+      "completedToast": "{name}'s visit completed",
+      "previous": "Previous visits",
+      "noPrevious": "This is the first visit.",
+      "notArrived": "The patient hasn't checked in yet. Notes can be written once reception checks them in.",
+      "fullProfile": "Full patient profile"
+    },
+    "whatsappGeneric": "Hello {name}, this is Saran Nursing Home.",
+    "messages": {
+      "title": "Messages",
+      "lead": "Every message sent to patients about their appointments.",
+      "simulated": "Simulated",
+      "simulatedTitle": "Demo — WhatsApp/SMS are simulated",
+      "simulatedBody": "Nothing is actually sent. After the clinic approves the workflow, patient consent and cost, a WhatsApp/SMS provider can be connected.",
+      "empty": "No messages yet"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "range": "Time period",
+      "lastDays": "Last {n} days",
+      "perDay": "Appointments per day",
+      "showTable": "Show as table",
+      "showChart": "Show as chart",
+      "booked": "booked",
+      "tooltip": "{booked} booked, {completed} completed, {cancelled} cancelled",
+      "totals": {
+        "appointments": "Appointments",
+        "pending": "Waiting for confirmation",
+        "new": "New patients",
+        "returning": "Returning patients"
+      },
+      "notCancelled": "Not counting cancelled",
+      "pendingHint": "From today onwards",
+      "newVsReturning": "New vs returning patients",
+      "byStatus": "By status",
+      "bySource": "How they booked",
+      "bySlot": "Time of day"
+    }
+  },
+  "notifications": {
+    "title": "Messages",
+    "lead": "Updates from the clinic about your appointments.",
+    "bell": "Messages",
+    "bellUnread": "Messages, {n} new",
+    "simulated": "Demo: these messages would also be sent to your WhatsApp. In this demo nothing is actually sent.",
+    "empty": "No messages yet",
+    "new": "New",
+    "types": {
+      "submitted": {
+        "label": "Request received",
+        "title": "We received your appointment request",
+        "body": "{date}, {time}. The clinic will confirm your time soon. Request ID: {id}."
+      },
+      "confirmed": {
+        "label": "Confirmed",
+        "title": "Your appointment is confirmed",
+        "body": "{date}, {time} with Dr. Neela Singh. Please bring your old reports and medicines."
+      },
+      "reminder": {
+        "label": "Reminder",
+        "title": "Reminder: your appointment is tomorrow",
+        "body": "{date}, {time}. If you cannot come, please call or WhatsApp the clinic."
+      },
+      "rescheduled": {
+        "label": "Rescheduled",
+        "title": "Your appointment time has changed",
+        "body": "New time: {date}, {time}. Request ID: {id}."
+      },
+      "cancelled": {
+        "label": "Cancelled",
+        "title": "Your appointment is cancelled",
+        "body": "{date}, {time}. You can book a new appointment any time."
+      },
+      "follow_up": {
+        "label": "Follow-up",
+        "title": "Time for your follow-up visit",
+        "body": "The doctor asked to see you again on {followUp}. Book an appointment or call the clinic."
+      }
+    }
+  },
+  "education": {
+    "title": "Health education",
+    "subtitle": "Learn about your health from trusted sources",
+    "periods": {
+      "title": "Understanding your periods",
+      "description": "Menstruation is a natural process. Knowing what's normal helps you spot issues early.",
+      "normalCycle": "Normal cycle: 21-35 days",
+      "normalDuration": "Normal duration: 2-7 days",
+      "whenToSeeDoctor": "When to see a doctor",
+      "heavyBleeding": "Very heavy bleeding (changing pad every 1-2 hours)",
+      "irregularCycles": "Cycles shorter than 21 or longer than 35 days",
+      "severePain": "Pain that stops daily activities",
+      "missedPeriods": "Missed periods for 3+ months (not pregnant)",
+      "spotting": "Bleeding between periods",
+      "tip1": "Track your cycle with a calendar or app",
+      "tip2": "Change pads every 4-6 hours",
+      "tip3": "Stay hydrated and eat iron-rich foods",
+      "tip4": "Exercise helps reduce cramps",
+      "tip5": "See a doctor if something feels wrong"
+    },
+    "pregnancy": {
+      "title": "Pregnancy care guide",
+      "description": "Each trimester brings changes. Regular check-ups keep you and your baby healthy.",
+      "firstTrimester": "First trimester (weeks 1-12)",
+      "firstTrimesterTips": "Start prenatal vitamins, avoid alcohol/smoking, book first appointment",
+      "secondTrimester": "Second trimester (weeks 13-26)",
+      "secondTrimesterTips": "Anomaly scan, feel baby move, stay active, eat balanced meals",
+      "thirdTrimester": "Third trimester (weeks 27-40)",
+      "thirdTrimesterTips": "Weekly visits near due date, pack hospital bag, prepare for birth",
+      "warningSigns": "Warning signs — call immediately",
+      "bleeding": "Any vaginal bleeding",
+      "severeHeadache": "Severe headache or vision changes",
+      "abdominalPain": "Severe abdominal pain",
+      "reducedMovement": "Baby moving less than usual",
+      "fever": "Fever above 38°C",
+      "prenatalCare": "Why prenatal care matters",
+      "care1": "Monitors baby's growth and development",
+      "care2": "Detects complications early",
+      "care3": "Provides nutrition and lifestyle guidance",
+      "care4": "Prepares you for labour and delivery"
+    }
+  }
+}

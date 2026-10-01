@@ -1,0 +1,37 @@
+{
+  "name": "saran-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/seo-files.mjs",
+    "preview": "vite preview",
+    "lint": "oxlint",
+    "check:locales": "node scripts/check-locales.mjs",
+    "check": "npm run lint && npm run check:locales && npm run build",
+    "test:e2e": "node tests/e2e/public-site.mjs",
+    "test:journey": "node tests/e2e/patient-journey.mjs",
+    "test:reception": "node tests/e2e/reception.mjs",
+    "test:clinic": "node tests/e2e/clinic-workflow.mjs",
+    "test:notify": "node tests/e2e/notifications-analytics.mjs",
+    "test:a11y": "node tests/e2e/accessibility.mjs",
+    "test:resilience": "node tests/e2e/resilience.mjs"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "axe-core": "^4.13.0",
+    "oxlint": "^1.81.0",
+    "playwright-core": "^1.63.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.0"
+  }
+}

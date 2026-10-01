@@ -1,0 +1,750 @@
+{
+  "common": {
+    "clinicName": "Saran Nursing Home & Research Centre",
+    "clinicShortName": "Saran Nursing Home",
+    "clinicSubName": "& Research Centre",
+    "location": "Chapra, Bihar",
+    "bookAppointment": "Appointment Book Karein",
+    "bookShort": "Book Karein",
+    "call": "Call Karein",
+    "callClinic": "Clinic ko call karein",
+    "whatsapp": "WhatsApp",
+    "getDirections": "Rasta Dekhein",
+    "learnMore": "Aur jaanein",
+    "backHome": "Home par wapas jaayein",
+    "needsConfirmation": "Clinic se confirm hona baaki",
+    "photoPlaceholder": "Asli photo jaldi aayegi",
+    "loading": "Load ho raha hai…",
+    "language": "Bhasha",
+    "chooseLanguage": "Bhasha chunein",
+    "skipToContent": "Main content par jaayein",
+    "demoBanner": "Demo version — yahan dikhaye gaye sabhi patient details sample hain.",
+    "whatsappMessage": "Namaste, mujhe appointment ke baare mein jaankari chahiye.",
+    "tryAgain": "Dobara koshish karein",
+    "toBeConfirmed": "Confirm hona baaki",
+    "viewProfile": "Doctor ki profile dekhein",
+    "viewAllServices": "Sabhi services dekhein",
+    "example": "Udaharan",
+    "stepLabel": "Step {n}"
+  },
+  "nav": {
+    "label": "Main menu",
+    "home": "Home",
+    "about": "Hamare Baare Mein",
+    "doctor": "Doctor",
+    "services": "Services",
+    "beforeVisit": "Aane Se Pehle",
+    "contact": "Pata aur Contact",
+    "openMenu": "Menu kholein",
+    "closeMenu": "Menu band karein",
+    "quickActions": "Jaldi contact"
+  },
+  "footer": {
+    "tagline": "Bharosemand ilaaj, aapke paas.",
+    "quickLinks": "Zaroori links",
+    "contactUs": "Contact karein",
+    "address": "Pata",
+    "phone": "Phone",
+    "copyright": "© {year} Saran Nursing Home & Research Centre, Chapra",
+    "demoNote": "Yeh ek demo hai. Confirm karne wali jaankari live hone se pehle clinic se check ki jaayegi."
+  },
+  "home": {
+    "eyebrow": "Saran Nursing Home, Chapra",
+    "title": "Bharosemand ilaaj, aapke paas.",
+    "subtitle": "Aasani se appointment book karein. Aane se pehle zaroori jaankari paayein.",
+    "doctorLine": "{doctor} se consultation",
+    "trust": {
+      "doctor": "Dr. Neela Singh ki dekhrekh mein",
+      "local": "Sadhnapuri, Chapra mein",
+      "easy": "Online, phone ya WhatsApp se book karein"
+    },
+    "preview": {
+      "title": "Appointment request",
+      "patient": "Patient",
+      "patientName": "Sunita Devi",
+      "when": "Din aur samay",
+      "whenValue": "Kal · Subah",
+      "note": "Clinic aapka samay check karke confirm karega."
+    },
+    "steps": {
+      "eyebrow": "Kaise hota hai",
+      "title": "Booking aasaan hai",
+      "s1Title": "Request bhejein",
+      "s1Body": "Apni suvidha ka din aur samay chunein. Lagbhag ek minute lagta hai.",
+      "s2Title": "Clinic confirm karega",
+      "s2Body": "Clinic aapki request dekhkar appointment confirm karega.",
+      "s3Title": "Clinic aayein",
+      "s3Body": "Apne samay par purani reports aur dawaiyon ke saath aayein."
+    },
+    "doctor": {
+      "eyebrow": "Aapki doctor",
+      "title": "Dr. Neela Singh se milein",
+      "body": "Dr. Neela Singh Saran Nursing Home ki owner hain aur yahan patients ko dekhti hain. Har baar aap unhi doctor se milte hain."
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "Hamari services",
+      "body": "Zyada jaanne ke liye service chunein, ya seedha appointment book karein."
+    },
+    "visit": {
+      "eyebrow": "Aane se pehle",
+      "title": "Taiyaari se aayein, samay bachayein",
+      "body": "Sahi kaagaz aur dawaiyan saath laayein, taaki doctor aapki behtar madad kar sakein.",
+      "cta": "Poori list dekhein"
+    },
+    "location": {
+      "eyebrow": "Pata",
+      "title": "Chapra mein humse milein",
+      "body": "Rasta dekhein, ya aane se pehle call karein."
+    },
+    "cta": {
+      "title": "Doctor ko dikhana hai?",
+      "body": "Ek minute mein appointment request bhejein, ya clinic ko call karein."
+    },
+    "appointmentStatus": {
+      "title": "Aapka aane wala appointment",
+      "subtitle": "Status dekhein aur details paayein",
+      "noUpcoming": "Koi aane wala appointment nahi",
+      "noUpcomingBody": "Naya appointment book karein, woh yahan dikhega.",
+      "cancel": "Request cancel karein",
+      "cancelConfirm": "Kya aap pakka is appointment request ko cancel karna chahte hain?"
+    }
+  },
+  "comingSoon": {
+    "title": "Yeh page taiyaar ho raha hai",
+    "body": "Yeh jaldi ready hoga. Tab tak aap clinic ko call ya WhatsApp kar sakte hain."
+  },
+  "notFound": {
+    "title": "Page nahi mila",
+    "body": "Aap jo page dhoondh rahe hain, woh maujood nahi hai. Chaliye wapas chalte hain."
+  },
+  "form": {
+    "fullName": "Poora naam",
+    "fullNamePlaceholder": "Jaise: Sunita Devi",
+    "mobile": "Mobile number",
+    "mobileHint": "10 digit ka mobile number. Hum OTP bhejenge.",
+    "age": "Umar",
+    "ageHint": "Aapki umar saal mein (0–120).",
+    "gender": "Gender",
+    "genderHint": "Apna gender chunein.",
+    "female": "Mahila",
+    "male": "Purush",
+    "other": "Prefer not to say",
+    "email": "Email",
+    "emailHint": "Optional. Hum ise share nahi karenge.",
+    "reason": "Aane ka kaaran",
+    "reasonPlaceholder": "Thoda sa batayein (optional)",
+    "preferredTime": "Pasand ka samay",
+    "morning": "Subah",
+    "afternoon": "Dopahar",
+    "evening": "Shaam",
+    "optional": "optional",
+    "required": "zaroori",
+    "continue": "Aage badhein",
+    "errors": {
+      "required": "Kripya yeh bharein.",
+      "mobile": "Kripya sahi 10 digit ka mobile number daalein.",
+      "age": "Kripya apni umar likhein (0–120).",
+      "choose": "Kripya ek chunein.",
+      "email": "Kripya sahi email likhein, ya khaali chhod dein.",
+      "patientId": "Sirf letters, numbers aur dash use karein."
+    },
+    "patientId": "Clinic patient ID",
+    "patientIdHint": "Sirf tab, jab pichhli visit ka ID aapke paas ho.",
+    "password": "Password",
+    "passwordHint": "Kam se kam 6 characters.",
+    "fatherHusbandName": "Father's / Husband's name",
+    "fatherHusbandNameHint": "Optional",
+    "address": "Address",
+    "addressHint": "Optional. E.g. Village - Tekniwas, Block - Chapra, Saran, Bihar",
+    "selectPlaceholder": "Chunein…"
+  },
+  "status": {
+    "requestSubmitted": "Request Bhej Di Gayi",
+    "confirmed": "Confirm Ho Gaya",
+    "checkedIn": "Check In Ho Gaya",
+    "waiting": "Intezaar Mein",
+    "completed": "Poora Hua",
+    "cancelled": "Cancel Hua",
+    "rescheduled": "Samay badla gaya"
+  },
+  "alerts": {
+    "success": "Appointment safaltapoorvak bhej diya gaya.",
+    "info": "Kripya apni purani reports aur dawaiyan saath laayein.",
+    "warning": "Yeh samay ek request hai. Clinic ise confirm karega.",
+    "error": "Appointments load nahi ho paaye. Kripya dobara koshish karein."
+  },
+  "meta": {
+    "home": "Saran Nursing Home & Research Centre, Chapra",
+    "about": "Clinic Ke Baare Mein",
+    "doctor": "Dr. Neela Singh",
+    "services": "Services",
+    "beforeVisit": "Aane Se Pehle",
+    "contact": "Pata aur Contact",
+    "book": "Appointment Book Karein",
+    "notFound": "Page nahi mila",
+    "login": "Log in",
+    "appointment": "Appointment",
+    "myAppointments": "Mere Appointments",
+    "staffLogin": "Staff log in",
+    "reception": "Reception",
+    "doctorHome": "Doctor",
+    "patients": "Patients",
+    "patient": "Patient",
+    "visit": "Visit",
+    "notifications": "Messages",
+    "messages": "Messages",
+    "analytics": "Analytics"
+  },
+  "about": {
+    "eyebrow": "Clinic ke baare mein",
+    "title": "Saran Nursing Home & Research Centre",
+    "lead": "Chapra ka ek local nursing home, Dr. Neela Singh ki dekhrekh mein.",
+    "introTitle": "Hum kaun hain",
+    "intro1": "Saran Nursing Home & Research Centre Bihar ke Saran zile mein Sadhnapuri, Chapra mein ek nursing home hai.",
+    "intro2": "Dr. Neela Singh iski owner hain aur yahan patients ko dekhti hain.",
+    "history": "Hamari kahani",
+    "facilities": "Suvidhayein",
+    "helpTitle": "Aapki visit ko aasaan banana",
+    "help1Title": "Pehle se book karein",
+    "help1Body": "Online request bhejein, ya clinic ko call ya WhatsApp karein.",
+    "help2Title": "Aane se pehle jaanein",
+    "help2Body": "Pata, saath kya laana hai aur kaise pahunchein — sab jaanein.",
+    "help3Title": "Apni bhasha mein",
+    "help3Body": "Yeh website English, Hindi, Bhojpuri ya Hinglish mein padhein.",
+    "galleryTitle": "Clinic ke andar",
+    "gallery": {
+      "exterior": "Clinic building",
+      "reception": "Reception",
+      "waiting": "Waiting area",
+      "consultation": "Consultation room"
+    }
+  },
+  "doctor": {
+    "eyebrow": "Aapki doctor",
+    "role": "Owner aur Doctor, Saran Nursing Home",
+    "lead": "Dr. Neela Singh Saran Nursing Home ki owner hain aur yahan patients ko dekhti hain.",
+    "photoCaption": "Dr. Neela Singh",
+    "profileTitle": "Profile",
+    "qualifications": "Qualifications",
+    "specialization": "Specialisation",
+    "experience": "Anubhav",
+    "languages": "Boli jaane wali bhashayein",
+    "areasTitle": "Ilaaj ke kshetra",
+    "availabilityTitle": "Availability",
+    "days": "Consultation ke din aur samay",
+    "fee": "Consultation fee",
+    "consultTitle": "Consultation kaise lein",
+    "consultBody": "Appointment request bhejein. Clinic aapka din aur samay confirm karega. Aap clinic ko call ya WhatsApp bhi kar sakte hain.",
+    "specializationValue": "Gynaecology & Obstetrics",
+    "consultationFeeValue": "₹300 per visit"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Hamari services",
+    "lead": "Zyada jaanne ya appointment book karne ke liye service chunein.",
+    "howTitle": "Kaise book karein",
+    "how1": "Online appointment request bhejein, ya clinic ko call ya WhatsApp karein.",
+    "how2": "Clinic aapka din aur samay confirm karega.",
+    "how3": "Purani reports aur dawaiyon ke saath clinic aayein.",
+    "otherTitle": "Anya services",
+    "notListedTitle": "Jo chahiye woh nahi mila?",
+    "notListedBody": "Clinic ko call ya WhatsApp karke poochein.",
+    "backToServices": "Sabhi services",
+    "items": {
+      "womensHealth": {
+        "title": "Mahila swasthya consultation",
+        "short": "Mahilaon ki health problems ke liye doctor se milein.",
+        "body": "Periods, dard, infection ya mahilaon se judi kisi bhi health problem ke baare mein doctor se baat karein. Doctor check karke aage ke steps samjhayengi."
+      },
+      "pregnancyCare": {
+        "title": "Pregnancy care",
+        "short": "Pregnancy ke dauraan regular check-up aur salaah.",
+        "body": "Poori pregnancy mein regular check-up, saath mein tests, khaan-paan aur har stage par kya hota hai, iski salaah."
+      },
+      "delivery": {
+        "title": "Delivery care",
+        "short": "Delivery ke samay maa aur bachche ki dekhbhaal.",
+        "body": "Delivery ke samay aur uske baad ke dinon mein maa ki dekhbhaal. Pehle se planning ke liye pregnancy ki shuruaat mein hi doctor se baat karein."
+      },
+      "followUp": {
+        "title": "Follow-up visit",
+        "short": "Reports dikhane ya dobara check-up ke liye aayein.",
+        "body": "Doctor ki di hui follow-up date par aayein, ya jab nayi test reports dikhani hon."
+      }
+    }
+  },
+  "beforeVisit": {
+    "eyebrow": "Aane se pehle",
+    "title": "Aane se pehle",
+    "lead": "Kuch aasaan baatein jo aapki visit ko aasaan banati hain.",
+    "bringTitle": "Saath kya laayein",
+    "bring1": "Purani reports aur test results",
+    "bring2": "Abhi chal rahi dawaiyan aur parche (ya unki photo)",
+    "bring3": "Appointment ki jaankari — request ID ya booking wala mobile number",
+    "dayTitle": "Visit ke din",
+    "day1": "Kripya appointment ke samay se thoda pehle pahunchein.",
+    "day2": "Reception par apna naam aur mobile number batayein.",
+    "day3": "Agar nahi aa sakte, to kripya clinic ko call ya WhatsApp karein.",
+    "questionsTitle": "Koi sawaal hai?",
+    "questionsBody": "Aane se pehle clinic ko call ya WhatsApp karein. Hum madad karenge."
+  },
+  "contact": {
+    "eyebrow": "Pata",
+    "title": "Pata aur Contact",
+    "lead": "Chapra mein clinic ko call, WhatsApp karein ya milne aayein.",
+    "address": "Pata",
+    "landmark": "Paas ka landmark",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "whatsappBody": "Humein message bhejein",
+    "hours": "Consultation ka samay",
+    "mapTitle": "Saran Nursing Home ka map",
+    "showMap": "Map dekhein",
+    "mapNote": "Map Google Maps se load hota hai.",
+    "rating": "Rating",
+    "addressLine1": "Jyoti Cinema, Hotel Rubra ke paas",
+    "addressLine2": "Chapra District Board, Sadhnapuri",
+    "addressLine3": "Chapra, Bihar 841301",
+    "landmarkFull": "Jyoti Cinema / Hotel Rubra, Chapra District Board ke paas"
+  },
+  "metaDesc": {
+    "home": "Saran Nursing Home & Research Centre, Chapra. Dr. Neela Singh se appointment book karein, clinic ka pata paayein aur aasani se call ya WhatsApp karein.",
+    "about": "Sadhnapuri, Chapra ke Saran Nursing Home & Research Centre ke baare mein, Dr. Neela Singh ki dekhrekh mein.",
+    "doctor": "Dr. Neela Singh, Saran Nursing Home, Chapra ki owner aur doctor. Availability dekhein aur appointment book karein.",
+    "services": "Saran Nursing Home, Chapra ki services. Jaankari paayein aur appointment book karein.",
+    "beforeVisit": "Saran Nursing Home, Chapra aane se pehle kya laayein aur kya jaanein.",
+    "contact": "Saran Nursing Home, Sadhnapuri, Chapra, Bihar ka pata, map, phone aur WhatsApp.",
+    "book": "Saran Nursing Home, Chapra mein Dr. Neela Singh se appointment book karein. Din aur samay chunein — clinic confirm karega."
+  },
+  "auth": {
+    "title": "Mobile se log in karein",
+    "lead": "Password ki zaroorat nahi. Hum aapke mobile par ek baar ka code bhejte hain.",
+    "login": "Log in",
+    "sendCode": "Code bhejein",
+    "privacyNote": "Aapka number sirf aapke appointments ke liye use hota hai.",
+    "codeSentTo": "Code bheja gaya",
+    "changeNumber": "Badlein",
+    "codeLabel": "6 digit ka code daalein",
+    "codeHint": "Code 5 minute tak valid hai.",
+    "verify": "Verify karke aage badhein",
+    "resend": "Code dobara bhejein",
+    "resendIn": "Naya code {seconds} second baad maang sakte hain",
+    "demoTitle": "Demo mode — koi SMS nahi bheja jaata",
+    "demoBody": "Aapka code hai",
+    "tabOtp": "OTP (SMS/Code)",
+    "tabPassword": "Password",
+    "loginWithPassword": "Password se log in karein",
+    "newAccount": "Naye hain?",
+    "alreadyHaveAccount": "Pehle se password hai?",
+    "noPassword": "Password nahi hai?",
+    "useOtpInstead": "OTP use karein",
+    "newPatientTitle": "Ye number hamare liye naya hai. Account banane ke liye apni details poore karein.",
+    "register": "Account banayein aur verify karein",
+    "backToPhone": "Phone number par wapas jaayein"
+  },
+  "book": {
+    "title": "Appointment Book Karein",
+    "lead": "Lagbhag ek minute lagta hai. Clinic aapka samay confirm karega.",
+    "progressLabel": "Booking progress",
+    "stepOf": "Step {n} / {total}",
+    "stepDone": "Ho gaya",
+    "steps": {
+      "mobile": "Aapka mobile",
+      "when": "Din aur samay",
+      "details": "Aapki jaankari",
+      "review": "Check karke bhejein"
+    },
+    "yourDoctor": "Aapki doctor",
+    "selected": "Chuna gaya",
+    "chooseDay": "Din chunein",
+    "today": "Aaj",
+    "tomorrow": "Kal",
+    "moreDates": "Aur dates dikhayein",
+    "chooseTime": "Pasand ka samay",
+    "back": "Peeche",
+    "edit": "Badlein",
+    "doctor": "Doctor",
+    "day": "Din",
+    "time": "Samay",
+    "patient": "Patient",
+    "submit": "Appointment Request Bhejein",
+    "errors": {
+      "day": "Kripya din chunein.",
+      "time": "Kripya samay chunein."
+    }
+  },
+  "appointment": {
+    "title": "Appointment ki jaankari",
+    "submittedTitle": "Appointment Request Bhej Di Gayi",
+    "submittedBody": "Clinic aapka samay check karke confirm karega. Aap kabhi bhi yahan status dekh sakte hain.",
+    "requestId": "Request ID",
+    "progressLabel": "Appointment progress",
+    "keepId": "Visit ke liye yeh ID sambhaal kar rakhein",
+    "viewMine": "Mere Appointments",
+    "notFound": "Yeh appointment nahi mila.",
+    "whatsappMessage": "Namaste, yeh meri appointment request {id} ke baare mein hai."
+  },
+  "my": {
+    "title": "Mere Appointments",
+    "lead": "Aapki appointment requests aur unka status.",
+    "hello": "Namaste, {name}. Yeh rahe aapke appointments.",
+    "upcoming": "Aane wale",
+    "previous": "Pichhle",
+    "noUpcoming": "Koi aane wala appointment nahi",
+    "noUpcomingBody": "Appointment book karein, woh yahan dikhega.",
+    "noPrevious": "Abhi koi pichhla appointment nahi.",
+    "profile": "Aapki profile",
+    "patientCode": "Patient number",
+    "logout": "Log out",
+    "followUp": "Follow-up date"
+  },
+  "errors": {
+    "network": "Internet nahi hai, ya server tak nahi pahunch pa rahe. Kripya dobara koshish karein.",
+    "server_error": "Kuch gadbad ho gayi. Kripya dobara koshish karein.",
+    "validation_error": "Kripya jaankari check karke dobara koshish karein.",
+    "rate_limited": "Bahut zyada koshish. Kripya thoda rukkar dobara koshish karein.",
+    "otp_resend_too_soon": "Naya code maangne se pehle kripya {seconds} second rukein.",
+    "otp_invalid": "Galat code. {attempts} koshish baaki.",
+    "otp_expired": "Yeh code expire ho gaya. Kripya naya code maangein.",
+    "otp_too_many_attempts": "Bahut baar galat code. Kripya naya code maangein.",
+    "otp_unavailable": "Abhi code nahi bhej pa rahe. Kripya clinic ko call karein.",
+    "not_authenticated": "Kripya dobara log in karein.",
+    "not_found": "Nahi mila.",
+    "date_unavailable": "Yeh din book nahi ho sakta. Kripya doosra din chunein.",
+    "duplicate_booking": "Is din ke liye aapki appointment request pehle se hai.",
+    "too_many_active": "Aapki 3 requests pehle se khuli hain. Aur book karne ke liye clinic ko call karein.",
+    "cannot_cancel": "Sirf requested appointments online cancel ho sakte hain. Kripya clinic ko call karein.",
+    "invalid_credentials": "Galat username ya password.",
+    "forbidden": "Aapke account ko iski permission nahi hai.",
+    "wrong_login": "Mobile number ya password galat hai. Aap ek baar ke code se bhi log in kar sakte hain.",
+    "password_locked": "Bahut baar galat password. Kripya ek baar ke code se log in karein, ya 15 minute baad koshish karein.",
+    "invalid_transition": "Is appointment ke liye ab yeh step possible nahi hai. List refresh kar di gayi hai.",
+    "not_today": "Patient ko sirf appointment wale din hi check in kiya ja sakta hai.",
+    "changed_elsewhere": "Kisi aur ne abhi yeh appointment badla hai. List refresh kar di gayi hai.",
+    "no_change": "Yeh wahi din aur samay hai.",
+    "login_locked": "Bahut baar galat password. Kripya 15 minute baad koshish karein.",
+    "patient_exists": "Is mobile number se ek patient pehle se registered hai.",
+    "visit_not_open": "Patient ke check in ke baad hi notes likhe ja sakte hain.",
+    "follow_up_invalid": "Kripya aaj ki visit ke baad, ek saal ke andar ki follow-up date chunein."
+  },
+  "staff": {
+    "area": "Clinic staff",
+    "navLabel": "Staff menu",
+    "logout": "Log out",
+    "roles": {
+      "admin": "Admin",
+      "reception": "Reception",
+      "doctor": "Doctor"
+    },
+    "login": {
+      "title": "Staff log in",
+      "lead": "Sirf clinic staff ke liye.",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Log in",
+      "demoTitle": "Demo accounts",
+      "demoBody": "Details bharne ke liye kisi account par tap karein.",
+      "notStaff": "Clinic staff nahi hain? Patient website par jaayein"
+    },
+    "dash": {
+      "title": "Reception",
+      "today": "Aaj",
+      "prevDay": "Pichhla din",
+      "nextDay": "Agla din",
+      "pickDate": "Date chunein",
+      "addWalkIn": "Walk-in jodein",
+      "statsLabel": "Din ke numbers",
+      "tabsLabel": "Kaunsi list",
+      "stats": {
+        "total": "Appointments",
+        "pending": "Nayi requests (sab din)",
+        "newPatients": "Pehli visit"
+      },
+      "tabs": {
+        "day": "Din ki list",
+        "requests": "Nayi requests"
+      },
+      "searchLabel": "Appointments khojein",
+      "searchPlaceholder": "Naam, mobile ya ID",
+      "clearFilters": "Filters hatayein",
+      "empty": {
+        "day": "Is din koi appointment nahi",
+        "requests": "Koi nayi request nahi — sab dekh liya",
+        "search": "Search se kuch nahi mila"
+      },
+      "columns": {
+        "token": "Token",
+        "patient": "Patient",
+        "time": "Samay",
+        "date": "Din aur samay",
+        "status": "Status",
+        "contact": "Contact",
+        "actions": "Actions"
+      },
+      "firstVisit": "Pehli visit",
+      "walkInTag": "Walk-in",
+      "years": "{age} saal",
+      "refreshing": "Update ho raha hai…",
+      "autoRefresh": "Har 30 second mein apne aap update hota hai"
+    },
+    "actions": {
+      "confirm": "Confirm karein",
+      "checkIn": "Check in",
+      "waiting": "Waiting mein daalein",
+      "complete": "Complete karein",
+      "reschedule": "Samay badlein",
+      "cancel": "Cancel karein",
+      "details": "Details",
+      "callPatient": "{name} ko call karein",
+      "whatsappPatient": "{name} ko WhatsApp karein"
+    },
+    "toast": {
+      "confirmed": "{name} confirm ho gaya",
+      "checkedIn": "{name} check in — token {token}",
+      "waiting": "{name} doctor ka intezaar kar rahe hain",
+      "completed": "{name} ki visit poori",
+      "cancelled": "{name} ka appointment cancel",
+      "rescheduled": "{name} ka samay {date} kiya gaya",
+      "walkIn": "{name} jode gaye — token {token}",
+      "walkInLater": "{name} ka appointment {date} ko"
+    },
+    "details": {
+      "title": "Appointment {id}",
+      "patientNo": "Patient",
+      "noReason": "Kaaran nahi bataya",
+      "source": "Booking",
+      "sources": {
+        "online": "Patient ne online ki",
+        "walk_in": "Reception par"
+      },
+      "history": "History",
+      "by": "{name} dwara",
+      "byPatient": "patient",
+      "close": "Band karein"
+    },
+    "reschedule": {
+      "title": "Samay badlein — {name}",
+      "note": "Note",
+      "submit": "Naya samay save karein"
+    },
+    "cancel": {
+      "title": "Yeh appointment cancel karein?",
+      "body": "{name} ka {date} ka appointment cancel ho jaayega.",
+      "reason": "Kaaran",
+      "submit": "Haan, cancel karein",
+      "keep": "Wapas jaayein"
+    },
+    "walkIn": {
+      "title": "Walk-in patient jodein",
+      "lead": "Agar yeh mobile number pehle se registered hai, to wahi patient record use hoga.",
+      "when": "Kab",
+      "now": "Abhi — check in",
+      "later": "Kisi aur din",
+      "submit": "Jodein aur check in karein",
+      "submitLater": "Appointment book karein"
+    },
+    "whatsappTemplate": "Namaste {name}, Saran Nursing Home se, aapke appointment {id} ke baare mein.",
+    "patients": {
+      "title": "Patients",
+      "count": "{n} patients",
+      "add": "Patient jodein",
+      "addTitle": "Naya patient jodein",
+      "editTitle": "Patient ki details badlein",
+      "edit": "Details badlein",
+      "save": "Changes save karein",
+      "saved": "Details save ho gayi",
+      "added": "{name} jode gaye ({code})",
+      "filterLabel": "Dikhayein",
+      "filters": {
+        "all": "Sabhi",
+        "upcoming": "Aane wala appointment",
+        "follow_up": "Follow-up baaki",
+        "new": "Naye (30 din)"
+      },
+      "searchLabel": "Patients khojein",
+      "searchPlaceholder": "Naam, mobile ya patient no.",
+      "empty": "Abhi yahan koi patient nahi",
+      "lastVisit": "Pichhli visit",
+      "never": "Abhi koi visit nahi",
+      "visits": "Visits: {n}",
+      "next": "Agla appointment",
+      "followUp": "Follow-up",
+      "noName": "(naam nahi diya)",
+      "loadMore": "Aur dikhayein"
+    },
+    "profile": {
+      "details": "Details",
+      "registered": "Registered",
+      "sources": {
+        "online": "online",
+        "walk_in": "reception par (walk-in)",
+        "reception": "reception par"
+      },
+      "noFollowUp": "Koi follow-up nahi",
+      "notes": "Reception notes",
+      "notesHint": "Sirf kaam ki baatein (jaise: Hindi pasand hai). Koi medical jaankari nahi.",
+      "addNote": "Naya note",
+      "saveNote": "Jodein",
+      "appointments": "Appointments",
+      "noAppointments": "Abhi koi appointment nahi",
+      "visits": "Doctor visits",
+      "noVisits": "Abhi koi poori visit nahi",
+      "notesPrivate": "Doctor ke consultation notes sirf doctor dekh sakti hain.",
+      "book": "Appointment book karein",
+      "notFound": "Patient nahi mila",
+      "back": "Patients list par wapas"
+    },
+    "doctor": {
+      "title": "Aaj",
+      "counts": {
+        "queue": "Clinic mein",
+        "later": "Abhi aane baaki"
+      },
+      "queue": "Patient queue",
+      "seeNext": "Agla dekhein",
+      "open": "Kholein",
+      "emptyQueue": "Queue mein koi patient nahi",
+      "emptyQueueBody": "Reception check in karega, tab patients yahan dikhenge.",
+      "later": "Aaj baad mein booked",
+      "noneLater": "Aaj aur koi booking nahi.",
+      "completed": "Aaj dekhe gaye",
+      "noneCompleted": "Abhi koi visit poori nahi.",
+      "today": "Aaj ki visit",
+      "note": "Consultation note",
+      "noteHint": "Sirf doctor dekh sakti hain. Yeh prescription nahi hai.",
+      "noNote": "Koi note nahi likha.",
+      "noFollowUp": "Follow-up nahi",
+      "after": {
+        "7": "1 hafta",
+        "14": "2 hafte",
+        "30": "1 mahina",
+        "90": "3 mahine"
+      },
+      "otherDate": "Doosri date",
+      "followUpOn": "Follow-up {date} ko",
+      "saveDraft": "Draft save karein",
+      "complete": "Visit poori karein",
+      "draftSaved": "Draft save ho gaya",
+      "completedToast": "{name} ki visit poori",
+      "previous": "Pichhli visits",
+      "noPrevious": "Yeh pehli visit hai.",
+      "notArrived": "Patient ne abhi check in nahi kiya. Reception check in kare, tab notes likhe ja sakte hain.",
+      "fullProfile": "Patient ki poori profile"
+    },
+    "whatsappGeneric": "Namaste {name}, Saran Nursing Home se.",
+    "messages": {
+      "title": "Messages",
+      "lead": "Patients ko unke appointments ke baare mein bheje gaye sabhi messages.",
+      "simulated": "Simulated",
+      "simulatedTitle": "Demo — WhatsApp/SMS simulated hain",
+      "simulatedBody": "Asal mein kuch nahi bheja jaata. Clinic ki approval, patient consent aur kharch tay hone ke baad WhatsApp/SMS provider joda ja sakta hai.",
+      "empty": "Abhi koi message nahi"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "range": "Samay",
+      "lastDays": "Pichhle {n} din",
+      "perDay": "Har din ke appointments",
+      "showTable": "Table mein dekhein",
+      "showChart": "Chart mein dekhein",
+      "booked": "booked",
+      "tooltip": "{booked} booked, {completed} complete, {cancelled} cancel",
+      "totals": {
+        "appointments": "Appointments",
+        "pending": "Confirmation baaki",
+        "new": "Naye patients",
+        "returning": "Dobara aaye patients"
+      },
+      "notCancelled": "Cancel wale chhodkar",
+      "pendingHint": "Aaj se aage",
+      "newVsReturning": "Naye vs dobara aaye patients",
+      "byStatus": "Status ke hisaab se",
+      "bySource": "Kaise book kiya",
+      "bySlot": "Din ka samay"
+    }
+  },
+  "notifications": {
+    "title": "Messages",
+    "lead": "Aapke appointments ke baare mein clinic ki jaankari.",
+    "bell": "Messages",
+    "bellUnread": "Messages, {n} naye",
+    "simulated": "Demo: yeh messages aapke WhatsApp par bhi bheje jaate. Is demo mein asal mein kuch nahi bheja jaata.",
+    "empty": "Abhi koi message nahi",
+    "new": "Naya",
+    "types": {
+      "submitted": {
+        "label": "Request mili",
+        "title": "Aapki appointment request mil gayi",
+        "body": "{date}, {time}. Clinic jaldi aapka samay confirm karega. Request ID: {id}."
+      },
+      "confirmed": {
+        "label": "Confirm",
+        "title": "Aapka appointment confirm ho gaya",
+        "body": "{date}, {time}, Dr. Neela Singh ke saath. Kripya purani reports aur dawaiyan saath laayein."
+      },
+      "reminder": {
+        "label": "Reminder",
+        "title": "Reminder: aapka appointment kal hai",
+        "body": "{date}, {time}. Agar nahi aa sakte, to kripya clinic ko call ya WhatsApp karein."
+      },
+      "rescheduled": {
+        "label": "Samay badla",
+        "title": "Aapke appointment ka samay badal gaya hai",
+        "body": "Naya samay: {date}, {time}. Request ID: {id}."
+      },
+      "cancelled": {
+        "label": "Cancel",
+        "title": "Aapka appointment cancel ho gaya",
+        "body": "{date}, {time}. Aap kabhi bhi naya appointment book kar sakte hain."
+      },
+      "follow_up": {
+        "label": "Follow-up",
+        "title": "Follow-up visit ka samay",
+        "body": "Doctor ne aapko {followUp} ko phir bulaya hai. Appointment book karein ya clinic ko call karein."
+      }
+    }
+  },
+  "education": {
+    "title": "Health education",
+    "subtitle": "Trusted sources se apni health ke baare mein jaanein",
+    "periods": {
+      "title": "Apne periods samjhein",
+      "description": "Menstruation ek natural process hai. Kya normal hai yeh jaanne se aap issues jaldi spot kar sakte hain.",
+      "normalCycle": "Normal cycle: 21-35 din",
+      "normalDuration": "Normal duration: 2-7 din",
+      "whenToSeeDoctor": "Doctor ko kab dikhayein",
+      "heavyBleeding": "Bahut zyada bleeding (har 1-2 ghante mein pad badalna)",
+      "irregularCycles": "Cycles 21 din se chhote ya 35 din se bade",
+      "severePain": "Dard jo daily activities rok de",
+      "missedPeriods": "3+ mahine periods miss honi (pregnant nahi)",
+      "spotting": "Periods ke beech bleeding",
+      "tip1": "Calendar ya app se cycle track karein",
+      "tip2": "Har 4-6 ghante mein pad badlein",
+      "tip3": "Hydrated rahein aur iron-rich foods khayein",
+      "tip4": "Exercise cramps kam karti hai",
+      "tip5": "Agar kuch galat lage to doctor ko dikhayein"
+    },
+    "pregnancy": {
+      "title": "Pregnancy care guide",
+      "description": "Har trimester changes laata hai. Regular check-ups aapko aur baby ko healthy rakhte hain.",
+      "firstTrimester": "Pehli trimester (weeks 1-12)",
+      "firstTrimesterTips": "Prenatal vitamins shuru karein, alcohol/smoking avoid karein, pehli appointment book karein",
+      "secondTrimester": "Dusri trimester (weeks 13-26)",
+      "secondTrimesterTips": "Anomaly scan, baby move feel karein, active rahein, balanced meals khayein",
+      "thirdTrimester": "Teesri trimester (weeks 27-40)",
+      "thirdTrimesterTips": "Due date ke paas weekly visits, hospital bag pack karein, birth ke liye prepare hon",
+      "warningSigns": "Warning signs — turant call karein",
+      "bleeding": "Koi bhi vaginal bleeding",
+      "severeHeadache": "Severe headache ya vision changes",
+      "abdominalPain": "Severe abdominal pain",
+      "reducedMovement": "Baby kam move kar raha ho",
+      "fever": "38°C se upar fever",
+      "prenatalCare": "Prenatal care kyun zaroori hai",
+      "care1": "Baby ki growth aur development monitor karta hai",
+      "care2": "Complications jaldi detect karta hai",
+      "care3": "Nutrition aur lifestyle guidance deta hai",
+      "care4": "Labour aur delivery ke liye prepare karta hai"
+    }
+  }
+}

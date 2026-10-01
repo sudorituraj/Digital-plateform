@@ -1,0 +1,22 @@
+# Secrets — never commit real env files
+.env
+.env.*
+!.env.example
+*.local
+
+# Dependencies & builds
+node_modules/
+dist/
+__pycache__/
+.venv/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Test runner output
+test-results/
+playwright-report/
+.pytest_cache/
