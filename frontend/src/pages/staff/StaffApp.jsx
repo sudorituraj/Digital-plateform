@@ -51,9 +51,17 @@ export default function StaffApp() {
           }
         />
         <Route
+          path="queue"
+          element={
+            <RequireStaff roles={FRONT_DESK}>
+              <DoctorTodayPage />
+            </RequireStaff>
+          }
+        />
+        <Route
           path="visit/:requestId"
           element={
-            <RequireStaff roles={['doctor']}>
+            <RequireStaff>
               <DoctorVisitPage />
             </RequireStaff>
           }

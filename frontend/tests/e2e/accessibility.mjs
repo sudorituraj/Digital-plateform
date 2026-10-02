@@ -87,7 +87,7 @@ for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 
     await page.getByRole('button', { name: new RegExp(`${role}123`) }).click()
     await page.locator('form button[type=submit]').click()
     await page.waitForURL((u) => !u.pathname.endsWith('/login'))
-    const paths = role === 'reception' ? ['/staff', '/staff/patients', '/staff/messages', '/staff/analytics'] : ['/staff', '/staff/analytics']
+    const paths = role === 'reception' ? ['/staff', '/staff/queue', '/staff/patients', '/staff/messages', '/staff/analytics'] : ['/staff', '/staff/analytics']
     for (const path of paths) {
       await page.goto(BASE + path, { waitUntil: 'networkidle' })
       await audit(page, `${tag} ${role} ${path}`)

@@ -1,4 +1,8 @@
-"""Doctor: today's queue, the patient's visit screen, consultation notes, follow-up, complete visit."""
+"""Doctor: today's queue, the patient's visit screen, consultation notes, follow-up, complete visit.
+
+Reception/admin may VIEW the queue and the visit screen (notes read-only, finished notes only);
+only the doctor can write notes or complete a visit.
+"""
 
 import logging
 from datetime import UTC, datetime, timedelta
@@ -17,12 +21,13 @@ from .reception import enrich, find_appointment, queue_order
 
 router = APIRouter(prefix="/doctor", tags=["doctor"])
 log = logging.getLogger("saran.doctor")
-doctor_only = require_role("doctor")  # consultation notes are for the doctor only
+doctor_only = require_role("doctor")  # writing notes / completing visits
+any_staff = require_role("doctor", "reception", "admin")  # viewing (client request 2026-10-02)
 SLOT_ORDER = {slot: i for i, slot in enumerate(clinic.TIME_SLOTS)}
 
 
 @router.get("/today", response_model=DoctorTodayOut)
-async def today(staff: dict = Depends(doctor_only)):
+async def today(staff: dict = Depends(any_staff)):
     day = clinic.today()
     docs = await get_db().appointments.find({"date": day.isoformat(), "status": {"$ne": "cancelled"}}).to_list(1000)
     docs.sort(key=queue_order)
@@ -42,11 +47,13 @@ async def today(staff: dict = Depends(doctor_only)):
 
 
 @router.get("/appointments/{request_id}", response_model=DoctorVisitOut)
-async def visit_screen(request_id: str, staff: dict = Depends(doctor_only)):
+async def visit_screen(request_id: str, staff: dict = Depends(any_staff)):
     db = get_db()
     appt = await find_appointment(request_id)
     patient = await db.patients.find_one({"_id": appt["patient_id"]})
     visit = await db.visits.find_one({"appointment_id": appt["_id"]})
+    if visit and visit["status"] == "draft" and staff["role"] != "doctor":
+        visit = None  # an unfinished note stays with the doctor until the visit is completed
     previous = await db.visits.find(
         {"patient_id": appt["patient_id"], "status": "completed", "appointment_id": {"$ne": appt["_id"]}}
     ).sort("date", -1).to_list(200)

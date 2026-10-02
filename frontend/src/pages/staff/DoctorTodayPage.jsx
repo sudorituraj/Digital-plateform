@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useStaffAuth } from '../../auth/staffContext'
 import { Badge, Card, Icon, StateMessage, StatusBadge } from '../../components/ui'
 import { useApiGet } from '../../hooks/useApiGet'
 import { usePageTitle } from '../../hooks/usePageTitle'
@@ -27,6 +28,8 @@ export default function DoctorTodayPage() {
   const { t, language } = useI18n()
   usePageTitle('doctorHome')
   const [result, reload] = useApiGet('/doctor/today')
+  const { staff } = useStaffAuth()
+  const readOnly = staff.role !== 'doctor'
 
   useEffect(() => {
     const id = setInterval(reload, 30_000)
@@ -44,8 +47,9 @@ export default function DoctorTodayPage() {
   return (
     <div className="mx-auto max-w-5xl space-y-6 px-4 py-6 sm:px-6">
       <div>
-        <h1 className="text-3xl">{t('staff.doctor.title')}</h1>
+        <h1 className="text-3xl">{readOnly ? t('staff.doctor.queueNav') : t('staff.doctor.title')}</h1>
         <p className="mt-1 text-lg text-ink-muted">{formatDay(d.date, language)}</p>
+        {readOnly && <p className="mt-2 text-sm text-ink-muted">{t('staff.doctor.readOnlyQueue')}</p>}
       </div>
 
       <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">

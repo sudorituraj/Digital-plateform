@@ -123,12 +123,25 @@ def test_doctor_today_queue(client):
     assert t["counts"] == {"queue": 2, "waiting": 1, "later": 1, "completed": 0}
 
 
-def test_doctor_endpoints_are_doctor_only(client):
+def test_reception_can_view_doctor_screens_but_not_write(client):
     rid = checked_in(client)
     for path in ["/api/doctor/today", f"/api/doctor/appointments/{rid}"]:
-        assert client.get(path).status_code == 403  # reception
+        assert client.get(path).status_code == 200  # reception
+    body = {"notes": "x", "follow_up_date": None}
+    assert client.put(f"/api/doctor/appointments/{rid}/visit", json=body).status_code == 403
+    assert client.post(f"/api/doctor/appointments/{rid}/complete", json=body).status_code == 403
     staff_login(client, "admin", "admin123")
-    assert client.get("/api/doctor/today").status_code == 403
+    assert client.get("/api/doctor/today").status_code == 200
+    assert client.post(f"/api/doctor/appointments/{rid}/complete", json=body).status_code == 403
+
+
+def test_reception_does_not_see_unfinished_draft(client):
+    rid = checked_in(client)
+    as_doctor(client)
+    client.put(f"/api/doctor/appointments/{rid}/visit", json={"notes": "Half-written", "follow_up_date": None})
+    client.post("/api/staff/logout")
+    staff_login(client)
+    assert client.get(f"/api/doctor/appointments/{rid}").json()["visit"] is None
 
 
 def test_full_visit_draft_then_complete(client):
@@ -145,18 +158,19 @@ def test_full_visit_draft_then_complete(client):
     assert raw_db().visits.count_documents({}) == 1  # draft became the final record
 
 
-def test_follow_up_reaches_patient_and_reception_but_notes_do_not(client):
+def test_reception_reads_notes_patient_never_does(client):
     rid = checked_in(client)
     as_doctor(client)
     complete(client, rid, notes="Private clinical note")
     code = raw_db().patients.find_one()["patient_code"]
     # doctor sees notes in the profile
     assert client.get(f"/api/staff/patients/{code}").json()["visits"][0]["notes"] == "Private clinical note"
-    # reception sees the visit and follow-up, not the notes
+    # reception can read the finished note and the follow-up
     client.post("/api/staff/logout")
     staff_login(client)
     prof = client.get(f"/api/staff/patients/{code}").json()
-    assert prof["visits"][0]["notes"] is None and prof["visits"][0]["follow_up_date"] == day(7)
+    assert prof["visits"][0]["notes"] == "Private clinical note" and prof["visits"][0]["follow_up_date"] == day(7)
+    assert client.get(f"/api/doctor/appointments/{rid}").json()["visit"]["notes"] == "Private clinical note"
     assert prof["patient"]["follow_up_date"] == day(7) and prof["patient"]["last_visit"] == day(0)
     assert prof["patient"]["visits_count"] == 1
     assert "Private clinical note" not in client.get(f"/api/staff/appointments/{rid}").text

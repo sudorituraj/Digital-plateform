@@ -54,9 +54,9 @@ patient and staff logins don't mix.
 9. **Visit** — open the patient: today's reason, previous visits and notes, appointment history.
    Write a consultation note → **Save draft** → reload → the draft is still there.
 10. **Follow-up & complete** — choose "2 weeks" → **Mark visit completed** → patient moves to "Seen today".
-11. **What others see** — Reception: the appointment is *Completed*, the patient profile shows the
-    follow-up date but **not the doctor's note**. Patient: *My Appointments* shows the follow-up date, never the note.
-    *Say:* "Consultation notes stay with the doctor."
+11. **What others see** — Reception: the appointment is *Completed*; **Doctor's queue** and the patient profile
+    show the doctor's note **read-only** (only the doctor can write it). Patient: *My Appointments* shows the
+    follow-up date, never the note. *Say:* "Reception can read the notes; patients never see them."
 12. **Messages** — reception → **Messages**: every WhatsApp message the system would send, clearly marked
     **Simulated**. *Say:* "Nothing is sent in the demo; a WhatsApp/SMS provider can be connected after you approve it."
 13. **Analytics** — **Analytics**: appointments, completed, cancelled, waiting for confirmation, new vs

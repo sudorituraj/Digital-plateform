@@ -601,7 +601,6 @@
       "noAppointments": "Abhi koi appointment nahi",
       "visits": "Doctor visits",
       "noVisits": "Abhi koi poori visit nahi",
-      "notesPrivate": "Doctor ke consultation notes sirf doctor dekh sakti hain.",
       "book": "Appointment book karein",
       "notFound": "Patient nahi mila",
       "back": "Patients list par wapas"
@@ -641,7 +640,11 @@
       "previous": "Pichhli visits",
       "noPrevious": "Yeh pehli visit hai.",
       "notArrived": "Patient ne abhi check in nahi kiya. Reception check in kare, tab notes likhe ja sakte hain.",
-      "fullProfile": "Patient ki poori profile"
+      "fullProfile": "Patient ki poori profile",
+      "queueNav": "Doctor ki queue",
+      "readOnlyQueue": "Sirf dekhne ke liye — aaj ke patients ki doctor wali list.",
+      "readOnly": "Sirf dekhne ke liye. Consultation notes sirf doctor likh ya badal sakti hain.",
+      "notePending": "Patient doctor ke paas hai. Visit complete hone par note yahan dikhega."
     },
     "whatsappGeneric": "Namaste {name}, Saran Nursing Home se.",
     "messages": {

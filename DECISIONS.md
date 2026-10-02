@@ -190,3 +190,9 @@ no gateway, no money, no card data on our server (only brand + last 4). For prod
 compliant gateway's hosted checkout (card details go to the gateway, never to us) and treat a payment as paid
 only after the gateway's signed webhook — this needs the client's approval of a provider and its fees.
 The ₹300 amount is unconfirmed; refunds are recorded only.
+
+## D38 — Reception can read consultation notes (2026-10-02)
+Client request: reception/admin can view the doctor's queue (`/staff/queue`) and the visit screen, and read
+finished consultation notes (visit screen and patient profile). Only the doctor can write notes, save drafts or
+complete a visit — enforced on the server. Unfinished drafts stay with the doctor. Patients never see notes.
+This replaces the earlier "notes are for the doctor only" rule.

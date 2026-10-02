@@ -2,7 +2,7 @@
  * Stages 2.2 + 2.3 end-to-end — the complete clinic workflow:
  *   Patient books → Reception checks in → Doctor sees queue → note + follow-up → Completed,
  *   plus patient management (search, profile, edit, notes, add patient, book from profile),
- *   privacy of consultation notes and role separation.
+ *   who can read consultation notes (all staff; never patients) and role separation.
  *
  * Same setup as test:journey / test:reception (test backend on 8011 + preview on 4180):
  *   (backend)  MONGODB_DB=saran_e2e OTP_PER_IP_PER_HOUR=1000 OTP_VERIFY_PER_IP_PER_HOUR=1000 FIXED_CLOCK_HOUR=9 STAFF_LOGIN_PER_IP_PER_HOUR=1000 \
@@ -131,9 +131,13 @@ const reception = await staffContext('reception')
   await page.keyboard.press('Escape')
   await shot(page, 'c2-patients')
 
-  // Reception can't open the doctor's visit screen
+  // Reception can view the doctor's queue and visit screen, read-only
+  await page.getByRole('link', { name: "Doctor's queue" }).click()
+  await page.waitForURL('**/staff/queue')
+  log(await seen(page.getByText(name)), "reception sees the patient in the doctor's queue")
   await page.goto(`${BASE}/staff/visit/${booking.rid}`, { waitUntil: 'networkidle' })
-  log(!page.url().includes('/visit/'), 'reception cannot open the doctor visit screen')
+  log(await seen(page.getByText('View only. Only the doctor can write')), 'reception opens the visit screen in view-only mode')
+  log((await page.getByLabel(/Consultation note/).count()) === 0, 'reception has no note editor')
 }
 
 // ---- Doctor: queue → visit → draft → complete ----------------------------------------------------
@@ -180,7 +184,7 @@ const doctor = await staffContext('doctor')
   await page.waitForURL('**/staff/patients/P*')
   log(await seen(page.getByText('Visits: 1')), 'profile counts the visit')
   log(await seen(page.getByText('Follow-up:')), 'reception sees the follow-up date')
-  log((await page.getByText(NOTE).count()) === 0, 'reception does NOT see the consultation note')
+  log(await seen(page.getByText(NOTE)), 'reception can read the consultation note')
   await shot(page, 'c5-profile-after')
 
   const me = (await api('/me', { cookie: booking.cookie })).data

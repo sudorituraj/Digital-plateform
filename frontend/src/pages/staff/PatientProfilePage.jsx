@@ -175,9 +175,6 @@ export default function PatientProfilePage() {
 
           <Card padding="none">
             <h2 className="border-b border-line px-5 py-4 font-sans text-lg font-semibold">{t('staff.profile.visits')}</h2>
-            {!frontDesk || visits.length === 0 ? null : (
-              <p className="px-5 pt-3 text-sm text-ink-muted">{t('staff.profile.notesPrivate')}</p>
-            )}
             {visits.length ? (
               <ul className="divide-y divide-line">
                 {visits.map((v) => (

@@ -149,8 +149,8 @@ async def profile(code: str, staff: dict = Depends(any_staff)):
     patient = await find_patient(code)
     appointments = await db.appointments.find({"patient_id": patient["_id"]}).sort([("date", -1), ("created_at", -1)]).to_list(500)
     visits = await db.visits.find({"patient_id": patient["_id"], "status": "completed"}).sort("date", -1).to_list(500)
-    # Consultation notes are for the doctor only; reception sees dates and follow-ups.
-    with_notes = staff["role"] == "doctor"
+    # All staff can read finished consultation notes (client request 2026-10-02); only the doctor writes them.
+    with_notes = True
     return PatientProfileOut(
         patient=(await summarise([patient]))[0],
         appointments=await enrich(appointments),

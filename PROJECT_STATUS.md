@@ -319,6 +319,15 @@ no double payment, other patient's appointment, cash, refunds, walk-in, reschedu
 `npm run test:payment` **38/38**; journey 35/35; public site, reception, clinic, notifications, resilience all pass;
 accessibility includes the payment form.
 
+## Client change — reception can view the doctor's screens (2026-10-02)
+Reception/admin now have **Doctor's queue** in the menu (today's patients in token order, still to come, done) and
+can open any patient's visit screen **view-only**: today's reason, previous visits **with the doctor's
+consultation notes**, appointment history. Patient profiles show the notes too. Only the doctor can write or
+change notes, save drafts or complete visits (server-enforced); unfinished drafts are not shown to reception;
+patients never see notes (D38). Demo data replaced with 5 fictional patients (2 new online requests, 1 walk-in
+today, 2 visits on 1 October). Tested: backend 126/126, clinic workflow 34/34, reception 33/33, notifications
+19/19, accessibility 53 screens / 0 violations.
+
 ## Waiting on the client
 Consultation fee amount (₹300 used) and which payment gateway to use for real payments, verified phone & WhatsApp, full address & landmark, working days (hours 10 AM – 4 PM confirmed),
 permission to use the Justdial photos (or originals), whether Dr. M.P. Singh also sees patients, Dr. Neela Singh's

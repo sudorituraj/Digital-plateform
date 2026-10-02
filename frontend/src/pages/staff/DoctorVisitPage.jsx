@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useStaffAuth } from '../../auth/staffContext'
 import { Alert, Badge, Button, Card, Icon, StateMessage, StatusBadge, TextareaField, useToast } from '../../components/ui'
 import { useApiGet } from '../../hooks/useApiGet'
 import { usePageTitle } from '../../hooks/usePageTitle'
@@ -119,6 +120,10 @@ export default function DoctorVisitPage() {
   const { requestId } = useParams()
   const [result] = useApiGet(`/doctor/appointments/${encodeURIComponent(requestId)}`)
   const [saved, setSaved] = useState(null) // latest response after saving a draft
+  const { staff } = useStaffAuth()
+  const readOnly = staff.role !== 'doctor' // reception/admin can read finished notes, never write
+  const back = readOnly ? '/staff/queue' : '/staff'
+  const backLabel = readOnly ? t('staff.doctor.queueNav') : t('staff.doctor.title')
 
   if (result.state === 'loading') return <StateMessage kind="loading" title={t('common.loading')} className="py-24" />
   if (result.state === 'error') {
@@ -127,7 +132,7 @@ export default function DoctorVisitPage() {
         kind="error"
         className="py-24"
         title={errorMessage(t, result.error)}
-        action={<Button to="/staff">{t('staff.doctor.title')}</Button>}
+        action={<Button to={back}>{backLabel}</Button>}
       />
     )
   }
@@ -138,10 +143,11 @@ export default function DoctorVisitPage() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 sm:px-6">
-      <Link to="/staff" className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary-700 hover:underline">
+      <Link to={back} className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary-700 hover:underline">
         <Icon name="arrowLeft" size={18} />
-        {t('staff.doctor.title')}
+        {backLabel}
       </Link>
+      {readOnly && <Alert tone="info">{t('staff.doctor.readOnly')}</Alert>}
 
       <div className="flex flex-wrap items-center gap-4">
         {a.token && <span className="grid size-14 place-items-center rounded-2xl bg-primary-700 text-2xl font-bold text-white">{a.token}</span>}
@@ -173,7 +179,7 @@ export default function DoctorVisitPage() {
             </dl>
           </Card>
 
-          {open ? (
+          {open && !readOnly ? (
             <VisitForm key={a.request_id} data={data} onSaved={setSaved} />
           ) : (
             <Card>
@@ -187,7 +193,7 @@ export default function DoctorVisitPage() {
                 </>
               ) : (
                 <Alert tone="info" className="mt-3">
-                  {t('staff.doctor.notArrived')}
+                  {open ? t('staff.doctor.notePending') : t('staff.doctor.notArrived')}
                 </Alert>
               )}
             </Card>

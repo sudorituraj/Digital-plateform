@@ -35,6 +35,7 @@ function StaffBar() {
                 ]
               : [
                   ['/staff', t('staff.dash.title')],
+                  ['/staff/queue', t('staff.doctor.queueNav')],
                   ['/staff/patients', t('staff.patients.title')],
                   ['/staff/messages', t('staff.messages.title')],
                   ['/staff/analytics', t('staff.analytics.title')],

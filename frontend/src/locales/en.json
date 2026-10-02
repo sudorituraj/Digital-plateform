@@ -601,7 +601,6 @@
       "noAppointments": "No appointments yet",
       "visits": "Doctor visits",
       "noVisits": "No completed visits yet",
-      "notesPrivate": "The doctor's consultation notes are visible to the doctor only.",
       "book": "Book appointment",
       "notFound": "Patient not found",
       "back": "Back to patients"
@@ -641,7 +640,11 @@
       "previous": "Previous visits",
       "noPrevious": "This is the first visit.",
       "notArrived": "The patient hasn't checked in yet. Notes can be written once reception checks them in.",
-      "fullProfile": "Full patient profile"
+      "fullProfile": "Full patient profile",
+      "queueNav": "Doctor's queue",
+      "readOnlyQueue": "View only — the doctor's list of patients for today.",
+      "readOnly": "View only. Only the doctor can write or change consultation notes.",
+      "notePending": "The patient is with the doctor. The note will appear here once the visit is completed."
     },
     "whatsappGeneric": "Hello {name}, this is Saran Nursing Home.",
     "messages": {
