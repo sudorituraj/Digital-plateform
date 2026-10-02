@@ -17,7 +17,7 @@ router = APIRouter(prefix="/staff", tags=["analytics"])
 @router.get("/analytics", response_model=AnalyticsOut)
 async def analytics(
     days: int = Query(30),
-    staff: dict = Depends(require_role("reception", "admin", "doctor")),
+    staff: dict = Depends(require_role("reception", "doctor")),
 ):
     """Appointments dated in the last `days` days (including today).
     New patient = their first-ever (non-cancelled) appointment falls in the period; returning = came before."""

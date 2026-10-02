@@ -70,7 +70,7 @@ In demo mode (`OTP_MODE=demo`) no SMS is sent: the one-time code is shown on scr
 
 **Staff area:** http://localhost:5180/staff — demo accounts (demo mode only, never in production):
 `reception / reception123` (reception dashboard + patients), `doctor / doctor123` (today's queue +
-visits), `admin / admin123` (same as reception).
+visits). (The admin role was removed — reception does everything at the front desk.)
 
 ## Run the frontend locally
 

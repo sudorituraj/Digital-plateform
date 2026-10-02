@@ -1,4 +1,4 @@
-"""Reception: the day's appointment list, status changes, reschedule and walk-ins (reception/admin only)."""
+"""Reception: the day's appointment list, status changes, reschedule and walk-ins (reception only)."""
 
 import logging
 import re
@@ -27,7 +27,7 @@ from ..security import require_role
 
 router = APIRouter(prefix="/staff", tags=["reception"])
 log = logging.getLogger("saran.reception")
-reception_only = require_role("reception", "admin")
+reception_only = require_role("reception")
 SLOT_ORDER = {slot: i for i, slot in enumerate(clinic.TIME_SLOTS)}
 
 

@@ -121,7 +121,7 @@ export default function DoctorVisitPage() {
   const [result] = useApiGet(`/doctor/appointments/${encodeURIComponent(requestId)}`)
   const [saved, setSaved] = useState(null) // latest response after saving a draft
   const { staff } = useStaffAuth()
-  const readOnly = staff.role !== 'doctor' // reception/admin can read finished notes, never write
+  const readOnly = staff.role !== 'doctor' // reception can read finished notes, never write
   const back = readOnly ? '/staff/queue' : '/staff'
   const backLabel = readOnly ? t('staff.doctor.queueNav') : t('staff.doctor.title')
 

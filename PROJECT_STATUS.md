@@ -118,10 +118,10 @@ My Appointments asks to log in again → other patient can't see it → Hindi). 
 
 **Built:**
 - Staff login (username + password, bcrypt), separate `snh_staff` cookie (12 h) — never mixed with a
-  patient session on the same PC. Roles admin / reception / doctor, checked on every API request.
+  patient session on the same PC. Roles reception / doctor, checked on every API request (admin removed 2026-10-02, D39).
   Same error for unknown user and wrong password; 5 wrong passwords lock that username for 15 min.
 - Demo accounts (demo mode only, listed on the login page): reception/reception123,
-  doctor/doctor123, admin/admin123. Real accounts: `python -m app.manage create-staff`.
+  doctor/doctor123. Real accounts: `python -m app.manage create-staff`.
 - Reception dashboard (`/staff`): date navigation, 8 stat tiles (tap to filter), Day list and
   New requests (all days) tabs, search by name / mobile / request ID / patient no., list as a
   table on desktop and cards on phones, call/WhatsApp buttons, first-visit and walk-in tags,
@@ -320,13 +320,18 @@ no double payment, other patient's appointment, cash, refunds, walk-in, reschedu
 accessibility includes the payment form.
 
 ## Client change — reception can view the doctor's screens (2026-10-02)
-Reception/admin now have **Doctor's queue** in the menu (today's patients in token order, still to come, done) and
+Reception now has **Doctor's queue** in the menu (today's patients in token order, still to come, done) and
 can open any patient's visit screen **view-only**: today's reason, previous visits **with the doctor's
 consultation notes**, appointment history. Patient profiles show the notes too. Only the doctor can write or
 change notes, save drafts or complete visits (server-enforced); unfinished drafts are not shown to reception;
 patients never see notes (D38). Demo data replaced with 5 fictional patients (2 new online requests, 1 walk-in
 today, 2 visits on 1 October). Tested: backend 126/126, clinic workflow 34/34, reception 33/33, notifications
 19/19, accessibility 53 screens / 0 violations.
+
+## Admin role removed (2026-10-02)
+Admin had the same screens as reception, so it was removed at the client's request. Roles: reception and
+doctor. Existing admin accounts become reception on start-up; the demo `admin` login no longer works (D39).
+Tests: backend 126/126, reception 33/33, clinic 34/34, notifications 19/19, payment 38/38.
 
 ## Waiting on the client
 Consultation fee amount (₹300 used) and which payment gateway to use for real payments, verified phone & WhatsApp, full address & landmark, working days (hours 10 AM – 4 PM confirmed),

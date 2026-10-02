@@ -31,7 +31,7 @@
 ### Authorization
 - [x] **Patient isolation** — Patients only see own appointments/notifications (`me.py`, `notifications.py`)
 - [x] **Doctor isolation** — Doctor analytics filtered to own patients (`analytics.py`)
-- [x] **Reception/Admin only** — Patient management, messages, walk-ins (`reception.py`, `patients.py`)
+- [x] **Reception only** — Patient management, messages, walk-ins (`reception.py`, `patients.py`)
 - [x] **Doctor-only endpoints** — Visit screen, today queue (`doctor.py`)
 - [x] **Staff vs patient cookie separation** — Enforced in `current_patient` / `current_staff` (`security.py:87-118`)
 

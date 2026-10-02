@@ -1,6 +1,6 @@
 """Doctor: today's queue, the patient's visit screen, consultation notes, follow-up, complete visit.
 
-Reception/admin may VIEW the queue and the visit screen (notes read-only, finished notes only);
+Reception may VIEW the queue and the visit screen (notes read-only, finished notes only);
 only the doctor can write notes or complete a visit.
 """
 
@@ -22,7 +22,7 @@ from .reception import enrich, find_appointment, queue_order
 router = APIRouter(prefix="/doctor", tags=["doctor"])
 log = logging.getLogger("saran.doctor")
 doctor_only = require_role("doctor")  # writing notes / completing visits
-any_staff = require_role("doctor", "reception", "admin")  # viewing (client request 2026-10-02)
+any_staff = require_role("doctor", "reception")  # viewing (client request 2026-10-02)
 SLOT_ORDER = {slot: i for i, slot in enumerate(clinic.TIME_SLOTS)}
 
 

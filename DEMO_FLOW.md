@@ -24,7 +24,6 @@ patient and staff logins don't mix.
 | Patient | any 10-digit mobile starting 6–9 that hasn't been used before; the one-time code is **shown on screen** | `/book` or `/login` |
 | Reception | `reception` / `reception123` | `/staff/login` (the login page lists these — just tap one) |
 | Doctor | `doctor` / `doctor123` | `/staff/login` |
-| Admin | `admin` / `admin123` (same screens as reception) | `/staff/login` |
 
 ## The 14 steps
 

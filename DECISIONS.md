@@ -196,3 +196,8 @@ Client request: reception/admin can view the doctor's queue (`/staff/queue`) and
 finished consultation notes (visit screen and patient profile). Only the doctor can write notes, save drafts or
 complete a visit — enforced on the server. Unfinished drafts stay with the doctor. Patients never see notes.
 This replaces the earlier "notes are for the doctor only" rule.
+
+## D39 — Admin role removed (2026-10-02)
+Admin had exactly the same screens as reception, so the client asked to remove it. Roles are now reception and
+doctor. On start-up any account with role "admin" becomes "reception" (no one loses access); the demo
+`admin/admin123` account is deleted in demo mode. Staff accounts are still managed from the command line.

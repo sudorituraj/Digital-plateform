@@ -55,6 +55,8 @@ async def migrate(db: AsyncDatabase) -> None:
     """Small, idempotent data updates (safe to run on every start)."""
     # 2026-10-01: clinic hours are 10 AM – 4 PM, so the old "evening" window became 2–4 PM ("afternoon").
     await db.appointments.update_many({"time_slot": "evening"}, {"$set": {"time_slot": "afternoon"}})
+    # 2026-10-02: the admin role was removed (it had the same screens as reception).
+    await db.staff.update_many({"role": "admin"}, {"$set": {"role": "reception"}})
 
 
 async def next_sequence(db: AsyncDatabase, name: str) -> int:

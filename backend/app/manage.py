@@ -60,7 +60,7 @@ if __name__ == "__main__":
     sub = parser.add_subparsers(dest="command", required=True)
     create = sub.add_parser("create-staff")
     create.add_argument("--username", required=True)
-    create.add_argument("--role", required=True, choices=["admin", "reception", "doctor"])
+    create.add_argument("--role", required=True, choices=["reception", "doctor"])
     create.add_argument("--name", required=True)
     deactivate = sub.add_parser("deactivate-staff")
     deactivate.add_argument("--username", required=True)

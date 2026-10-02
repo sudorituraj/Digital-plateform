@@ -442,7 +442,6 @@
     "navLabel": "स्टाफ़ मेन्यू",
     "logout": "लॉग आउट",
     "roles": {
-      "admin": "एडमिन",
       "reception": "रिसेप्शन",
       "doctor": "डॉक्टर"
     },

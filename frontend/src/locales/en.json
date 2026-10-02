@@ -442,7 +442,6 @@
     "navLabel": "Staff menu",
     "logout": "Log out",
     "roles": {
-      "admin": "Admin",
       "reception": "Reception",
       "doctor": "Doctor"
     },

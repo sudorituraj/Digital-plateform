@@ -46,7 +46,7 @@ def reception(client):
 # ---- login & access --------------------------------------------------------------------------------
 
 def test_demo_staff_accounts_exist_and_login(client):
-    assert {a["username"] for a in client.get("/api/staff/demo-accounts").json()} == {"reception", "doctor", "admin"}
+    assert {a["username"] for a in client.get("/api/staff/demo-accounts").json()} == {"reception", "doctor"}
     me = staff_login(client)
     assert me == {"username": "reception", "name": "Reception Desk", "role": "reception"}
     assert client.get("/api/staff/session").json()["staff"]["role"] == "reception"

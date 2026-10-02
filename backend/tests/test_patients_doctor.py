@@ -130,9 +130,6 @@ def test_reception_can_view_doctor_screens_but_not_write(client):
     body = {"notes": "x", "follow_up_date": None}
     assert client.put(f"/api/doctor/appointments/{rid}/visit", json=body).status_code == 403
     assert client.post(f"/api/doctor/appointments/{rid}/complete", json=body).status_code == 403
-    staff_login(client, "admin", "admin123")
-    assert client.get("/api/doctor/today").status_code == 200
-    assert client.post(f"/api/doctor/appointments/{rid}/complete", json=body).status_code == 403
 
 
 def test_reception_does_not_see_unfinished_draft(client):

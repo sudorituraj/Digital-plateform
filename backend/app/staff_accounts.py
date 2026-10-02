@@ -15,7 +15,6 @@ log = logging.getLogger("saran.staff")
 DEMO_STAFF = [
     {"username": "reception", "password": "reception123", "role": "reception", "name": "Reception Desk"},
     {"username": "doctor", "password": "doctor123", "role": "doctor", "name": "Dr. Neela Singh"},
-    {"username": "admin", "password": "admin123", "role": "admin", "name": "Clinic Admin"},
 ]
 
 
@@ -43,6 +42,8 @@ async def seed_demo_staff(db: AsyncDatabase, settings: Settings) -> None:
     """Demo mode only: make sure the demo accounts exist and work with the passwords shown on the login page."""
     if not demo_accounts_enabled(settings):
         return
+    # The admin role was removed (2026-10-02); drop the old demo admin account.
+    await db.staff.delete_one({"username": "admin"})
     for account in DEMO_STAFF:
         existing = await db.staff.find_one({"username": account["username"]})
         if not existing:

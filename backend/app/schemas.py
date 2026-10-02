@@ -200,7 +200,7 @@ class BookingOptionsOut(BaseModel):
     window_days: int
 
 
-StaffRole = Literal["admin", "reception", "doctor"]
+StaffRole = Literal["reception", "doctor"]
 Status = Literal["request_submitted", "confirmed", "checked_in", "waiting", "completed", "cancelled"]
 
 

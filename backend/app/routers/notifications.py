@@ -54,7 +54,7 @@ async def mark_all_read(patient: dict = Depends(current_patient)):
 @router.get("/staff/messages", response_model=list[OutboxItemOut])
 async def outbox(
     type: str | None = Query(None, max_length=20),
-    staff: dict = Depends(require_role("reception", "admin")),
+    staff: dict = Depends(require_role("reception")),
 ):
     """Every message the system would have sent by WhatsApp/SMS (simulated in the demo)."""
     db = get_db()

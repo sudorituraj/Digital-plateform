@@ -12,13 +12,13 @@ import PatientsPage from './PatientsPage'
 import ReceptionPage from './ReceptionPage'
 import StaffLoginPage from './StaffLoginPage'
 
-/** Reception/admin see the reception dashboard; the doctor sees today's queue. */
+/** Reception sees the reception dashboard; the doctor sees today's queue. */
 function StaffHome() {
   const { staff } = useStaffAuth()
   return staff.role === 'doctor' ? <DoctorTodayPage /> : <ReceptionPage />
 }
 
-const FRONT_DESK = ['reception', 'admin']
+const FRONT_DESK = ['reception']
 
 /** Everything under /staff — loaded as a separate bundle, so patients never download staff code. */
 export default function StaffApp() {

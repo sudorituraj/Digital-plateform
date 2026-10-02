@@ -104,7 +104,7 @@ def client_ip(request: Request, settings: Settings) -> str:
     return request.client.host if request.client else "unknown"
 
 
-STAFF_ROLES = ("admin", "reception", "doctor")
+STAFF_ROLES = ("reception", "doctor")
 
 
 async def current_staff(request: Request, settings: Settings = Depends(get_settings)) -> dict:

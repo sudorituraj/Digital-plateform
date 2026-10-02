@@ -25,8 +25,8 @@ from .reception import enrich
 
 router = APIRouter(prefix="/staff/patients", tags=["patients"])
 log = logging.getLogger("saran.patients")
-front_desk = require_role("reception", "admin")
-any_staff = require_role("reception", "admin", "doctor")
+front_desk = require_role("reception")
+any_staff = require_role("reception", "doctor")
 SLOT_ORDER = {slot: i for i, slot in enumerate(clinic.TIME_SLOTS)}
 PAGE_SIZE = 30
 
