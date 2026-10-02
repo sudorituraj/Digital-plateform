@@ -621,7 +621,7 @@
       "noneCompleted": "No visits completed yet.",
       "today": "Today's visit",
       "note": "Consultation note",
-      "noteHint": "Visible to the doctor only. Not a prescription.",
+      "noteHint": "Clinic staff can read this note; patients never see it. Not a prescription.",
       "noNote": "No note written.",
       "noFollowUp": "No follow-up",
       "after": {

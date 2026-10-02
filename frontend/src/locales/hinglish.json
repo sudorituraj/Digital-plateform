@@ -621,7 +621,7 @@
       "noneCompleted": "Abhi koi visit poori nahi.",
       "today": "Aaj ki visit",
       "note": "Consultation note",
-      "noteHint": "Sirf doctor dekh sakti hain. Yeh prescription nahi hai.",
+      "noteHint": "Yeh note clinic staff padh sakta hai; patients ise kabhi nahi dekhte. Yeh prescription nahi hai.",
       "noNote": "Koi note nahi likha.",
       "noFollowUp": "Follow-up nahi",
       "after": {
