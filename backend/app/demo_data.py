@@ -4,7 +4,7 @@ Phone numbers use the obviously fake range 90000 00xxx. Everything is tagged dem
 so `seed-demo --reset` removes exactly this data and nothing else.
 """
 
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 
 from pymongo.asynchronous.database import AsyncDatabase
 
@@ -13,11 +13,8 @@ from .db import next_sequence
 from .lifecycle import history_entry, new_request_id
 
 PATIENTS = [
-    ("Sunita Devi", 29, "female"), ("Priya Kumari", 24, "female"), ("Rekha Singh", 35, "female"),
-    ("Anjali Kumari", 27, "female"), ("Meena Devi", 42, "female"), ("Kavita Sharma", 31, "female"),
-    ("Pooja Gupta", 26, "female"), ("Rinki Kumari", 22, "female"), ("Savita Devi", 48, "female"),
-    ("Neha Prasad", 30, "female"), ("Guddi Devi", 38, "female"), ("Shalini Rai", 33, "female"),
-    ("Ramesh Yadav", 45, "male"), ("Suman Kumari", 28, "female"), ("Asha Devi", 55, "female"),
+    ("Aarti Kumari", 26, "female"), ("Pooja Devi", 24, "female"), ("Sunita Devi", 35, "female"),
+    ("Rekha Singh", 31, "female"), ("Meena Kumari", 42, "female"),
 ]
 # Fictional, generic notes for the demo doctor screen (not real medical records).
 DEMO_NOTES = [
@@ -26,24 +23,20 @@ DEMO_NOTES = [
     "Mild pain, no fever. Advised rest and plenty of fluids; come back if it continues.",
 ]
 # follow-up (days after the visit) for completed demo visits, by plan index; None = no follow-up
-DEMO_FOLLOW_UP = {0: 20, 1: 21, 2: 14, 4: 14, 5: 30}
+DEMO_FOLLOW_UP = {3: 14}
 
-REASONS = ["Regular check-up", "Pregnancy check-up", "Follow-up with reports", "Stomach pain", None, "Irregular periods", None]
+REASONS = ["Pregnancy check-up", "Irregular periods", "Stomach pain", "Regular check-up", "Follow-up with reports"]
 
-# (patient index, day offset, slot, final status, source) — the story of a normal clinic day.
+# (patient index, day offset or exact date, slot, final status, source)
 PLAN = [
-    # earlier visits → these patients show as returning
-    (0, -20, "morning", "completed", "online"), (2, -14, "afternoon", "completed", "walk_in"),
-    (4, -7, "morning", "completed", "online"), (5, -3, "afternoon", "cancelled", "online"),
-    # today
-    (0, 0, "morning", "completed", "online"), (2, 0, "morning", "completed", "walk_in"),
-    (1, 0, "morning", "waiting", "online"), (3, 0, "morning", "checked_in", "online"),
-    (6, 0, "afternoon", "checked_in", "walk_in"), (7, 0, "afternoon", "confirmed", "online"),
-    (8, 0, "midday", "confirmed", "online"), (9, 0, "afternoon", "request_submitted", "online"),
-    # coming days
-    (10, 1, "morning", "request_submitted", "online"), (11, 1, "afternoon", "request_submitted", "online"),
-    (12, 2, "afternoon", "confirmed", "online"), (13, 3, "morning", "request_submitted", "online"),
-    (14, 5, "morning", "request_submitted", "online"),
+    # new registrations: online requests waiting for reception
+    (0, 1, "morning", "request_submitted", "online"),
+    (1, 0, "afternoon", "request_submitted", "online"),
+    # walk-in today, waiting at the clinic with a token
+    (2, 0, "morning", "checked_in", "walk_in"),
+    # visited the clinic on 1 October
+    (3, date(2026, 10, 1), "morning", "completed", "online"),
+    (4, date(2026, 10, 1), "midday", "completed", "walk_in"),
 ]
 PATH = ["request_submitted", "confirmed", "checked_in", "waiting", "completed"]
 DEMO_METHODS = [("upi", {"upi_id": "demo@okaxis"}), ("card", {"card_brand": "visa", "card_last4": "1111"})]
@@ -87,7 +80,8 @@ async def seed_demo_data(db: AsyncDatabase) -> int:
             patients.append(existing)
             continue
         doc = {"phone": phone, "patient_code": f"P{await next_sequence(db, 'patient'):06d}", "name": name, "age": age,
-               "gender": gender, "email": None, "source": "online", "demo": True,
+               "gender": gender, "email": None, "demo": True,
+               "source": next((src for pi, *_, src in PLAN if pi == i), "online"),
                "created_at": datetime.now(UTC) - timedelta(days=30), "updated_at": datetime.now(UTC)}
         doc["_id"] = (await db.patients.insert_one(doc)).inserted_id
         patients.append(doc)
@@ -95,6 +89,8 @@ async def seed_demo_data(db: AsyncDatabase) -> int:
     tokens: dict[str, int] = {}
     created = 0
     for n, (pi, offset, slot, status, source) in enumerate(PLAN):
+        if isinstance(offset, date):  # a fixed day (e.g. "visited on 1 October")
+            offset = (offset - today).days
         p = patients[pi]
         day = (today + timedelta(days=offset)).isoformat()
         if await db.appointments.find_one({"patient_id": p["_id"], "date": day, "demo": True}):
