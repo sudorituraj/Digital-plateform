@@ -74,13 +74,17 @@ for (const [name, [w, h]] of Object.entries(viewports)) {
   const page = await ctx.newPage()
   await page.goto(BASE + '/', { waitUntil: 'networkidle' })
   const expected = { 'हिंदी': ['hi', 'भरोसेमंद इलाज, आपके पास।'], 'भोजपुरी': ['bho', 'भरोसा वाला इलाज, रउआ लगे।'], 'Hinglish': ['hi-Latn', 'Bharosemand ilaaj, aapke paas.'], 'English': ['en', 'Trusted care, close to home.'] }
+  // Phones: one compact language picker in the top bar (four names don't fit next to "Log in / My Appointments").
+  const picker = page.locator('section select').first()
+  const code = { 'हिंदी': 'hi', 'भोजपुरी': 'bho', 'Hinglish': 'hinglish', 'English': 'en' }
+  log(await page.locator('section a[href="/login"]', { hasText: 'Log in' }).first().isVisible(), 'phone top bar shows "Log in" next to the language picker')
   for (const [label, [lang, title]] of Object.entries(expected)) {
-    await page.locator('label', { hasText: label }).first().click()
+    await picker.selectOption(code[label])
     await page.waitForFunction((l) => document.documentElement.lang === l, lang)
     const h1 = (await page.locator('h1').textContent()).trim()
     log(h1 === title, `language ${label}: html lang=${lang}, h1="${h1}"`)
   }
-  await page.locator('label', { hasText: 'हिंदी' }).first().click()
+  await picker.selectOption('hi')
   await page.reload({ waitUntil: 'networkidle' })
   log(await page.evaluate(() => document.documentElement.lang) === 'hi', 'language choice persists after reload')
   if (SHOTS) await page.screenshot({ path: `${SHOTS}/home-phone-hindi.png`, fullPage: true })

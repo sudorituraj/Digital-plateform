@@ -2,12 +2,37 @@ import { useId } from 'react'
 import { useI18n } from '../../i18n/useI18n'
 import { LANGUAGES } from '../../i18n/languages'
 import { cn } from '../../lib/cn'
+import { Icon } from '../ui/Icon'
 
 /**
  * Always-visible language switch:  English | हिंदी | भोजपुरी | Hinglish
  * Built from native radio buttons so it works with keyboard (arrow keys) and screen readers.
  * `variant="stacked"` is used inside the mobile menu.
  */
+
+/** Compact picker for the phone top bar, where four names don't fit next to "My Appointments". */
+export function LanguagePicker({ className }) {
+  const { t, language, setLanguage } = useI18n()
+  return (
+    <label className={cn('relative inline-flex min-h-8 items-center rounded-full bg-white/12 text-white ring-1 ring-white/25', className)}>
+      <Icon name="globe" size={15} className="pointer-events-none absolute left-2.5" />
+      <span className="sr-only">{t('common.chooseLanguage')}</span>
+      <select
+        value={language}
+        onChange={(e) => setLanguage(e.target.value)}
+        className="min-h-8 cursor-pointer appearance-none rounded-full bg-transparent pr-7 pl-7 text-[0.8rem] font-semibold text-white outline-none focus-visible:outline-3 focus-visible:outline-accent-400"
+      >
+        {LANGUAGES.map((l) => (
+          <option key={l.code} value={l.code} lang={l.htmlLang} className="text-ink">
+            {l.label}
+          </option>
+        ))}
+      </select>
+      <Icon name="chevronDown" size={15} className="pointer-events-none absolute right-2" />
+    </label>
+  )
+}
+
 export function LanguageSelector({ variant = 'inline', tone = 'light', className }) {
   const { t, language, setLanguage } = useI18n()
   const name = useId()

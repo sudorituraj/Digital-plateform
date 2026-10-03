@@ -7,7 +7,7 @@ import { cn } from '../../lib/cn'
 import { Button } from '../ui/Button'
 import { Icon } from '../ui/Icon'
 import { AccountLink } from './AccountLink'
-import { LanguageSelector } from './LanguageSelector'
+import { LanguagePicker, LanguageSelector } from './LanguageSelector'
 import { Logo } from './Logo'
 import { MobileMenu } from './MobileMenu'
 import { NotificationBell } from './NotificationBell'
@@ -30,7 +30,7 @@ export function Header() {
     <>
       {/* Utility bar: demo label + language switch, visible on every screen size. */}
       <section aria-label={t('common.language')} className="bg-primary-900 text-primary-50">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-1 sm:gap-3 2xl:max-w-[96rem] sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-1.5 px-3 py-1 sm:gap-3 2xl:max-w-[96rem] sm:px-6 lg:px-8">
           {env.demoMode && (
             <p className="flex shrink-0 items-center gap-2 text-[0.85rem]">
               <span className="rounded bg-accent-400 px-1.5 py-px text-[0.7rem] font-bold tracking-wide text-primary-950">
@@ -39,10 +39,13 @@ export function Header() {
               <span className="hidden text-primary-100 md:inline">{t('common.demoBanner')}</span>
             </p>
           )}
-          <div className="ml-auto flex items-center gap-4">
+          {/* Phones: "My Appointments" (or "Log in") as a small pill, always one tap away. */}
+          <AccountLink icon={false} className="inline-flex min-h-8 shrink-0 rounded-full bg-white/12 px-2.5 text-[0.78rem] font-semibold whitespace-nowrap text-white ring-1 ring-white/25 hover:bg-white/20 md:hidden" />
+          <div className="ml-auto flex min-w-0 items-center gap-4">
             <NotificationBell tone="dark" className="size-9 max-md:hidden" />
             <AccountLink className="hidden min-h-9 text-[0.85rem] font-medium text-primary-100 hover:text-white md:inline-flex" />
-            <LanguageSelector tone="dark" className="-mr-1 overflow-x-auto" />
+            <LanguageSelector tone="dark" className="-mr-1 max-md:hidden" />
+            <LanguagePicker className="md:hidden" />
           </div>
         </div>
       </section>
