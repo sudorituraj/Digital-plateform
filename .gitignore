@@ -21,5 +21,6 @@ test-results/
 playwright-report/
 .pytest_cache/
 
-# video tooling (venvs, models, frames)
-videos/build/
+# Generated media and client documents (kept locally / in Drive, not in git)
+videos/
+proposal/
